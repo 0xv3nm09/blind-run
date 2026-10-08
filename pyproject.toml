@@ -1,0 +1,61 @@
+[project]
+name = "blindrun"
+version = "0.1.0"
+description = "Blind-Run: an agent that proves a web flow can be completed by ear, and fixes the code until it can."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+dependencies = [
+    # models + resilience
+    "openai~=3.24",
+    "tenacity~=9.1",
+    # api
+    "fastapi~=0.142",
+    "uvicorn[standard]~=0.54",
+    "pydantic~=2.13",
+    "pydantic-settings~=2.15",
+    "sse-starlette~=3.5",
+    "orjson~=3.12",
+    # cli + logs
+    "typer~=0.19",
+    "structlog~=26.1",
+]
+
+[project.optional-dependencies]
+# Day-1 core installs lean; these arrive as the real adapters come online.
+queue = ["arq~=0.28", "redis>=4.5,<6"]  # arq caps redis<6; workbook's redis 8.x is incompatible with arq
+data = ["sqlalchemy[asyncio]~=2.1", "aiosqlite~=0.22", "alembic~=1.20"]
+ear = ["playwright~=1.63", "axe-playwright-python~=0.1.8", "pillow~=12.3"]
+search = ["tavily-python~=0.8.4"]
+sandbox = ["contree-sdk~=0.3.6"]
+tracing = [
+    "arize-phoenix-otel~=0.17",
+    "openinference-instrumentation-openai~=0.1.63",
+    "opentelemetry-sdk~=1.45",
+]
+metrics = ["numpy~=2.5", "scikit-learn~=1.9", "statsmodels~=0.15"]
+privacy = ["presidio-analyzer~=2.2", "presidio-image-redactor~=0.0.60"]
+
+[dependency-groups]
+dev = ["pytest~=9.1", "pytest-asyncio~=1.4", "ruff~=0.16", "mypy~=2.4"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/blindrun"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = ["slow: needs Token Factory + Sandboxes"]
+addopts = "-m 'not slow'"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]
