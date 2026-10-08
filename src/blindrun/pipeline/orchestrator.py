@@ -273,7 +273,24 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
             fixer_text = await deps.llm.text("fixer", round_messages, budget=budget)
             edits = _extract_edit_blocks(fixer_text)
             if not edits:
+                # Nemotron sometimes surfaces its reasoning as content instead of
+                # the blocks — one format-anchored retry before giving up the round
                 log.warning("fixer_round_no_edits", round_no=round_no, head=fixer_text[:200])
+                fixer_text = await deps.llm.text(
+                    "fixer",
+                    [
+                        *round_messages,
+                        {
+                            "role": "user",
+                            "content": "Your previous reply contained no ```fix blocks. Answer again with ONLY "
+                            "three fenced ```fix blocks in the exact format from the system message — the first "
+                            "character of your reply must be a backtick. No reasoning, no commentary.",
+                        },
+                    ],
+                    budget=budget,
+                )
+                edits = _extract_edit_blocks(fixer_text)
+            if not edits:
                 continue  # feedback round retries with the file re-quoted; exhausted loop escalates below
             patches = [
                 Patch(
