@@ -54,12 +54,11 @@ def new_run_id() -> RunId:
 
 
 def _extract_edit_blocks(text: str) -> list[str]:
-    """Search/replace edits: ```fix fenced blocks holding <<<SEARCH ... === ... >>>."""
+    """Search/replace edits: <<<SEARCH ... === ... >>> blocks. The ```fix fence is
+    optional — models drop it under sampling variance while keeping the markers."""
     import re
 
-    return [
-        m.strip() for m in re.findall(r"```(?:fix)?\s*\n?(<<<SEARCH.*?>>>)", text, re.DOTALL) if "===" in m
-    ]
+    return [m.strip() for m in re.findall(r"(<<<SEARCH.*?>>>)", text, re.DOTALL) if "===" in m]
 
 
 def _success_heard(phrase: str, transcript: list[str]) -> bool:
@@ -271,6 +270,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
             fixer_text = await deps.llm.text("fixer", round_messages, budget=budget)
             edits = _extract_edit_blocks(fixer_text)
             if not edits:
+                log.warning("fixer_round_no_edits", round_no=round_no, head=fixer_text[:200])
                 continue  # feedback round retries with the file re-quoted; exhausted loop escalates below
             patches = [
                 Patch(
