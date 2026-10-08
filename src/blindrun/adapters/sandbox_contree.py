@@ -11,8 +11,10 @@ concurrent runs on one uuid are parallel branches; free while in beta.
 """
 
 import asyncio
+import io
 import json
 import shlex
+import tarfile
 import time
 from pathlib import Path
 
@@ -37,10 +39,24 @@ _PARENT_SETUP = (
 )
 
 _APPLY_PY = r"""
-import sys, re
+import sys, re, hashlib
 path, edits = sys.argv[1], open(sys.argv[2]).read()
+expected_site_md5 = sys.argv[3] if len(sys.argv) > 3 else ""
 content = open(path).read()
 NL = chr(10)
+
+def md5(t):
+    return hashlib.md5(t.encode()).hexdigest()
+
+def diag(search):
+    got = md5(content)
+    return (
+        f"SEARCH-NOT-FOUND: {search[:80]!r}"
+        f" | site md5 {got} (expected {expected_site_md5 or '?'}"
+        f"{'' if got == expected_site_md5 else ' MISMATCH'})"
+        f" | edits md5 {md5(edits)}"
+    )
+
 pattern = "<<<SEARCH" + NL + "(.*?)" + NL + "===" + NL + "(.*?)" + NL + ">>>"
 pairs = re.findall(pattern, edits, re.S)
 if not pairs:
@@ -53,7 +69,7 @@ for search, replace in pairs:
     rx = NL.join(r"[ \t]*" + l for l in lines)
     m = re.search(rx, content)
     if m is None:
-        sys.exit(f"SEARCH-NOT-FOUND: {search[:80]!r}")
+        sys.exit(diag(search))
     actual = content[m.start():].split(NL, 1)[0]
     indent = actual[: len(actual) - len(actual.lstrip())]
     quoted = search.split(NL, 1)[0]
@@ -88,11 +104,16 @@ class ContreeSandbox:
         reraise=True,
     )
     def _build_parent_sync(self) -> object:
+        import uuid
+
         from contree_sdk import ContreeSync
 
         client = ContreeSync()
         base = client.images.use(self.ear_image)
-        parent = base.run(shell=_PARENT_SETUP, timeout=1800, disposable=False, tag="blindrun-ear").wait()
+        # unique tag: a fixed tag can resolve to an older parent whose filesystem
+        # carries stale /site files from debugging runs; never inherit state
+        tag = f"blindrun-ear-{uuid.uuid4().hex[:6]}"
+        parent = base.run(shell=_PARENT_SETUP, timeout=1800, disposable=False, tag=tag).wait()
         state = str(getattr(parent, "state", ""))
         if "SUCCEEDED" not in state or "EAR-READY" not in (parent.stdout or ""):
             raise SandboxError(f"ear parent build failed (state {state}): {(parent.stderr or '')[-300:]}")
@@ -123,23 +144,38 @@ class ContreeSandbox:
                 "bundle": "/ear/node_modules/@guidepup/virtual-screen-reader/lib/esm/index.browser.js",
             }
         )
+        # Site goes in as a tarball and is unpacked over a wiped /site: uploading
+        # files to /site paths directly proved unreliable (stale copies from the
+        # parent's history can shadow the upload), and the tar keeps subdirs intact.
         # files= is the documented upload path (concurrent, sha256-deduped) — no heredocs.
         # Server + replay share ONE run: checkpoints save filesystem, not processes.
-        site_files = {
-            q.name: q.read_text()
-            for q in sorted(self.base.rglob("*"))
-            if q.is_file() and q.suffix in (".html", ".css", ".js")
-        }
+        buf = io.BytesIO()
+        with tarfile.open(fileobj=buf, mode="w") as tf:
+            for q in sorted(self.base.rglob("*")):
+                if q.is_file() and q.suffix in (".html", ".css", ".js"):
+                    info = tf.gettarinfo(str(q), arcname=q.relative_to(self.base).as_posix())
+                    with q.open("rb") as fh:
+                        tf.addfile(info, fh)
+        # unique edits path per branch: three candidates upload three different
+        # files; never let same-path concurrent uploads share a cache entry
+        import hashlib
+
+        patch_id = "".join(c if c.isalnum() or c == "_" else "_" for c in patch.get("id", "x"))
+        edits_path = f"/tmp/edits_{patch_id}"
+        expected_site_md5 = hashlib.md5(
+            (self.base / page_file).read_text().encode()
+        ).hexdigest()
         files_payload: dict[str, bytes] = {
-            **{f"/site/{name}": content.encode() for name, content in site_files.items()},
-            "/tmp/edits": patch.get("diff", "").encode(),
+            "/tmp/site.tar": buf.getvalue(),
+            edits_path: patch.get("diff", "").encode(),
             "/tmp/apply.py": _APPLY_PY.encode(),
             "/ear/virtual_run.mjs": Path(_EAR_SCRIPT).read_bytes(),
         }
         inner = chr(10).join(
             [
                 "set -e",
-                f"python3 /tmp/apply.py /site/{page_file} /tmp/edits",
+                "rm -rf /site && mkdir -p /site && tar -xf /tmp/site.tar -C /site",
+                f"python3 /tmp/apply.py /site/{page_file} {edits_path} {expected_site_md5}",
                 "cd /site && nohup python3 -m http.server 8000 >/dev/null 2>&1 &",
                 "sleep 1",
                 f"cd /ear && node virtual_run.mjs {shlex.quote(cfg)}",
