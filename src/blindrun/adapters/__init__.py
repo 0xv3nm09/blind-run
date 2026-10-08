@@ -52,7 +52,9 @@ def make_sandbox(backend: str, *, world: dict | None = None, base_dir: str = "de
     if backend == "fake":
         return FakeSandbox(world=world)
     if backend == "contree":
-        return ContreeSandbox()  # placeholder until beta approval lands
+        # world matters: the orchestrator publishes page_file there; without it
+        # the sandbox defaults to index.html and patches the WRONG page
+        return ContreeSandbox(base_dir=base_dir, world=world)
     if backend == "local":
         from .sandbox_local import LocalSandbox
 
