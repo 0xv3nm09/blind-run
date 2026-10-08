@@ -11,7 +11,6 @@ concurrent runs on one uuid are parallel branches; free while in beta.
 """
 
 import asyncio
-import base64
 import hashlib
 import io
 import json
@@ -158,10 +157,8 @@ class ContreeSandbox:
                     info = tf.gettarinfo(str(q), arcname=q.relative_to(self.base).as_posix())
                     with q.open("rb") as fh:
                         tf.addfile(info, fh)
-        # the SDK's files= transport corrupts binary payloads (live-observed:
-        # extracted site md5 ≠ source md5) but delivers text faithfully — so the
-        # tar travels base64-wrapped and is decoded inside the branch
-        site_b64 = base64.b64encode(buf.getvalue()).decode("ascii")
+        # binary files= payloads are byte-faithful (verified in-branch by md5);
+        # the tar preserves the controls/ subdir the flat-name upload flattened
         # unique edits path per branch: three candidates upload three different
         # files; never let same-path concurrent uploads share a cache entry
         patch_id = "".join(c if c.isalnum() or c == "_" else "_" for c in patch.get("id", "x"))
@@ -170,7 +167,7 @@ class ContreeSandbox:
             (self.base / page_file).read_text().encode()
         ).hexdigest()
         files_payload: dict[str, bytes] = {
-            "/tmp/site.tar.b64": site_b64.encode("ascii"),
+            "/tmp/site.tar": buf.getvalue(),
             edits_path: patch.get("diff", "").encode(),
             "/tmp/apply.py": _APPLY_PY.encode(),
             "/ear/virtual_run.mjs": Path(_EAR_SCRIPT).read_bytes(),
@@ -178,8 +175,7 @@ class ContreeSandbox:
         inner = chr(10).join(
             [
                 "set -e",
-                "rm -rf /site && mkdir -p /site",
-                "base64 -d /tmp/site.tar.b64 > /tmp/site.tar && tar -xf /tmp/site.tar -C /site",
+                "rm -rf /site && mkdir -p /site && tar -xf /tmp/site.tar -C /site",
                 f"python3 /tmp/apply.py /site/{page_file} {edits_path} {expected_site_md5}",
                 "cd /site && nohup python3 -m http.server 8000 >/dev/null 2>&1 &",
                 "sleep 1",

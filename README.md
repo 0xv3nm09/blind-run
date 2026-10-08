@@ -15,13 +15,17 @@ Built for the [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackat
 (Coding and Agentic Engineering track). All model inference runs on **Nebius Token Factory**
 with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**.
 
-## Status (Oct 7, 2026)
+## Status (Oct 8, 2026)
 
 - ✅ **Real, end to end**: real Nemotron Super planner → real Guidepup Virtual Screen Reader
   walk (transcript streams over SSE) → real text-only audit with WCAG-labeled, evidence-weighted
   findings → fixer proposes 3 verbatim search/replace edits → **fix branches run in parallel in
   Nebius Sandboxes** (apply → serve → ear replay inside the sandbox) → only a fix whose task
   *completes by ear* wins → PR with the before/after transcript diff.
+- ✅ **Flagship demo recorded on the real backend** (Oct 8): the shipped replay
+  (`bench/recorded_run.jsonl`) is a full Sandboxes run — round-1 fieldset/radio fix heard
+  "radio, S, not checked, position 1, set size 3" → "Added to cart" inside a Nebius branch;
+  the same loop verified on the local backend is kept at `bench/recorded_run_local.jsonl`.
 - ✅ **DR-0/1/3/4/5/7 verified live**: model IDs probed; planner call; ear hears planted bugs
   (a div size picker announces as bare text 'S','M','L' — invisible as controls; nameless icon
   buttons announce 'button'); axe-vs-ear agreement (axe flags the cosmetic issues, silent on the
@@ -46,10 +50,15 @@ make up                       # open http://localhost:8000 — the recorded demo
 
 ```bash
 make serve-shop               # terminal 1: the planted-bug shop on :8932
-LLM_BACKEND=tokenfactory EAR_DRIVER=virtual SANDBOX_BACKEND=local VCS_BACKEND=local \
+LLM_BACKEND=tokenfactory EAR_DRIVER=virtual SANDBOX_BACKEND=contree VCS_BACKEND=local \
   uv run python -m blindrun run --url http://127.0.0.1:8932/product.html \
-  --task "buy the cheapest item" --repo demo/shop   # terminal 2: a real run (~1 min, ~$0.01)
+  --task "buy the cheapest item" --repo demo/shop   # terminal 2: a real run (~5 min, ~$0.01)
 ```
+
+Fix candidates apply, serve and ear-verify **inside Nebius Sandboxes branches** (Token
+Factory's code-execution product — the track's "write, run, and test code in Token Factory",
+executed literally). Set `SANDBOX_BACKEND=local` to run the same verification on your own
+machine instead; the recorded demo replays either way.
 …paste the printed `run_…` id into the dashboard and watch the same arc live: the walk fails by
 ear, candidates are verified in parallel, only the one whose task completes by ear wins, and a PR
 opens with the transcript diff. Live runs need `NEBIUS_API_KEY` in `.env` (Token Factory credits;
@@ -68,10 +77,11 @@ one via `.env`, never code.
 
 | Role | Model (Token Factory) |
 |---|---|
-| Planner + Fixer | `nvidia/nemotron-3-super-120b-a12b` |
+| Planner + Auditor | `nvidia/nemotron-3-super-120b-a12b` |
+| Fixer (default) | `nvidia/Nemotron-3-Ultra-550b-a55b` — quality-first; Super is the cheaper switch |
 | Fast/high-volume | `nvidia/Nemotron-3_5-Lightning` |
 | Escalation | `nvidia/Nemotron-3-Ultra-550b-a55b` |
-| Auditor | Super (text-only) — vision A/B: `openbmb/MiniCPM-V-4_5` |
+| Auditor vision A/B | `openbmb/MiniCPM-V-4_5` (text-only Super is default) |
 | Guard | `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` |
 | Embeddings (dedupe) | `Qwen/Qwen3-Embedding-8B` |
 

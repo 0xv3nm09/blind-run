@@ -49,7 +49,9 @@ Every item below was hit while building Blind-Run and verified live against the 
    a server started in one run is not running in the next. Our server+replay branches fold both into
    a single `run(shell=...)`.
 4. **`files=` upload is great** (concurrent, sha256-deduped) — we migrated from base64-heredoc
-   payloads to `run(files={dest: bytes})` and deleted a whole class of quoting bugs.
+   payloads to `run(files={dest: bytes})` and deleted a whole class of quoting bugs. Binary
+   payloads are byte-faithful: we verified an uploaded tar's in-branch md5 equals the source
+   md5 before trusting it (our apply script checks this on every branch).
 5. **Transport retries are caller-side by design**, but the exception hierarchy has no
    retryable/permanent marker. We retry `OperationTimedOutError`-shaped failures blindly today.
    A `retryable: bool` on `ContreeError` would standardize this.
