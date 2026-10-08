@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blind-Run — can a web task be completed by ear?</title>
+<style>
+:root {
+  --bg-page: #fafafa; --bg-surface: #ffffff; --bg-surface-2: #f6f8fa; --bg-inset: #f0f2f4;
+  --text-primary: #16181d; --text-secondary: #5c636b; --text-tertiary: #68727c; --text-disabled: #8a939c;
+  --border-hairline: #e4e7ea; --border-default: #d9dcdf; --border-strong: #b9bfc5;
+  --accent: #0f766e; --accent-hover: #0d665f; --accent-tint: #edf6f5; --accent-border: #9fc9c4;
+  --pass: #1a7f37; --pass-tint: #ecf8ef; --pass-border: #b4dcc0;
+  --fail: #cf222e; --fail-tint: #fdefef; --fail-border: #f0b8b8;
+  --warn: #9a6700; --warn-tint: #fbf8ec; --warn-border: #e6d9a8;
+  --focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px rgba(15, 118, 110, 0.45);
+  --radius-sm: 3px; --radius-md: 4px; --radius-lg: 6px;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "IBM Plex Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg-page); color: var(--text-primary); font: 400 14px/22px var(--font-sans); }
+.app-header { height: 52px; background: var(--bg-surface); border-bottom: 1px solid var(--border-hairline); position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 16px; padding: 0 24px; }
+.brand { font: 600 15px/22px var(--font-sans); letter-spacing: -0.01em; }
+.brand .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; }
+.app-header .spacer { flex: 1; }
+.watch { display: flex; gap: 8px; align-items: center; }
+.watch input { height: 32px; width: 210px; padding: 0 10px; font: 400 13px/20px var(--font-mono); color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); }
+.watch input:focus-visible { outline: none; box-shadow: var(--focus-ring); border-color: var(--accent); }
+button { height: 32px; padding: 0 14px; font: 500 13px/20px var(--font-sans); border-radius: var(--radius-md); cursor: pointer; }
+.btn-primary { color: #fff; background: var(--accent); border: none; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { color: var(--accent); background: var(--bg-surface); border: 1px solid var(--border-default); }
+.btn-secondary:hover { border-color: var(--accent); }
+.page { max-width: 1120px; margin: 0 auto; padding: 32px 24px 64px; }
+.run-title { font: 600 28px/34px var(--font-sans); letter-spacing: -0.02em; margin: 0; }
+.run-meta { font: 400 14px/22px var(--font-sans); color: var(--text-secondary); margin: 4px 0 0; font-variant-numeric: tabular-nums; }
+.run-meta .mono { font-family: var(--font-mono); font-size: 13px; }
+.lede { font: 400 15px/24px var(--font-sans); color: var(--text-secondary); max-width: 68ch; margin: 12px 0 0; }
+.lede strong { color: var(--text-primary); font-weight: 600; }
+.section { margin-top: 32px; }
+.panel { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); }
+.panel + .panel { margin-top: 16px; }
+.panel-head { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border-hairline); }
+.panel-title { font: 600 16px/24px var(--font-sans); }
+.panel-head .count { margin-left: auto; font: 400 13px/20px var(--font-sans); color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+.panel-body { padding: 16px; }
+.banner { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: var(--radius-lg); font: 500 14px/20px var(--font-sans); margin-top: 16px; }
+.banner.pass { color: var(--pass); background: var(--pass-tint); border: 1px solid var(--pass-border); }
+.banner a { color: inherit; }
+.filters { display: flex; gap: 8px; align-items: center; margin: 0 0 16px; }
+.filters select { height: 32px; padding: 0 28px 0 10px; font: 400 13px/20px var(--font-sans); color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); }
+.filters select:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.filters .count { margin-left: auto; font: 400 13px/20px var(--font-sans); color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 1px 8px; border-radius: var(--radius-sm); font: 500 12px/18px var(--font-sans); background: transparent; }
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.chip.blocker { color: var(--fail); border: 1px solid var(--fail-border); }
+.chip.major { color: var(--warn); border: 1px solid var(--warn-border); }
+.chip.minor { color: var(--text-tertiary); border: 1px solid var(--border-default); }
+table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var(--font-sans); }
+.findings th { font: 500 12px/16px var(--font-sans); color: var(--text-tertiary); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border-default); }
+.findings td { padding: 10px 12px; border-bottom: 1px solid var(--border-hairline); vertical-align: top; }
+.findings tr:hover td { background: var(--bg-surface-2); }
+.findings td.num, .findings th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.findings .quote { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
+.findings .wcag { font-family: var(--font-mono); font-size: 12px; }
+.confidence { display: flex; align-items: center; gap: 8px; }
+.confidence .bar { width: 72px; height: 4px; border-radius: 2px; background: var(--bg-inset); overflow: hidden; }
+.confidence .bar > i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+.confidence .value { font: 500 12px/16px var(--font-mono); color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.route { font: 400 12px/18px var(--font-mono); color: var(--text-secondary); }
+.route.auto_fix, .route.fix_and_flag { color: var(--accent); }
+.route.human { color: var(--warn); }
+.branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 900px) { .branches { grid-template-columns: 1fr; } }
+.branch { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); }
+.branch.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.branch-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--border-hairline); }
+.badge-letter { width: 22px; height: 22px; border-radius: var(--radius-sm); border: 1px solid var(--border-default); font: 600 11px/22px var(--font-mono); text-align: center; color: var(--text-secondary); }
+.verdict { margin-left: auto; font: 600 11px/16px var(--font-sans); letter-spacing: 0.02em; padding: 1px 7px; border-radius: var(--radius-sm); }
+.verdict.passed { color: var(--pass); border: 1px solid var(--pass-border); }
+.verdict.failed_ear, .verdict.failed_apply, .verdict.failed_build, .verdict.timeout { color: var(--fail); border: 1px solid var(--fail-border); }
+.branch-body { padding: 10px 12px; font: 400 12px/18px var(--font-mono); color: var(--text-secondary); word-break: break-all; }
+.transcript { max-height: 420px; overflow-y: auto; }
+.tr-line { display: grid; grid-template-columns: 12px 64px 1fr; gap: 12px; padding: 8px 12px; font: 400 13px/20px var(--font-mono); border-left: 2px solid transparent; }
+.tr-line + .tr-line { border-top: 1px solid var(--border-hairline); }
+.tr-line .t { color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+.tr-line.act { border-left-color: var(--accent); background: var(--accent-tint); }
+.tr-line.status { color: var(--text-secondary); background: var(--bg-surface-2); }
+.diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+@media (max-width: 900px) { .diff-grid { grid-template-columns: 1fr; } }
+.diff-col { padding: 12px; }
+.diff-col + .diff-col { border-left: 1px solid var(--border-hairline); }
+.diff-col h4 { margin: 0 0 8px; font: 500 12px/16px var(--font-sans); color: var(--text-tertiary); }
+.diff-col pre { margin: 0; font: 400 12px/18px var(--font-mono); white-space: pre-wrap; word-break: break-word; }
+.diff-col.before pre { color: var(--text-secondary); }
+.diff-col.after pre { color: var(--text-primary); }
+.diff-line.remove { color: var(--fail); }
+.diff-line.add { color: var(--pass); }
+.skeleton { height: 12px; border-radius: 3px; background: var(--bg-inset); animation: pulse 1.4s ease-in-out infinite; margin: 10px 0; }
+@keyframes pulse { 50% { opacity: 0.55; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } html { scroll-behavior: auto; } }
+.hidden { display: none; }
+.hidden-caption, caption.hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.footer-note { margin-top: 24px; font: 400 13px/20px var(--font-sans); color: var(--text-tertiary); }
+.footer-note a { color: var(--accent); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="app-header">
+  <h2 class="brand"><span class="dot" aria-hidden="true"></span>Blind-Run</h2>
+  <span class="spacer"></span>
+  <div class="watch">
+    <input id="run-id" placeholder="paste a run id…" spellcheck="false" aria-label="Run id">
+    <button class="btn-secondary" id="watch-btn">Watch live</button>
+    <button class="btn-primary" id="demo-btn">Play demo run</button>
+  </div>
+</header>
+<main class="page" id="main">
+  <h1 class="run-title">Can a web task be completed by ear?</h1>
+  <p class="lede">Blind-Run drives a <strong>virtual screen reader</strong> through a web flow and listens to every phrase it
+  announces. If a blind user couldn't finish the task, an AI auditor names the exact barrier, a fixer writes the code
+  change, and the fix <strong>only counts when the task can then be finished by ear</strong>. Below is a recorded real run
+  against a shop with planted accessibility bugs.</p>
+  <p class="run-meta" id="run-meta" role="status">Loading the recorded demo…</p>
+
+  <div id="pr-banner" class="banner pass hidden" role="status"></div>
+
+  <section class="section hidden" id="branches-section">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Fix candidates — verified in parallel, one winner</span><span class="count" id="branch-count"></span></div>
+      <div class="panel-body"><div class="branches" id="branches"></div></div>
+    </div>
+  </section>
+
+  <section class="section hidden" id="diff-section">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">What the screen reader announced — before vs after the fix</span></div>
+      <div class="diff-grid">
+        <div class="diff-col before"><h4>Before — task fails</h4><pre id="diff-before"></pre></div>
+        <div class="diff-col after"><h4>After — task completes by ear</h4><pre id="diff-after"></pre></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Findings</span><span class="count" id="finding-count">0</span></div>
+      <div class="panel-body">
+        <div class="filters">
+          <select id="f-severity" aria-label="Filter by severity"><option value="">All severities</option><option>blocker</option><option>major</option><option>minor</option></select>
+          <select id="f-category" aria-label="Filter by category"><option value="">All categories</option></select>
+          <select id="f-route" aria-label="Filter by route"><option value="">All routes</option><option>auto_fix</option><option>fix_and_flag</option><option>human</option></select>
+          <span class="count" id="filter-count"></span>
+        </div>
+        <table class="findings">
+          <caption class="hidden">Accessibility findings: severity, WCAG criterion, what was heard and seen, confidence and route</caption>
+          <thead><tr><th scope="col">Severity</th><th scope="col">WCAG</th><th scope="col">Category</th><th scope="col">Heard</th><th scope="col">Seen</th><th scope="col" class="num">Confidence</th><th scope="col">Route</th></tr></thead>
+          <tbody id="findings-body"></tbody>
+        </table>
+        <div class="empty" id="findings-empty">Listening…<div class="hint">Findings appear as the auditor reports them.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Transcript — what the screen reader said</span><span class="count" id="phrase-count">0 phrases</span></div>
+      <div class="transcript" id="transcript" role="log" aria-live="polite" aria-relevant="additions" aria-label="Screen reader transcript"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Benchmark — planted-bug shop, 21 bugs + 5 clean controls</span></div>
+      <div class="panel-body" id="bench-body"><div class="skeleton" style="width:60%"></div></div>
+    </div>
+  </section>
+
+  <p class="footer-note">Every model call is NVIDIA Nemotron on <a href="https://tokenfactory.nebius.com">Nebius Token Factory</a>;
+  fix candidates are built and ear-verified in parallel inside <a href="https://docs.tokenfactory.nebius.com/sandboxes/overview">Nebius Sandboxes</a>.
+  A virtual screen reader is necessary evidence, not proof — a human reviews every PR. See the system card for limits.</p>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const state = { findings: [], branches: {}, phrases: 0, tokens: null, es: null };
+
+function esc(s) { return (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+/* ---------- findings (from events; works live and in replay) ---------- */
+function upsertFinding(d) {
+  if (!d.heard && !d.seen) return; // legacy thin events
+  const i = state.findings.findIndex((f) => f.id === d.id);
+  if (i >= 0) state.findings[i] = d; else state.findings.push(d);
+  renderFindings();
+}
+function renderFindings() {
+  const sev = $("f-severity").value, cat = $("f-category").value, route = $("f-route").value;
+  const rows = state.findings.filter((f) =>
+    (!sev || f.severity === sev) && (!cat || f.category === cat) && (!route || (f.route || "") === route));
+  $("findings-body").innerHTML = rows.map((f) => `
+    <tr>
+      <td><span class="chip ${esc(f.severity)}">${esc(f.severity)}</span></td>
+      <td class="wcag">${esc(f.wcag_sc)}</td>
+      <td>${esc(f.category || "")}</td>
+      <td class="quote">${esc(f.heard)}</td>
+      <td class="quote">${esc(f.seen)}</td>
+      <td class="num"><div class="confidence"><span class="bar"><i style="width:${Math.round((f.confidence || 0) * 100)}%"></i></span><span class="value">${(f.confidence ?? 0).toFixed(2)}</span></div></td>
+      <td class="route ${esc(f.route || "")}">${esc(f.route || "—")}</td>
+    </tr>`).join("");
+  $("findings-empty").classList.toggle("hidden", rows.length > 0);
+  $("finding-count").textContent = String(state.findings.length);
+  $("filter-count").textContent = `${rows.length} of ${state.findings.length} shown`;
+  const cats = [...new Set(state.findings.map((f) => f.category).filter(Boolean))];
+  const sel = $("f-category"), cur = sel.value;
+  sel.innerHTML = '<option value="">All categories</option>' + cats.map((c) => `<option${c === cur ? " selected" : ""}>${esc(c)}</option>`).join("");
+}
+["f-severity", "f-category", "f-route"].forEach((id) => $(id).addEventListener("change", renderFindings));
+
+/* ---------- branches + verdicts ---------- */
+function renderBranches() {
+  const list = Object.values(state.branches);
+  $("branches").innerHTML = list.map((b, i) => `
+    <div class="branch ${b.verdict === "passed" ? "selected" : ""}">
+      <div class="branch-head"><span class="badge-letter">${String.fromCharCode(65 + i)}</span>
+        <span style="font:400 12px/18px var(--font-mono)">candidate ${String.fromCharCode(65 + i).toLowerCase()}</span>
+        <span class="verdict ${esc(b.verdict)}">${esc(b.verdict.replace("failed_", "failed ").replace("passed", "verified by ear"))}</span></div>
+      <div class="branch-body">${esc((b.tail || "").replace("ear replay on patched copy: ", ""))}</div>
+    </div>`).join("");
+  $("branch-count").textContent = `${list.length} candidates`;
+  $("branches-section").classList.toggle("hidden", list.length === 0);
+}
+
+/* ---------- transcript ---------- */
+function addPhrase(text, tMs) {
+  state.phrases += 1;
+  const cls = /^(button|radio|checkbox|link|radiogroup)/i.test(text) ? "act" : /^(end of|document|paragraph)/i.test(text) ? "status" : "";
+  const line = document.createElement("div");
+  line.className = "tr-line " + cls;
+  line.innerHTML = `<span class="t">${((tMs || 0) / 1000).toFixed(1)}s</span><span></span><span>${esc(text)}</span>`;
+  $("transcript").appendChild(line);
+  $("phrase-count").textContent = `${state.phrases} phrases`;
+  $("transcript").scrollTop = $("transcript").scrollHeight;
+}
+
+/* ---------- diff + PR banner ---------- */
+function renderDiff(diffText) {
+  const lines = diffText.split("\n").filter((l) => l && !l.startsWith("@@") && !l.startsWith("---") && !l.startsWith("+++"));
+  const before = lines.filter((l) => l.startsWith("-")).map((l) => `<div class="diff-line remove">${esc(l.slice(1)) || "&nbsp;"}</div>`).join("");
+  const after = lines.filter((l) => l.startsWith("+")).map((l) => `<div class="diff-line add">${esc(l.slice(1)) || "&nbsp;"}</div>`).join("");
+  $("diff-before").innerHTML = before || "—";
+  $("diff-after").innerHTML = after || "—";
+  $("diff-section").classList.remove("hidden");
+}
+function showPr(data) {
+  const b = $("pr-banner");
+  b.innerHTML = `Verified fix opened as a pull request — a human reviews and merges. <a href="${esc(data.url)}">${esc(data.url)}</a>`;
+  b.classList.remove("hidden");
+}
+
+/* ---------- status ---------- */
+function setStatus(runId, data) {
+  state.status = data.to || data.status || (data.task ? "started" : state.status);
+  if (data.tokens != null) state.tokens = data.tokens;
+  if (runId === "demo") $("run-title").textContent = 'Recorded demo — "buy the cheapest item"';
+  else $("run-title").textContent = `Run ${runId}`;
+  const bits = [`status <strong>${esc(state.status)}</strong>`];
+  if (data.task) bits.push(`task <span class="mono">${esc(data.task)}</span>`);
+  if (data.reason) bits.push(esc(data.reason));
+  if (state.tokens != null) bits.push(`<span class="mono">${state.tokens.toLocaleString()} tokens</span>`);
+  $("run-meta").innerHTML = bits.join(" · ");
+}
+
+/* ---------- watch / replay ---------- */
+function watch(runId) {
+  if (state.es) state.es.close();
+  $("transcript").innerHTML = ""; $("pr-banner").classList.add("hidden");
+  $("diff-section").classList.add("hidden"); $("branches-section").classList.add("hidden");
+  state.phrases = 0; state.findings = []; state.branches = {}; state.tokens = null;
+  renderFindings();
+  const es = new EventSource(`/v1/runs/${runId}/events`);
+  state.es = es;
+  es.addEventListener("update", (e) => {
+    const ev = JSON.parse(e.data);
+    if (ev.type === "ear.phrase") addPhrase(ev.data.text, ev.data.t_ms ?? 0);
+    else if (ev.type === "finding.new") upsertFinding(ev.data);
+    else if (ev.type === "fix.branch") { state.branches[ev.data.patch_id] = ev.data; renderBranches(); }
+    else if (ev.type === "fix.verified" && ev.data.transcript_diff) renderDiff(ev.data.transcript_diff);
+    else if (ev.type === "pr.opened") showPr(ev.data);
+    else if (ev.type.startsWith("run.")) setStatus(runId, ev.data);
+    if (ev.type === "run.finished" || ev.type === "run.failed") es.close();
+  });
+  es.onerror = () => { if (state.phrases === 0) setStatus(runId, { status: "not found — start one with curl POST /v1/runs" }); es.close(); };
+}
+$("watch-btn").addEventListener("click", () => { const id = $("run-id").value.trim(); if (id) watch(id); });
+$("run-id").addEventListener("keydown", (e) => { if (e.key === "Enter") $("watch-btn").click(); });
+$("demo-btn").addEventListener("click", () => watch("demo"));
+
+/* ---------- benchmark ---------- */
+async function loadBench() {
+  const res = await fetch("/v1/benchmark/latest");
+  if (!res.ok) { $("bench-body").innerHTML = '<div class="empty">No benchmark results yet.</div>'; return; }
+  const b = await res.json();
+  const row = (name, c, extra) => `<tr><td>${name}</td><td class="num">${c.recall}</td><td class="num">[${c.recall_ci95.join(", ")}]</td><td class="num">${c.recall_axe_invisible}</td>${extra || ""}</tr>`;
+  $("bench-body").innerHTML = `<table class="findings">
+    <thead><tr><th scope="col">Condition</th><th scope="col" class="num">Recall</th><th scope="col" class="num">95% confidence interval</th><th scope="col" class="num">Recall (axe-invisible)</th><th scope="col" class="num">Precision</th><th scope="col" class="num">False positives on clean controls</th></tr></thead>
+    <tbody>
+      ${b.axe_only ? row("axe only", b.axe_only, "<td class='num'>—</td><td class='num'>—</td>") : ""}
+      ${b.ear_auditor ? row("ear + auditor", b.ear_auditor, `<td class='num'>${b.ear_auditor.precision ?? "—"}</td><td class='num'>${b.ear_auditor.control_false_positives ?? "—"}</td>`) : ""}
+      ${b.combined_axe_plus_ear ? row("combined (shipped)", b.combined_axe_plus_ear, "<td class='num'>—</td><td class='num'>—</td>") : ""}
+    </tbody></table>`;
+}
+
+/* judge cold-open: play the recorded demo immediately */
+watch("demo");
+loadBench();
+</script>
+</body>
+</html>
