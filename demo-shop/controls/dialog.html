@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Control: Dialog — Nimbus Goods</title><link rel="stylesheet" href="../styles.css"></head>
+<body data-page="control-dialog">
+  <nav class="nav"><a href="../index.html">Nimbus Goods</a> <a href="../catalog.html">Catalog</a></nav>
+  <main>
+    <h1>Control: dialog (clean)</h1>
+    <button id="open">Open dialog</button>
+    <p id="after"></p>
+  </main>
+  <div id="dlg" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title" hidden>
+    <h2 id="dlg-title">Remove item?</h2>
+    <button id="confirm">Remove</button>
+    <button id="cancel">Cancel</button>
+  </div>
+  <script>
+    let last=null;
+    document.getElementById('open').onclick=()=>{last=document.activeElement;const d=document.getElementById('dlg');d.hidden=false;d.querySelector('button').focus()};
+    function close(msg){const d=document.getElementById('dlg');d.hidden=true;document.getElementById('after').textContent=msg;last.focus()}
+    document.getElementById('confirm').onclick=()=>close('Removed');
+    document.getElementById('cancel').onclick=()=>close('Kept');
+    document.getElementById('dlg').addEventListener('keydown',e=>{  // focus trap + escape + restore
+      if(e.key==='Escape')close('Kept');
+      if(e.key==='Tab'){const b=[...document.getElementById('dlg').querySelectorAll('button')];
+        const first=b[0],lastB=b[b.length-1];
+        if(e.shiftKey&&document.activeElement===first){e.preventDefault();lastB.focus()}
+        else if(!e.shiftKey&&document.activeElement===lastB){e.preventDefault();first.focus()}}
+    });
+  </script>
+</body>
+</html>

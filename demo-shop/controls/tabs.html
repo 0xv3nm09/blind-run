@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Control: Tabs — Nimbus Goods</title><link rel="stylesheet" href="../styles.css"></head>
+<body data-page="control-tabs">
+  <nav class="nav"><a href="../index.html">Nimbus Goods</a> <a href="../catalog.html">Catalog</a></nav>
+  <main>
+    <h1>Control: tabs (clean)</h1>
+    <div role="tablist" aria-label="Product details">
+      <button role="tab" id="t1" aria-selected="true" aria-controls="p1">Description</button>
+      <button role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Care</button>
+      <button role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1">Shipping</button>
+    </div>
+    <div role="tabpanel" id="p1" aria-labelledby="t1">Built for trail running.</div>
+    <div role="tabpanel" id="p2" aria-labelledby="t2" hidden>Machine wash cold.</div>
+    <div role="tabpanel" id="p3" aria-labelledby="t3" hidden>Free returns for 30 days.</div>
+  </main>
+  <script>
+    const tabs=[...document.querySelectorAll('[role=tab]')];
+    tabs.forEach((t,i)=>{
+      t.addEventListener('click',()=>select(i));
+      t.addEventListener('keydown',e=>{
+        if(e.key==='ArrowRight')select((i+1)%tabs.length);
+        if(e.key==='ArrowLeft')select((i-1+tabs.length)%tabs.length);
+      });
+    });
+    function select(i){tabs.forEach((t,j)=>{t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=j!==i});tabs[i].focus()}
+  </script>
+</body>
+</html>

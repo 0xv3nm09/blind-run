@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>About — Nimbus Goods</title>
+<!-- PLANTED BUGS on this page:
+     B01 (WCAG 1.1.1, axe: catches) image without alt
+     B04 (WCAG 1.4.3, axe: catches) low-contrast text
+     B17 (WCAG 1.3.2, axe: MISSES) CSS order differs from DOM order
+     B18 (WCAG 2.4.1, axe: MISSES) skip link points to a missing target -->
+<link rel="stylesheet" href="styles.css"></head>
+<body data-page="about">
+  <a class="skip" href="#main-content">Skip to content</a>
+  <nav class="nav"><a href="index.html">Nimbus Goods</a> <a href="catalog.html">Catalog</a> <a href="cart.html">Cart</a></nav>
+  <main>
+    <h1>About Nimbus Goods</h1>
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'%3E%3Crect width='120' height='80' fill='%2388aadd'/%3E%3C/svg%3E">
+    <p class="faint">Founded in 2026 by a small team of hikers.</p>
+    <div class="reversed">
+      <span id="r1">First</span>
+      <span id="r2">Second</span>
+      <span id="r3">Third</span>
+    </div>
+    <p>Our story: we started with one tent and a bad back. <span id="main-content"></span></p>
+  </main>
+  <style>
+    .reversed { display: flex; flex-direction: row-reverse; }
+    .faint { color: #b9b9b9; background: #fff; }
+  </style>
+</body>
+</html>

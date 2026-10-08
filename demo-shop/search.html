@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Search — Nimbus Goods</title>
+<!-- PLANTED BUGS on this page:
+     B02 (WCAG 1.3.1/4.1.2, axe: catches) search input without label
+     B06 (WCAG 2.4.4, axe: catches) empty link
+     B08 (WCAG 1.3.1/4.1.2, axe: catches) select without label -->
+<link rel="stylesheet" href="styles.css"></head>
+<body data-page="search">
+  <nav class="nav"><a href="index.html">Nimbus Goods</a> <a href="catalog.html">Catalog</a> <a href="cart.html">Cart</a></nav>
+  <main>
+    <h1>Search</h1>
+    <input id="q">
+    <select onchange="void 0"><option>Any category</option><option>Shoes</option><option>Packs</option></select>
+    <p><a href="catalog.html"></a></p>
+    <ul id="results"><li>Trail Runner X — $49</li><li>Summit Pack — $89</li></ul>
+  </main>
+</body>
+</html>

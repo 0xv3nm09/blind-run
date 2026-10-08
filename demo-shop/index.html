@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Nimbus Goods — Home</title>
+<!-- PLANTED BUGS on this page:
+     B05 (WCAG 3.1.1, axe: catches) missing lang attribute
+     B13 (WCAG 2.1.2, axe: MISSES) cookie banner traps keyboard focus -->
+<link rel="stylesheet" href="styles.css"></head>
+<body data-page="index">
+  <nav class="nav"><a href="index.html">Nimbus Goods</a> <a href="catalog.html">Catalog</a> <a href="cart.html">Cart</a></nav>
+  <main>
+    <h1>Welcome to Nimbus Goods</h1>
+    <p>Outdoor gear at honest prices.</p>
+    <p><a href="product.html">Featured: Trail Runner X — $49</a></p>
+  </main>
+  <!-- B13: cookie banner traps focus; Escape does nothing; no focus management -->
+  <div id="cookie-banner" class="cookie" role="dialog" aria-label="Cookie consent">
+    <p>We use cookies.</p>
+    <button onclick="this.parentElement.remove()">Accept</button>
+    <button onclick="this.parentElement.remove()">Decline</button>
+  </div>
+  <script>
+    const b = document.getElementById('cookie-banner');
+    b.addEventListener('keydown', e => { e.stopPropagation(); });  // trap: swallows Tab/Escape
+    b.querySelector('button').focus();
+  </script>
+</body>
+</html>

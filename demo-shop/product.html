@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Trail Runner X — Nimbus Goods</title>
+<!-- PLANTED BUGS on this page:
+     B11 (WCAG 2.1.1/4.1.2, axe: MISSES) size picker = divs with click handlers only
+     B20 (WCAG 2.5.3, axe: partial) visible label "Buy now" vs accessible name "submit-btn-2"
+     BX1 (WCAG 4.1.2, axe: MISSES) nameless icon-only buttons announce as bare "button" -->
+<link rel="stylesheet" href="styles.css"></head>
+<body data-page="product">
+  <nav class="nav"><a href="index.html">Nimbus Goods</a> <a href="catalog.html">Catalog</a> <a href="cart.html">Cart</a></nav>
+  <main>
+    <h1>Trail Runner X</h1>
+    <p class="price">$49.00</p>
+    <div id="size-picker" aria-label="Size">
+      <div class="size" onclick="pick(this)">S</div>
+      <div class="size" onclick="pick(this)">M</div>
+      <div class="size" onclick="pick(this)">L</div>
+    </div>
+    <button class="icon" onclick="note('Saved to wishlist')"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 14 L2 8 a3 3 0 1 1 6-3 a3 3 0 1 1 6 3 Z"/></svg></button>
+    <button class="icon" onclick="note('Link copied')"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="3" cy="8" r="2"/><circle cx="13" cy="3" r="2"/><circle cx="13" cy="13" r="2"/></svg></button>
+    <button onclick="add()">Add to cart</button>
+    <button onclick="buy()" aria-label="submit-btn-2">Buy now</button>
+    <p id="status" class="status"></p>
+  </main>
+  <footer><a href="about.html">About</a> · <a href="support.html">Support</a></footer>
+  <script>
+    function pick(el){document.querySelectorAll('.size').forEach(x=>x.removeAttribute('data-picked'));el.setAttribute('data-picked','1')}
+    function note(t){document.getElementById('status').textContent=t}
+    function add(){document.querySelector('[data-picked]')?note('Added to cart'):note('Choose a size first')}
+    function buy(){document.querySelector('[data-picked]')?note('Order confirmed'):note('Choose a size first')}
+  </script>
+</body>
+</html>

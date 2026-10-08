@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Control: Live cart — Nimbus Goods</title><link rel="stylesheet" href="../styles.css"></head>
+<body data-page="control-live-cart">
+  <nav class="nav"><a href="../index.html">Nimbus Goods</a> <a href="../catalog.html">Catalog</a></nav>
+  <main>
+    <h1>Control: live region (clean)</h1>
+    <p>Cart: <span id="count">0</span> items</p>
+    <button onclick="add()">Add to cart</button>
+    <p id="announce" role="status" aria-live="polite"></p>
+  </main>
+  <script>
+    let n=0;
+    function add(){n++;document.getElementById('count').textContent=n;
+      document.getElementById('announce').textContent=`Cart updated: ${n} item${n>1?'s':''}`}
+  </script>
+</body>
+</html>

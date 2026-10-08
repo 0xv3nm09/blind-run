@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Cart — Nimbus Goods</title>
+<!-- PLANTED BUGS on this page:
+     B12 (WCAG 2.4.3, axe: MISSES) "Apply coupon" dialog opens but focus stays behind it
+     B14 (WCAG 4.1.3, axe: MISSES) cart total updates silently (no live region) -->
+<link rel="stylesheet" href="styles.css"></head>
+<body data-page="cart">
+  <nav class="nav"><a href="index.html">Nimbus Goods</a> <a href="catalog.html">Catalog</a> <a href="cart.html">Cart</a></nav>
+  <main>
+    <h1>Your cart</h1>
+    <table><tr><td>Trail Runner X</td><td>$49.00</td></tr></table>
+    <p>Total: <span id="total">$49.00</span></p>
+    <button onclick="openCoupon()">Apply coupon</button>
+    <button onclick="applyCode()">Apply NIMBUS10</button>
+    <p><a href="checkout.html">Proceed to checkout</a></p>
+  </main>
+  <div id="coupon-dialog" class="dialog" role="dialog" aria-label="Coupon code" hidden>
+    <label for="code">Coupon code</label><input id="code">
+    <button onclick="closeCoupon()">Close</button>
+  </div>
+  <script>
+    function openCoupon(){document.getElementById('coupon-dialog').hidden=false}
+    function closeCoupon(){document.getElementById('coupon-dialog').hidden=true}
+    function applyCode(){document.getElementById('total').textContent='$44.10'}  // B14: silent change
+  </script>
+</body>
+</html>

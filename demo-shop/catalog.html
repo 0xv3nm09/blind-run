@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Catalog — Nimbus Goods</title>
+<!-- PLANTED BUGS on this page:
+     B09 (WCAG 1.3.1, axe: catches) duplicate landmark names (two navs, same label)
+     B19 (WCAG 4.1.3, axe: MISSES) loading spinner never announced; results appear silently -->
+<link rel="stylesheet" href="styles.css"></head>
+<body data-page="catalog">
+  <nav class="nav" aria-label="Products"><a href="index.html">Nimbus Goods</a> <a href="catalog.html">Catalog</a> <a href="cart.html">Cart</a></nav>
+  <main>
+    <h1>Catalog</h1>
+    <nav aria-label="Products"><a href="search.html">Shoes</a> | <a href="search.html">Packs</a></nav>
+    <div id="loading" class="spinner" role="status"></div>
+    <ul id="results" hidden><li>Trail Runner X — $49</li><li>Summit Pack — $89</li><li>Rain Shell — $120</li></ul>
+  </main>
+  <script>
+    // B19: results arrive after 2s; the spinner (role=status, empty) never announces
+    setTimeout(()=>{document.getElementById('loading').style.display='none';document.getElementById('results').hidden=false},2000)
+  </script>
+</body>
+</html>

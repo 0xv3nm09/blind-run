@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Checkout — Nimbus Goods</title>
+<!-- PLANTED BUGS on this page:
+     B15 (WCAG 3.3.1/4.1.3, axe: MISSES) form error shown visually only, not announced, not linked
+     B16 (WCAG 2.4.6, axe: MISSES) checkout button has aria-label="button" (a name, but a useless one) -->
+<link rel="stylesheet" href="styles.css"></head>
+<body data-page="checkout">
+  <nav class="nav"><a href="index.html">Nimbus Goods</a> <a href="catalog.html">Catalog</a> <a href="cart.html">Cart</a></nav>
+  <main>
+    <h1>Checkout</h1>
+    <form onsubmit="return submitOrder(event)">
+      <label for="email">Email</label><input id="email" type="email">
+      <label for="card">Card number</label><input id="card" inputmode="numeric">
+      <button type="submit" aria-label="button">Place order</button>
+    </form>
+    <p id="error" class="error" hidden>Card number is required</p>
+  </main>
+  <script>
+    function submitOrder(e){
+      e.preventDefault();
+      const err=document.getElementById('error');
+      if(!document.getElementById('card').value.trim()){err.hidden=false}  // B15: visual only
+      else{err.hidden=true;document.getElementById('error').textContent='';location.href='confirmed.html'}
+      return false;
+    }
+  </script>
+</body>
+</html>
