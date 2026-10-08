@@ -45,17 +45,17 @@ import sys, re, hashlib
 path, edits = sys.argv[1], open(sys.argv[2]).read()
 expected_site_md5 = sys.argv[3] if len(sys.argv) > 3 else ""
 content = open(path).read()
+pristine_md5 = hashlib.md5(content.encode()).hexdigest()
 NL = chr(10)
 
 def md5(t):
     return hashlib.md5(t.encode()).hexdigest()
 
-def diag(search):
-    got = md5(content)
+def diag(search, n):
+    note = "" if pristine_md5 == expected_site_md5 else " MISMATCH"
     return (
-        f"SEARCH-NOT-FOUND: {search[:80]!r}"
-        f" | site md5 {got} (expected {expected_site_md5 or '?'}"
-        f"{'' if got == expected_site_md5 else ' MISMATCH'})"
+        f"SEARCH-NOT-FOUND (pair {n}): {search[:80]!r}"
+        f" | pristine site md5 {pristine_md5} (expected {expected_site_md5 or '?'}{note})"
         f" | edits md5 {md5(edits)}"
     )
 
@@ -63,7 +63,7 @@ pattern = "<<<SEARCH" + NL + "(.*?)" + NL + "===" + NL + "(.*?)" + NL + ">>>"
 pairs = re.findall(pattern, edits, re.S)
 if not pairs:
     sys.exit("no SEARCH/REPLACE pairs")
-for search, replace in pairs:
+for n, (search, replace) in enumerate(pairs, 1):
     if search in content:
         content = content.replace(search, replace)  # ALL occurrences
         continue
@@ -71,7 +71,7 @@ for search, replace in pairs:
     rx = NL.join(r"[ \t]*" + l for l in lines)
     m = re.search(rx, content)
     if m is None:
-        sys.exit(diag(search))
+        sys.exit(diag(search, n))
     actual = content[m.start():].split(NL, 1)[0]
     indent = actual[: len(actual) - len(actual.lstrip())]
     quoted = search.split(NL, 1)[0]
@@ -227,7 +227,7 @@ class ContreeSandbox:
             reached_success=payload["reached_success"],
         )
         passed = payload["reached_success"]
-        heard = " | ".join(str(x.get("phrase", "?")) for x in payload["phrases"][-8:])
+        heard = " | ".join(str(x.get("text", "?")) for x in payload["phrases"][-8:])
         tail = (
             f"nebius sandbox ear: {'success heard' if passed else 'walk ended without success'}"
             f"; last heard: {heard}"

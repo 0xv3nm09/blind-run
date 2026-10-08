@@ -54,11 +54,21 @@ def new_run_id() -> RunId:
 
 
 def _extract_edit_blocks(text: str) -> list[str]:
-    """Search/replace edits: <<<SEARCH ... === ... >>> blocks. The ```fix fence is
-    optional — models drop it under sampling variance while keeping the markers."""
+    """Search/replace edits: every <<<SEARCH ... === ... section becomes one
+    candidate. Models routinely emit all alternatives inside one unclosed block
+    (missing >>> between sections) — splitting on <<<SEARCH first isolates each
+    pair; a non-greedy span regex would swallow the mega-block as one candidate
+    whose later pairs poison the branch after pair 1 mutated the file. Fences
+    are decorative and stripped."""
     import re
 
-    return [m.strip() for m in re.findall(r"(<<<SEARCH.*?>>>)", text, re.DOTALL) if "===" in m]
+    out: list[str] = []
+    stripped = text.replace("```fix", "").replace("```", "")
+    for chunk in stripped.split("<<<SEARCH")[1:]:
+        m = re.match(r"\s*\n(.*?)\n===\s*\n(.*?)(?:\n>>>)?\s*$", chunk, re.DOTALL)
+        if m and m.group(1).strip():
+            out.append(f"<<<SEARCH\n{m.group(1)}\n===\n{m.group(2)}\n>>>")
+    return out
 
 
 def _success_heard(phrase: str, transcript: list[str]) -> bool:

@@ -75,9 +75,10 @@ def _normalize_diff_paths(diff: str, target: str) -> str:
     return "\n".join(lines)
 
 
-def _apply_pairs(content: str, pairs: list[tuple[str, str]]) -> str | None:
+def _apply_pairs(content: str, pairs: list[tuple[str, str]]) -> tuple[str, str] | tuple[None, str]:
     """Exact replacement when verbatim; indentation-tolerant fallback otherwise
-    (models re-indent quoted lines far more often than they alter content)."""
+    (models re-indent quoted lines far more often than they alter content).
+    Returns (content, "") on success or (None, failing_search)."""
     import re
 
     for search, replace in pairs:
@@ -90,7 +91,7 @@ def _apply_pairs(content: str, pairs: list[tuple[str, str]]) -> str | None:
         rx = "\n".join(r"[ \t]*" + l for l in lines)
         m = re.search(rx, content)
         if m is None:
-            return None
+            return None, search
         actual = content[m.start() :].split("\n", 1)[0]
         indent = actual[: len(actual) - len(actual.lstrip())]
         quoted = search.split("\n", 1)[0]
@@ -101,7 +102,7 @@ def _apply_pairs(content: str, pairs: list[tuple[str, str]]) -> str | None:
                 for l in replace.split("\n")
             )
         content = content[: m.start()] + replace + content[m.end() :]
-    return content
+    return content, ""
 
 
 def _apply_edits(site: Path, target: str, edits: str) -> tuple[int, str]:
@@ -115,9 +116,9 @@ def _apply_edits(site: Path, target: str, edits: str) -> tuple[int, str]:
     pairs = re.findall(r"<<<SEARCH\n(.*?)\n===\n(.*?)\n>>>", edits, re.DOTALL)
     if not pairs:
         return 1, "no SEARCH/REPLACE pairs found"
-    applied = _apply_pairs(content, pairs)
+    applied, failed = _apply_pairs(content, pairs)
     if applied is None:
-        return 1, "search text not found in " + target + f": {pairs[0][0][:80]!r}"
+        return 1, f"search text not found in {target}: {failed[:80]!r}"
     path.write_text(applied)
     return 0, ""
 

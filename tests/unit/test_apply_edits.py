@@ -62,3 +62,20 @@ def test_indentation_drift_tolerated_and_reindented_on_both():
 def test_content_drift_still_fails_on_both():
     assert _run_local(_CONTENT, _DRIFTED)[0] == 1
     assert _run_contree(_CONTENT, _DRIFTED)[0] != 0
+
+
+def test_mega_block_splits_into_independent_candidates():
+    """Models emit all alternatives inside one unclosed block; the extractor must
+    return each <<<SEARCH/===/>>> pair as its own candidate, not one mega-patch
+    whose later pairs poison the branch after pair 1 mutated the file."""
+    from blindrun.pipeline.orchestrator import _extract_edit_blocks
+
+    mega = (
+        "```fix\n"
+        "<<<SEARCH\n  <div id=\"a\">\n===\n  <div id=\"a\" fixed>\n"
+        "<<<SEARCH\n  <div id=\"b\">\n===\n  <div id=\"b\" fixed>\n"
+        "<<<SEARCH\n  <div id=\"c\">\n===\n  <div id=\"c\" fixed>\n>>>\n```"
+    )
+    edits = _extract_edit_blocks(mega)
+    assert len(edits) == 3
+    assert edits[0] == '<<<SEARCH\n  <div id="a">\n===\n  <div id="a" fixed>\n>>>'
