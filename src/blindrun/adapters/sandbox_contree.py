@@ -46,9 +46,24 @@ pairs = re.findall(pattern, edits, re.S)
 if not pairs:
     sys.exit("no SEARCH/REPLACE pairs")
 for search, replace in pairs:
-    if search not in content:
+    if search in content:
+        content = content.replace(search, replace)  # ALL occurrences
+        continue
+    lines = [re.escape(l.strip()) for l in search.split(NL) if l.strip()]
+    rx = NL.join(r"[ \t]*" + l for l in lines)
+    m = re.search(rx, content)
+    if m is None:
         sys.exit(f"SEARCH-NOT-FOUND: {search[:80]!r}")
-    content = content.replace(search, replace)  # ALL occurrences
+    actual = content[m.start():].split(NL, 1)[0]
+    indent = actual[: len(actual) - len(actual.lstrip())]
+    quoted = search.split(NL, 1)[0]
+    old_indent = quoted[: len(quoted) - len(quoted.lstrip())]
+    if indent != old_indent:
+        replace = NL.join(
+            indent + l[len(old_indent):] if l.strip() and l.startswith(old_indent) else l
+            for l in replace.split(NL)
+        )
+    content = content[: m.start()] + replace + content[m.end():]
 open(path, "w").write(content)
 print("APPLIED")
 """

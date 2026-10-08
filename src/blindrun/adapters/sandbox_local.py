@@ -75,8 +75,37 @@ def _normalize_diff_paths(diff: str, target: str) -> str:
     return "\n".join(lines)
 
 
+def _apply_pairs(content: str, pairs: list[tuple[str, str]]) -> str | None:
+    """Exact replacement when verbatim; indentation-tolerant fallback otherwise
+    (models re-indent quoted lines far more often than they alter content)."""
+    import re
+
+    for search, replace in pairs:
+        if search in content:
+            content = content.replace(
+                search, replace
+            )  # ALL occurrences: one pattern often fixes several call sites
+            continue
+        lines = [re.escape(l.strip()) for l in search.split("\n") if l.strip()]
+        rx = "\n".join(r"[ \t]*" + l for l in lines)
+        m = re.search(rx, content)
+        if m is None:
+            return None
+        actual = content[m.start() :].split("\n", 1)[0]
+        indent = actual[: len(actual) - len(actual.lstrip())]
+        quoted = search.split("\n", 1)[0]
+        old_indent = quoted[: len(quoted) - len(quoted.lstrip())]
+        if indent != old_indent:
+            replace = "\n".join(
+                indent + l[len(old_indent) :] if l.strip() and l.startswith(old_indent) else l
+                for l in replace.split("\n")
+            )
+        content = content[: m.start()] + replace + content[m.end() :]
+    return content
+
+
 def _apply_edits(site: Path, target: str, edits: str) -> tuple[int, str]:
-    """Apply <<<SEARCH ... === ... >>> blocks by exact string replacement."""
+    """Apply <<<SEARCH ... === ... >>> blocks: exact match, else indentation-tolerant."""
     import re
 
     path = site / target
@@ -86,13 +115,10 @@ def _apply_edits(site: Path, target: str, edits: str) -> tuple[int, str]:
     pairs = re.findall(r"<<<SEARCH\n(.*?)\n===\n(.*?)\n>>>", edits, re.DOTALL)
     if not pairs:
         return 1, "no SEARCH/REPLACE pairs found"
-    for search, replace in pairs:
-        if search not in content:
-            return 1, f"search text not found in {target}: {search[:80]!r}"
-        content = content.replace(
-            search, replace
-        )  # ALL occurrences: one pattern often fixes several call sites
-    path.write_text(content)
+    applied = _apply_pairs(content, pairs)
+    if applied is None:
+        return 1, "search text not found in " + target + f": {pairs[0][0][:80]!r}"
+    path.write_text(applied)
     return 0, ""
 
 
