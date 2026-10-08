@@ -1,0 +1,180 @@
+{
+  "comment": "Planted-bug truth. axe_invisible=false => axe-core flags it; true => only an ear test can catch it. Verified with DR-4 Oct 6: axe catches B01-B10 + BX1; misses B11-B20.",
+  "bugs": [
+    {
+      "id": "B01",
+      "page": "about.html",
+      "wcag": "1.1.1",
+      "category": "label",
+      "summary": "image without alt",
+      "axe_invisible": false
+    },
+    {
+      "id": "B02",
+      "page": "search.html",
+      "wcag": "4.1.2",
+      "category": "label",
+      "summary": "search input without label",
+      "axe_invisible": false
+    },
+    {
+      "id": "B03",
+      "page": "support.html",
+      "wcag": "4.1.2",
+      "category": "label",
+      "summary": "empty button",
+      "axe_invisible": false
+    },
+    {
+      "id": "B04",
+      "page": "about.html",
+      "wcag": "1.4.3",
+      "category": "contrast",
+      "summary": "low-contrast text",
+      "axe_invisible": false
+    },
+    {
+      "id": "B05",
+      "page": "index.html",
+      "wcag": "3.1.1",
+      "category": "other",
+      "summary": "missing lang attribute",
+      "axe_invisible": false
+    },
+    {
+      "id": "B06",
+      "page": "search.html",
+      "wcag": "2.4.4",
+      "category": "label",
+      "summary": "empty link",
+      "axe_invisible": false
+    },
+    {
+      "id": "B07",
+      "page": "support.html",
+      "wcag": "2.4.4",
+      "category": "label",
+      "summary": "icon link without name",
+      "axe_invisible": false
+    },
+    {
+      "id": "B08",
+      "page": "search.html",
+      "wcag": "1.3.1",
+      "category": "label",
+      "summary": "select without label",
+      "axe_invisible": false
+    },
+    {
+      "id": "B09",
+      "page": "catalog.html",
+      "wcag": "1.3.1",
+      "category": "navigation",
+      "summary": "duplicate landmark names",
+      "axe_invisible": false
+    },
+    {
+      "id": "B10",
+      "page": "support.html",
+      "wcag": "1.1.1",
+      "category": "label",
+      "summary": "image button without alt",
+      "axe_invisible": false
+    },
+    {
+      "id": "B11",
+      "page": "product.html",
+      "wcag": "2.1.1",
+      "category": "actionability",
+      "summary": "size picker: divs with click handlers, no role, no keyboard",
+      "axe_invisible": true
+    },
+    {
+      "id": "B12",
+      "page": "cart.html",
+      "wcag": "2.4.3",
+      "category": "navigation",
+      "summary": "coupon dialog opens without moving focus",
+      "axe_invisible": true
+    },
+    {
+      "id": "B13",
+      "page": "index.html",
+      "wcag": "2.1.2",
+      "category": "actionability",
+      "summary": "cookie banner traps keyboard focus",
+      "axe_invisible": true
+    },
+    {
+      "id": "B14",
+      "page": "cart.html",
+      "wcag": "4.1.3",
+      "category": "feedback",
+      "summary": "cart total updates silently (no live region)",
+      "axe_invisible": true
+    },
+    {
+      "id": "B15",
+      "page": "checkout.html",
+      "wcag": "3.3.1",
+      "category": "feedback",
+      "summary": "form error shown visually only, not announced",
+      "axe_invisible": true
+    },
+    {
+      "id": "B16",
+      "page": "checkout.html",
+      "wcag": "2.4.6",
+      "category": "label",
+      "summary": "checkout button aria-label='button' (useless name)",
+      "axe_invisible": true
+    },
+    {
+      "id": "B17",
+      "page": "about.html",
+      "wcag": "1.3.2",
+      "category": "order",
+      "summary": "CSS row-reverse makes reading order differ from visual",
+      "axe_invisible": true
+    },
+    {
+      "id": "B18",
+      "page": "about.html",
+      "wcag": "2.4.1",
+      "category": "navigation",
+      "summary": "skip link points to missing/empty target",
+      "axe_invisible": true
+    },
+    {
+      "id": "B19",
+      "page": "catalog.html",
+      "wcag": "4.1.3",
+      "category": "feedback",
+      "summary": "loading spinner never announced; results arrive silently",
+      "axe_invisible": true
+    },
+    {
+      "id": "B20",
+      "page": "product.html",
+      "wcag": "2.5.3",
+      "category": "label",
+      "summary": "visible 'Buy now' but accessible name 'submit-btn-2'",
+      "axe_invisible": true
+    },
+    {
+      "id": "BX1",
+      "page": "product.html",
+      "wcag": "4.1.2",
+      "category": "label",
+      "summary": "nameless icon-only buttons (axe flags button-name; ear confirms 'button, button')",
+      "axe_invisible": false
+    }
+  ],
+  "controls": [
+    "controls/combobox.html",
+    "controls/dialog.html",
+    "controls/tabs.html",
+    "controls/live-cart.html",
+    "controls/form.html"
+  ]
+}
