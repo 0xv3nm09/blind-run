@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Running Shoes — Demo Shop (planted bugs)</title></head>
+<body>
+  <header><h1>Shop</h1></header>
+  <main>
+    <h2>Running shoes</h2>
+    <p>$49.00</p>
+    <!-- PLANTED BUG 11 (WCAG 2.1.1/4.1.2): size picker is divs with click handlers only.
+         No role, no keyboard support — the reader announces "S M L" as static text:
+         a screen-reader user cannot tell these are selectable sizes at all. -->
+    <div id="size-picker" aria-label="Size">
+      <div class="size" onclick="pick(this)">S</div>
+      <div class="size" onclick="pick(this)">M</div>
+      <div class="size" onclick="pick(this)">L</div>
+    </div>
+    <!-- PLANTED BUG (WCAG 4.1.2): nameless icon-only buttons — announced as bare "button".
+         The video's "button, button" moment. -->
+    <button class="icon" onclick="wishlist()"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 14 L2 8 a3 3 0 1 1 6-3 a3 3 0 1 1 6 3 Z"/></svg></button>
+    <button class="icon" onclick="share()"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="3" cy="8" r="2"/><circle cx="13" cy="3" r="2"/><circle cx="13" cy="13" r="2"/></svg></button>
+    <button onclick="addToCart()">Add to cart</button>
+    <p id="status"></p>
+  </main>
+  <footer><a href="/cart.html">Cart (0)</a></footer>
+  <script>
+    function pick(el) {
+      document.querySelectorAll('.size').forEach(x => x.removeAttribute('data-picked'));
+      el.setAttribute('data-picked', 'true');
+    }
+    function wishlist() { document.getElementById('status').textContent = 'Saved to wishlist'; }
+    function share() { document.getElementById('status').textContent = 'Link copied'; }
+    function addToCart() {
+      const size = document.querySelector('[data-picked]');
+      if (!size) { document.getElementById('status').textContent = 'Choose a size first'; return; }
+      document.getElementById('status').textContent = 'Order confirmed';
+    }
+  </script>
+  <style>
+    .size { display: inline-block; border: 1px solid #333; padding: 8px 14px; margin: 4px; cursor: pointer; }
+    .size[data-picked] { background: #222; color: #fff; }
+    .icon { background: none; border: none; padding: 6px; cursor: pointer; }
+  </style>
+</body>
+</html>
