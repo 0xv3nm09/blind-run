@@ -171,6 +171,11 @@ class ContreeSandbox:
             reached_success=payload["reached_success"],
         )
         passed = payload["reached_success"]
+        heard = " | ".join(str(x.get("phrase", "?")) for x in payload["phrases"][-8:])
+        tail = (
+            f"nebius sandbox ear: {'success heard' if passed else 'walk ended without success'}"
+            f"; last heard: {heard}"
+        )
         return BranchResult(
             patch_id=patch.get("id", "fix_unknown"),
             verdict=BranchVerdict.passed if passed else BranchVerdict.failed_ear,
@@ -178,5 +183,5 @@ class ContreeSandbox:
             axe_after=axe_before,
             ear=ear,
             duration_s=time.perf_counter() - t0,
-            log_tail="nebius sandbox ear replay: " + ("success heard" if passed else "not heard"),
+            log_tail=tail,
         )

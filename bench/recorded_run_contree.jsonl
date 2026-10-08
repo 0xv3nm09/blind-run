@@ -1,53 +1,52 @@
-{"seq":0,"run_id":"run_585f2be1d34a","type":"run.started","at":"2026-10-08T07:42:04.372356Z","data":{"task":"buy the cheapest item","url":"http://127.0.0.1:8933/product.html","driver":"virtual"}}
-{"seq":1,"run_id":"run_585f2be1d34a","type":"run.status","at":"2026-10-08T07:42:04.373053Z","data":{"from":"queued","to":"planning"}}
-{"seq":2,"run_id":"run_585f2be1d34a","type":"plan.ready","at":"2026-10-08T07:42:23.070725Z","data":{"steps":["heading","act"],"success_phrase":"Item added to cart"}}
-{"seq":3,"run_id":"run_585f2be1d34a","type":"run.status","at":"2026-10-08T07:42:23.071047Z","data":{"from":"planning","to":"listening"}}
-{"seq":4,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.681225Z","data":{"i":0,"text":"document","step":0}}
-{"seq":5,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.681269Z","data":{"i":1,"text":"heading, Trail Runner X, level 1","step":0}}
-{"seq":6,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.689259Z","data":{"i":2,"text":"paragraph","step":2}}
-{"seq":7,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.690004Z","data":{"i":3,"text":"$49.00","step":3}}
-{"seq":8,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.690483Z","data":{"i":4,"text":"end of paragraph","step":4}}
-{"seq":9,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.690932Z","data":{"i":5,"text":"Size","step":5}}
-{"seq":10,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.691370Z","data":{"i":6,"text":"S","step":6}}
-{"seq":11,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.691867Z","data":{"i":7,"text":"M","step":7}}
-{"seq":12,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.692374Z","data":{"i":8,"text":"L","step":8}}
-{"seq":13,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.692803Z","data":{"i":9,"text":"end, Size","step":9}}
-{"seq":14,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.693245Z","data":{"i":10,"text":"button","step":10}}
-{"seq":15,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.727402Z","data":{"i":11,"text":"button","step":11}}
-{"seq":16,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.731028Z","data":{"i":12,"text":"button, Add to cart","step":12}}
-{"seq":17,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.733116Z","data":{"i":13,"text":"button, submit-btn-2","step":13}}
-{"seq":18,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.735078Z","data":{"i":14,"text":"Buy now","step":14}}
-{"seq":19,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.735534Z","data":{"i":15,"text":"end of button, submit-btn-2","step":15}}
-{"seq":20,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.735977Z","data":{"i":16,"text":"paragraph","step":16}}
-{"seq":21,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.736425Z","data":{"i":17,"text":"Choose a size first","step":17}}
-{"seq":22,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.737913Z","data":{"i":18,"text":"end of paragraph","step":18}}
-{"seq":23,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.739222Z","data":{"i":19,"text":"end of main","step":19}}
-{"seq":24,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.740299Z","data":{"i":20,"text":"contentinfo","step":20}}
-{"seq":25,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.741413Z","data":{"i":21,"text":"link, About","step":21}}
-{"seq":26,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.742322Z","data":{"i":22,"text":"·","step":22}}
-{"seq":27,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.747185Z","data":{"i":23,"text":"link, Support","step":23}}
-{"seq":28,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.747203Z","data":{"i":24,"text":"end of contentinfo","step":24}}
-{"seq":29,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.748015Z","data":{"i":25,"text":"end of document","step":25}}
-{"seq":30,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.748653Z","data":{"i":26,"text":"document","step":26}}
-{"seq":31,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.749092Z","data":{"i":27,"text":"navigation","step":27}}
-{"seq":32,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.749570Z","data":{"i":28,"text":"link, Nimbus Goods","step":28}}
-{"seq":33,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.750038Z","data":{"i":29,"text":"link, Catalog","step":29}}
-{"seq":34,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.750540Z","data":{"i":30,"text":"link, Cart","step":30}}
-{"seq":35,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.751015Z","data":{"i":31,"text":"end of navigation","step":31}}
-{"seq":36,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.751470Z","data":{"i":32,"text":"main","step":32}}
-{"seq":37,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.751948Z","data":{"i":33,"text":"heading, Trail Runner X, level 1","step":33}}
-{"seq":38,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.752417Z","data":{"i":34,"text":"paragraph","step":34}}
-{"seq":39,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.754311Z","data":{"i":35,"text":"$49.00","step":35}}
-{"seq":40,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.754780Z","data":{"i":36,"text":"end of paragraph","step":36}}
-{"seq":41,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.755280Z","data":{"i":37,"text":"Size","step":37}}
-{"seq":42,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.755770Z","data":{"i":38,"text":"S","step":38}}
-{"seq":43,"run_id":"run_585f2be1d34a","type":"ear.phrase","at":"2026-10-08T07:42:24.756240Z","data":{"i":39,"text":"M","step":39}}
-{"seq":44,"run_id":"run_585f2be1d34a","type":"ear.done","at":"2026-10-08T07:42:24.806368Z","data":{"reached_success":false,"phrases":40,"degraded":false}}
-{"seq":45,"run_id":"run_585f2be1d34a","type":"run.status","at":"2026-10-08T07:42:24.806424Z","data":{"from":"listening","to":"auditing"}}
-{"seq":46,"run_id":"run_585f2be1d34a","type":"finding.new","at":"2026-10-08T07:42:26.225217Z","data":{"id":"fnd_4dced8648490","wcag_sc":"4.1.2","category":"label","severity":"minor","confidence":0.68,"heard":"button, Add to cart","seen":"<button>'Add to cart'>","element_hint":"","route":"fix_and_flag"}}
-{"seq":47,"run_id":"run_585f2be1d34a","type":"finding.new","at":"2026-10-08T07:42:26.225274Z","data":{"id":"fnd_50a90baf8065","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button","seen":"<button>","element_hint":"","route":"fix_and_flag"}}
-{"seq":48,"run_id":"run_585f2be1d34a","type":"finding.new","at":"2026-10-08T07:42:26.225286Z","data":{"id":"fnd_7afb10ebe2c9","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button","seen":"<button>","element_hint":"","route":"fix_and_flag"}}
-{"seq":49,"run_id":"run_585f2be1d34a","type":"finding.new","at":"2026-10-08T07:42:26.225296Z","data":{"id":"fnd_87df225f190c","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(no announcement)","seen":"<group> containing three <button> elements","element_hint":"","route":"human"}}
-{"seq":50,"run_id":"run_585f2be1d34a","type":"run.status","at":"2026-10-08T07:42:26.225323Z","data":{"from":"auditing","to":"fixing"}}
-{"seq":51,"run_id":"run_585f2be1d34a","type":"run.status","at":"2026-10-08T07:44:23.603580Z","data":{"from":"fixing","to":"escalated","reason":"no branch passed"}}
-{"seq":52,"run_id":"run_585f2be1d34a","type":"run.finished","at":"2026-10-08T07:44:23.605838Z","data":{"status":"escalated","tokens":22286,"cost_usd":0.0}}
+{"seq":0,"run_id":"run_232008f279b9","type":"run.started","at":"2026-10-08T07:52:14.294641Z","data":{"task":"buy the cheapest item","url":"http://127.0.0.1:8933/product.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_232008f279b9","type":"run.status","at":"2026-10-08T07:52:14.294688Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_232008f279b9","type":"plan.ready","at":"2026-10-08T07:52:26.539742Z","data":{"steps":["heading","next","act","next","next","next","act"],"success_phrase":"Added to cart"}}
+{"seq":3,"run_id":"run_232008f279b9","type":"run.status","at":"2026-10-08T07:52:26.539958Z","data":{"from":"planning","to":"listening"}}
+{"seq":4,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.019920Z","data":{"i":0,"text":"document","step":0}}
+{"seq":5,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.019985Z","data":{"i":1,"text":"heading, Trail Runner X, level 1","step":0}}
+{"seq":6,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.020199Z","data":{"i":2,"text":"paragraph","step":1}}
+{"seq":7,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.026810Z","data":{"i":3,"text":"$49.00","step":3}}
+{"seq":8,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.027316Z","data":{"i":4,"text":"end of paragraph","step":4}}
+{"seq":9,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.027746Z","data":{"i":5,"text":"Size","step":5}}
+{"seq":10,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.029296Z","data":{"i":6,"text":"S","step":7}}
+{"seq":11,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.029755Z","data":{"i":7,"text":"M","step":8}}
+{"seq":12,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.030176Z","data":{"i":8,"text":"L","step":9}}
+{"seq":13,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.030661Z","data":{"i":9,"text":"end, Size","step":10}}
+{"seq":14,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.031072Z","data":{"i":10,"text":"button","step":11}}
+{"seq":15,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.059518Z","data":{"i":11,"text":"button","step":12}}
+{"seq":16,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.062891Z","data":{"i":12,"text":"button, Add to cart","step":13}}
+{"seq":17,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.064834Z","data":{"i":13,"text":"button, submit-btn-2","step":14}}
+{"seq":18,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.066650Z","data":{"i":14,"text":"Buy now","step":15}}
+{"seq":19,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.067144Z","data":{"i":15,"text":"end of button, submit-btn-2","step":16}}
+{"seq":20,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.067563Z","data":{"i":16,"text":"paragraph","step":17}}
+{"seq":21,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.067976Z","data":{"i":17,"text":"Choose a size first","step":18}}
+{"seq":22,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.070032Z","data":{"i":18,"text":"end of paragraph","step":19}}
+{"seq":23,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.070835Z","data":{"i":19,"text":"end of main","step":20}}
+{"seq":24,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.071533Z","data":{"i":20,"text":"contentinfo","step":21}}
+{"seq":25,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.072151Z","data":{"i":21,"text":"link, About","step":22}}
+{"seq":26,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.072774Z","data":{"i":22,"text":"·","step":23}}
+{"seq":27,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.073440Z","data":{"i":23,"text":"link, Support","step":24}}
+{"seq":28,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.074681Z","data":{"i":24,"text":"end of contentinfo","step":25}}
+{"seq":29,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.076438Z","data":{"i":25,"text":"end of document","step":26}}
+{"seq":30,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.077379Z","data":{"i":26,"text":"document","step":27}}
+{"seq":31,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.077937Z","data":{"i":27,"text":"navigation","step":28}}
+{"seq":32,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.078508Z","data":{"i":28,"text":"link, Nimbus Goods","step":29}}
+{"seq":33,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.078972Z","data":{"i":29,"text":"link, Catalog","step":30}}
+{"seq":34,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.079424Z","data":{"i":30,"text":"link, Cart","step":31}}
+{"seq":35,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.079824Z","data":{"i":31,"text":"end of navigation","step":32}}
+{"seq":36,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.080281Z","data":{"i":32,"text":"main","step":33}}
+{"seq":37,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.080731Z","data":{"i":33,"text":"heading, Trail Runner X, level 1","step":34}}
+{"seq":38,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.081164Z","data":{"i":34,"text":"paragraph","step":35}}
+{"seq":39,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.082861Z","data":{"i":35,"text":"$49.00","step":36}}
+{"seq":40,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.083350Z","data":{"i":36,"text":"end of paragraph","step":37}}
+{"seq":41,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.083835Z","data":{"i":37,"text":"Size","step":38}}
+{"seq":42,"run_id":"run_232008f279b9","type":"ear.phrase","at":"2026-10-08T07:52:28.084257Z","data":{"i":38,"text":"S","step":39}}
+{"seq":43,"run_id":"run_232008f279b9","type":"ear.done","at":"2026-10-08T07:52:28.131926Z","data":{"reached_success":false,"phrases":39,"degraded":false}}
+{"seq":44,"run_id":"run_232008f279b9","type":"run.status","at":"2026-10-08T07:52:28.131960Z","data":{"from":"listening","to":"auditing"}}
+{"seq":45,"run_id":"run_232008f279b9","type":"finding.new","at":"2026-10-08T07:52:29.442256Z","data":{"id":"fnd_53df5f1c052f","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button","seen":"<button>","element_hint":"","route":"fix_and_flag"}}
+{"seq":46,"run_id":"run_232008f279b9","type":"finding.new","at":"2026-10-08T07:52:29.442328Z","data":{"id":"fnd_e356b7939378","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button","seen":"<button>","element_hint":"","route":"fix_and_flag"}}
+{"seq":47,"run_id":"run_232008f279b9","type":"finding.new","at":"2026-10-08T07:52:29.442346Z","data":{"id":"fnd_fb39044897a3","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<group> containing three <button> elements","element_hint":"","route":"human"}}
+{"seq":48,"run_id":"run_232008f279b9","type":"run.status","at":"2026-10-08T07:52:29.442379Z","data":{"from":"auditing","to":"fixing"}}
+{"seq":49,"run_id":"run_232008f279b9","type":"fix.branch","at":"2026-10-08T07:54:42.234873Z","data":{"patch_id":"fix_r1_01","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear replay: not heard"}}
+{"seq":50,"run_id":"run_232008f279b9","type":"run.status","at":"2026-10-08T07:55:06.330394Z","data":{"from":"fixing","to":"escalated","reason":"no branch passed"}}
+{"seq":51,"run_id":"run_232008f279b9","type":"run.finished","at":"2026-10-08T07:55:06.330686Z","data":{"status":"escalated","tokens":21015,"cost_usd":0.0}}
