@@ -1,0 +1,73 @@
+{
+  "comment": "Detection benchmark, Oct 7 2026: axe-core per page vs ear+auditor (one unconditional audit per page, blind-user-facing barriers only). n=21 planted bugs (10 axe-invisible) + 5 clean controls.",
+  "axe_only": {
+    "recall": 0.524,
+    "recall_ci95": [
+      0.324,
+      0.717
+    ],
+    "recall_axe_invisible": 0.0,
+    "recall_invisible_ci95": [
+      0.0,
+      0.278
+    ],
+    "found": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "BX1"
+    ]
+  },
+  "ear_auditor": {
+    "recall": 0.095,
+    "recall_ci95": [
+      0.027,
+      0.289
+    ],
+    "recall_axe_invisible": 0.0,
+    "recall_invisible_ci95": [
+      0.0,
+      0.278
+    ],
+    "found": [
+      "B03",
+      "BX1"
+    ],
+    "precision": 1.0,
+    "control_false_positives": 0,
+    "note": "precision-first auditor: reports only concrete transcript/ARIA barriers"
+  },
+  "combined_axe_plus_ear": {
+    "recall": 0.524,
+    "recall_ci95": [
+      0.324,
+      0.717
+    ],
+    "recall_axe_invisible": 0.0,
+    "recall_invisible_ci95": [
+      0.0,
+      0.278
+    ],
+    "found": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "BX1"
+    ],
+    "note": "the shipped product runs both signals"
+  }
+}
