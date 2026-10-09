@@ -18,16 +18,36 @@ OUT = Path(__file__).resolve().parents[1] / "diagrams"
 
 THEMES = {
     "light": {
-        "bg": "#ffffff", "panel": "#f6f8fa", "panel2": "#eef1f4", "border": "#d0d7de",
-        "text": "#1f2328", "muted": "#57606f", "accent": "#0f766e", "accentsoft": "#ccfbf1",
-        "warn": "#9a6700", "fail": "#cf222e", "failsoft": "#ffebe9", "ok": "#1a7f37",
-        "oksoft": "#dafbe1", "mono": "ui-monospace, SFMono-Regular, Menlo, monospace",
+        "bg": "#ffffff",
+        "panel": "#f6f8fa",
+        "panel2": "#eef1f4",
+        "border": "#d0d7de",
+        "text": "#1f2328",
+        "muted": "#57606f",
+        "accent": "#0f766e",
+        "accentsoft": "#ccfbf1",
+        "warn": "#9a6700",
+        "fail": "#cf222e",
+        "failsoft": "#ffebe9",
+        "ok": "#1a7f37",
+        "oksoft": "#dafbe1",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, monospace",
     },
     "dark": {
-        "bg": "#0d1117", "panel": "#161b22", "panel2": "#1c2129", "border": "#30363d",
-        "text": "#e6edf3", "muted": "#8b949e", "accent": "#2dd4bf", "accentsoft": "#0d3d38",
-        "warn": "#d29922", "fail": "#f85149", "failsoft": "#3d1d20", "ok": "#3fb950",
-        "oksoft": "#12261e", "mono": "ui-monospace, SFMono-Regular, Menlo, monospace",
+        "bg": "#0d1117",
+        "panel": "#161b22",
+        "panel2": "#1c2129",
+        "border": "#30363d",
+        "text": "#e6edf3",
+        "muted": "#8b949e",
+        "accent": "#2dd4bf",
+        "accentsoft": "#0d3d38",
+        "warn": "#d29922",
+        "fail": "#f85149",
+        "failsoft": "#3d1d20",
+        "ok": "#3fb950",
+        "oksoft": "#12261e",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, monospace",
     },
 }
 
@@ -203,7 +223,13 @@ LIFELINES = """
 """
 _SEQ_LIFES = "".join(
     LIFELINES.format(x=x, lx=x - 62, name=n)
-    for x, n in [(90, "Ear (VSR)"), (330, "Orchestrator"), (640, "Token Factory"), (890, "Sandboxes ×3"), (1050, "GitHub PR")]
+    for x, n in [
+        (90, "Ear (VSR)"),
+        (330, "Orchestrator"),
+        (640, "Token Factory"),
+        (890, "Sandboxes ×3"),
+        (1050, "GitHub PR"),
+    ]
 )
 SEQ_BODY = SEQ_BODY.replace("FOREACH", _SEQ_LIFES)
 

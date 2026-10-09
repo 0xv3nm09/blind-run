@@ -18,8 +18,8 @@ _CONTENT = """<main>
 </main>
 """
 
-_VERBATIM = "<<<SEARCH\n  <div id=\"size-picker\">\n===\n  <div id=\"size-picker\" role=\"radiogroup\">\n>>>"
-_REINDENTED = "<<<SEARCH\n<div id=\"size-picker\">\n===\n<div id=\"size-picker\" role=\"radiogroup\">\n>>>"
+_VERBATIM = '<<<SEARCH\n  <div id="size-picker">\n===\n  <div id="size-picker" role="radiogroup">\n>>>'
+_REINDENTED = '<<<SEARCH\n<div id="size-picker">\n===\n<div id="size-picker" role="radiogroup">\n>>>'
 _DRIFTED = "<<<SEARCH\n<div id='size-picker' class='picker'>\n===\n<div>\n>>>"
 
 
@@ -72,9 +72,9 @@ def test_mega_block_splits_into_independent_candidates():
 
     mega = (
         "```fix\n"
-        "<<<SEARCH\n  <div id=\"a\">\n===\n  <div id=\"a\" fixed>\n"
-        "<<<SEARCH\n  <div id=\"b\">\n===\n  <div id=\"b\" fixed>\n"
-        "<<<SEARCH\n  <div id=\"c\">\n===\n  <div id=\"c\" fixed>\n>>>\n```"
+        '<<<SEARCH\n  <div id="a">\n===\n  <div id="a" fixed>\n'
+        '<<<SEARCH\n  <div id="b">\n===\n  <div id="b" fixed>\n'
+        '<<<SEARCH\n  <div id="c">\n===\n  <div id="c" fixed>\n>>>\n```'
     )
     edits = _extract_edit_blocks(mega)
     assert len(edits) == 3

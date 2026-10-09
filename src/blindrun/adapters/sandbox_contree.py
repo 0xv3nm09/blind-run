@@ -163,9 +163,7 @@ class ContreeSandbox:
         # files; never let same-path concurrent uploads share a cache entry
         patch_id = "".join(c if c.isalnum() or c == "_" else "_" for c in patch.get("id", "x"))
         edits_path = f"/tmp/edits_{patch_id}"
-        expected_site_md5 = hashlib.md5(
-            (self.base / page_file).read_text().encode()
-        ).hexdigest()
+        expected_site_md5 = hashlib.md5((self.base / page_file).read_text().encode()).hexdigest()
         files_payload: dict[str, bytes] = {
             "/tmp/site.tar": buf.getvalue(),
             edits_path: patch.get("diff", "").encode(),

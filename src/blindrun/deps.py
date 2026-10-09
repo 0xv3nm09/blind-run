@@ -31,7 +31,9 @@ def build_deps(settings: Settings | None = None, **overrides) -> Deps:
         "aria_yaml": "- button 'Add to cart'\n- group:\n  - button\n  - button\n  - button\n",
     }
     parts = {
-        "llm": make_llm(s.llm_backend, api_key=s.nebius_api_key.get_secret_value(), world=world, models=s.model_map()),
+        "llm": make_llm(
+            s.llm_backend, api_key=s.nebius_api_key.get_secret_value(), world=world, models=s.model_map()
+        ),
         "ear": make_ear(s.ear_driver, world=world),
         "sandbox": make_sandbox(s.sandbox_backend, world=world, base_dir=s.demo_shop_dir),
         "search": make_search(s.search_backend),
