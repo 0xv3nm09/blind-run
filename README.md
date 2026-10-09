@@ -15,6 +15,32 @@ Built for the [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackat
 (Coding and Agentic Engineering track). All model inference runs on **Nebius Token Factory**
 with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**.
 
+## Why it matters
+
+- **95.9% of the top million homepages fail WCAG** — 56.1 detectable errors per page on
+  average (WebAIM Million 2026), and the report links the rise to AI-generated code.
+- **~4,928 web-accessibility lawsuits were filed in a year, ~70% targeting e-commerce**
+  (UsableNet tracking). One blocker in a checkout is a dropped sale and a complaint.
+- **Automated tooling has a hard ceiling**: Deque's coverage study puts it at ~57% of issues,
+  and the failure modes it misses at 0.00% — focus order, meaningful sequence — are exactly
+  the ones that block a task. Our own benchmark agrees: axe caught **0 of 10** planted
+  blockers that a screen-reader user cannot get past. Rules read code; **Blind-Run listens
+  to the page the way a user does**.
+- **Public entities now have a compliance clock**: the ADA Title II web rule reaches large
+  entities April 2027, small ones 2028 — audits that cost cents per page instead of weeks
+  of manual review change what "continuous compliance" looks like.
+- **The economics**: a full listen → audit → fix → verify → PR loop costs **≈$0.01** in
+  inference and runs unattended. 1.3 billion people (WHO) navigate by ear or keyboard.
+
+## Use cases today
+
+| Who | What they run | What they get |
+|---|---|---|
+| Engineering teams | Blind-Run on a product page + task ("buy the cheapest item") in CI or on a PR | Only ear-verified fixes land: each PR carries the before/after screen-reader transcript as reviewable evidence |
+| E-commerce / checkout owners | Task audits on staging checkout and sign-up flows | Blockers that rule engines miss (the 0/10 lane), found before customers and plaintiffs do |
+| Teams shipping AI-written UI | A `blindrun run` gate on vibe-coded pages before deploy | Catches what code review and linters structurally can't: a control that renders but cannot be operated by ear |
+| Accessibility leads | Detection findings with WCAG criteria, quoted transcript lines, confidence | Honest triage — `auto_fix` vs `human` routing with evidence, not model opinions |
+
 ## What it achieves (measured, not claimed)
 
 - **The whole loop runs on Nebius.** The shipped demo (`bench/recorded_run.jsonl`) is a real
@@ -164,12 +190,23 @@ Every model call in the pipeline runs on **Nebius Token Factory** against **NVID
 - **Guidepup Virtual Screen Reader** + Playwright (headless, text-only ear) · **axe-core** (rule-engine baseline)
 - **FastAPI + SSE** API · pure-CSS light dashboard · **pytest** offline-first test suite
 
-## Roadmap
+## Where this goes (future use cases & work)
+
+**Near term**
 
 - [ ] Real-reader confirmation runners (VoiceOver/NVDA) behind the existing `Ear` port — PR label `verified: virtual + NVDA`
 - [ ] Auditor recall tuning on axe-invisible barriers (focus order, silent updates) — see `bench/results.json`
-- [ ] GitHub App install flow (org-wide PR gating) and an MCP server so coding agents can call Blind-Run
-- [ ] Nightly production monitoring with transcript-diff regression alerts
+- [ ] Multi-page flows: one task across catalog → product → cart → checkout, with the transcript as the through-line
+
+**Product surface**
+
+- [ ] GitHub App install flow (org-wide PR gating) and an MCP server so coding agents can call Blind-Run — the agent that wrote the UI can be the agent held to the ear
+- [ ] Nightly production monitoring with transcript-diff regression alerts: "last night's deploy made the checkout silent again"
+
+**Market**
+
+- Compliance reporting for ADA Title II (Apr 2027 / 2028) and EN 301 549 procurement: cents-per-page continuous evidence vs. point-in-time manual audits
+- Agency / audit tooling: the transcript diff is auditable output a human reviewer can sign, and the accessibility tooling market is already $0.85B → $1.15B (6.2% CAGR)
 
 ## License
 
