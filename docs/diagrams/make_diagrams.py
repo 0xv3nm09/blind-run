@@ -256,7 +256,10 @@ async def render(theme: str, body: str, name: str) -> None:
         )
         w = await page.evaluate("() => document.body.scrollWidth")
         h = await page.evaluate("() => document.body.scrollHeight")
-        await page.screenshot(path=str(OUT / f"{name}-{theme}.png"), full_page=True)
+        # element screenshot of <body>: clips exactly to content. full_page is
+        # max(scroll, viewport) — anything shorter than 900px padded with empty
+        # canvas (looked like a half-black image in dark mode)
+        await page.locator("body").screenshot(path=str(OUT / f"{name}-{theme}.png"))
         await browser.close()
         print(f"{name}-{theme}.png  {w}x{h} css-px  overflow={overflow > 2}")
 
