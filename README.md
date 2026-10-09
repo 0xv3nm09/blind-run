@@ -1,6 +1,6 @@
 # Blind-Run
 
-![Blind-Run dashboard: a recorded run showing the fix candidates, the before/after screen-reader transcript, and the benchmark](docs/screenshot-dashboard.png)
+[![CI](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml/badge.svg)](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml)
 
 **An agent that proves a web flow can be completed by ear — and fixes the code until it can.**
 
@@ -15,6 +15,64 @@ Built for the [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackat
 (Coding and Agentic Engineering track). All model inference runs on **Nebius Token Factory**
 with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**.
 
+## What it achieves (measured, not claimed)
+
+- **The whole loop runs on Nebius.** The shipped demo (`bench/recorded_run.jsonl`) is a real
+  run recorded Oct 8: 58 events, 7,414 tokens, ≈$0.01. The round-1 winner was applied, served
+  and **ear-verified inside a Token Factory Sandboxes branch** — the transcript inside the
+  branch ends `"radio, S, not checked, position 1, set size 3 … Added to cart"`.
+- **The winning fix is the W3C pattern.** No human picked it: three candidates ran in parallel
+  sandbox branches, two honestly failed ear verification, the fieldset/legend/native-radio
+  fix passed, and the PR ([kept verbatim in `docs/demo-pr/`](docs/demo-pr/20261008-135412-pr-body.md))
+  carries the before/after transcript diff — `"Choose a size first"` → `"Order confirmed"`.
+- **Detection benchmark over 21 planted bugs + 5 clean controls** (`make bench`, Wilson 95% CIs
+  in `bench/results.json`): axe-core alone recalls **52.4%** and catches **0 of the 10
+  axe-invisible** blockers; the ear+auditor lane runs **100% precision with 0 false positives
+  on clean controls** (deliberately conservative — the task-driven fix loop is what catches
+  the invisible blockers, and the recorded demo proves it on the flagship one).
+- **Two live-found Token Factory platform bugs**, bisected and repro'd (a `pattern` keyword in
+  any `json_schema` response_format → HTTP 500; reasoning consuming the whole output budget) —
+  full write-up in [FEEDBACK.md](FEEDBACK.md).
+- **Runs without keys.** Every stage sits behind a port with a fake adapter; 15 offline tests
+  + CI cover the whole pipeline with zero network.
+
+## How it works
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/how-it-works-dark.png">
+    <img src="docs/diagrams/how-it-works-light.png" alt="Blind-Run architecture: the orchestrator (7 swappable ports) calls the Nebius Token Factory inference API for every model role, and runs each fix candidate in a parallel Sandboxes branch that applies the patch, serves the site and replays the ear" width="800">
+  </picture>
+</p>
+
+The ear is [Guidepup's Virtual Screen Reader](https://github.com/guidepup/virtual-screen-reader)
+(spec-based, text-only, headless) — the same announcements a real screen-reader user gets,
+without a pixel ever being looked at. Rule-checking uses axe-core via Playwright as the
+baseline the ear is measured against.
+
+## The fix loop
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/fix-loop-dark.png">
+    <img src="docs/diagrams/fix-loop-light.png" alt="Sequence: the ear walk dead-ends, the auditor returns WCAG-labeled findings, the fixer proposes three search/replace candidates, three parallel Sandboxes branches apply-serve-and-replay them, only the branch whose task completes by ear passes, and the winner ships as a PR with the transcript diff" width="800">
+  </picture>
+</p>
+<p align="center"><sub><b>Verification by ear, not by opinion</b> — pass/fail is a string check on the
+transcript; failed rounds feed back verdict tails (external signal only), never "try harder"</sub></p>
+
+## The console
+
+`make up` → the dashboard auto-plays the recorded Sandboxes run; paste any live `run_…` id to
+watch the same arc in real time.
+
+| | |
+| :---: | :---: |
+| <img src="docs/screenshots/ui-transcript.png" width="410" alt="Transcript streaming"> | <img src="docs/screenshots/ui-branches.png" width="410" alt="Fix branches and PR banner"> |
+| **The walk, as heard** — bare `S, M, L` text and nameless `button, button` moments highlighted | **Three candidates, one survivor** — verdicts from in-sandbox ear replays; the PR banner follows |
+| <img src="docs/screenshots/ui-diff.png" width="410" alt="Before/after transcript diff"> | <img src="docs/screenshots/ui-benchmark.png" width="410" alt="Benchmark table"> |
+| **The evidence in one panel** — before/after transcript: dead end → radios → confirmation | **Benchmark** — axe vs ear with Wilson CIs, per lane |
+
 ## Status (Oct 8, 2026)
 
 - ✅ **Real, end to end**: real Nemotron Super planner → real Guidepup Virtual Screen Reader
@@ -22,18 +80,12 @@ with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**.
   findings → fixer proposes 3 verbatim search/replace edits → **fix branches run in parallel in
   Nebius Sandboxes** (apply → serve → ear replay inside the sandbox) → only a fix whose task
   *completes by ear* wins → PR with the before/after transcript diff.
-- ✅ **Flagship demo recorded on the real backend** (Oct 8): the shipped replay
-  (`bench/recorded_run.jsonl`) is a full Sandboxes run — round-1 fieldset/radio fix heard
-  "radio, S, not checked, position 1, set size 3" → "Added to cart" inside a Nebius branch;
-  the same loop verified on the local backend is kept at `bench/recorded_run_local.jsonl`.
 - ✅ **DR-0/1/3/4/5/7 verified live**: model IDs probed; planner call; ear hears planted bugs
   (a div size picker announces as bare text 'S','M','L' — invisible as controls; nameless icon
   buttons announce 'button'); axe-vs-ear agreement (axe flags the cosmetic issues, silent on the
   blocker); parallel sandbox branches verified on Nebius with the ear replay inside the branch.
 - ✅ **Benchmark harness**: axe-only vs ear+auditor recall/precision over 21 planted bugs +
   5 clean controls, Wilson 95% CIs (`make bench`).
-- ✅ **Judge dashboard**: light, dense, evidence-first (`make up` → `/`), watch any run live or
-  benchmark summary.
 - 📋 `FEEDBACK.md` (required tool feedback, incl. two live-found Token Factory bugs) and
   `SYSTEM_CARD.md` (limits, human-review rule).
 
@@ -58,20 +110,25 @@ LLM_BACKEND=tokenfactory EAR_DRIVER=virtual SANDBOX_BACKEND=contree VCS_BACKEND=
 Fix candidates apply, serve and ear-verify **inside Nebius Sandboxes branches** (Token
 Factory's code-execution product — the track's "write, run, and test code in Token Factory",
 executed literally). Set `SANDBOX_BACKEND=local` to run the same verification on your own
-machine instead; the recorded demo replays either way.
-…paste the printed `run_…` id into the dashboard and watch the same arc live: the walk fails by
-ear, candidates are verified in parallel, only the one whose task completes by ear wins, and a PR
-opens with the transcript diff. Live runs need `NEBIUS_API_KEY` in `.env` (Token Factory credits;
-a full run costs about a cent).
+machine instead; the recorded demo replays either way. Live runs need `NEBIUS_API_KEY` in
+`.env` (Token Factory credits; a full run costs about a cent).
 
-## Architecture in one line
+## Repository layout
 
-Plan (Nemotron 3 Super) → Listen (virtual screen reader, text-only) → Audit (Super, text
-A/B vs vision candidate) → Triage (pure-code policy) → Fix (3 candidate diffs) → Sandbox
-branches (apply → build → axe → ear replay) → Verify (success phrase must be *heard*) →
-Pull request with the transcript diff. Every stage sits behind a port (`LLM`, `Ear`,
-`Sandbox`, `Search`, `VCS`, `Store`, `Events`) with a fake and a real adapter — flip any
-one via `.env`, never code.
+```
+src/blindrun/
+├── pipeline/orchestrator.py   run_flow state machine: plan → listen → audit → fix → verify → PR
+├── adapters/                  fake + real behind every port (llm_tokenfactory, sandbox_contree,
+│                              sandbox_local, ear_real, search_tavily, vcs_local, …)
+├── api/                       FastAPI + SSE + the judge dashboard (single-file, no build step)
+├── eval/benchmark.py          detection benchmark: axe vs ear+auditor, Wilson CIs
+└── config.py                  .env-switched settings + model router
+runner/virtual_run.mjs         the ear: Guidepup VSR walker with auto-act + success detection
+demo-shop/                     8 planted-bug pages + 5 clean controls (bench/truth.json = 21 bugs)
+bench/                         recorded flagship run, benchmark results, bug truth
+docs/                          diagrams (make_diagrams.py renders them), screenshots, demo PR
+tests/                         15 offline tests (fakes end-to-end) + live API probes
+```
 
 ## Model routing (.env)
 
@@ -90,11 +147,9 @@ one via `.env`, never code.
 Every model call in the pipeline runs on **Nebius Token Factory** against **NVIDIA Nemotron open models**:
 
 - **Nemotron 3 Super (120B-A12B)** plans the keyboard-only walk and audits the transcript against the ARIA tree.
-- **Nemotron 3 Ultra-550B** is the fixer escalation: when Super's candidates fail ear verification, the round-2 prompt escalates to Ultra (this is the shipped configuration — see `.env.example`).
+- **Nemotron 3 Ultra-550B** is the fixer: with the round-1 prompt anchoring verbatim search/replace blocks, it proposed the W3C-APG radio-group fix that passed ear verification (this is the shipped configuration — see `.env.example`).
 - **Nemotron 3.5 Lightning** covers high-volume fast lanes; **Nano-30B** is the guard role; **Qwen3-Embedding-8B** merges duplicate findings.
 - **Nebius Sandboxes (ConTree)** build and ear-verify every fix candidate in isolated microVMs — the verification replay runs entirely inside the sandbox (parent checkpoint: Node 22 + Playwright + Chromium + Guidepup, built once and branched per candidate).
-
-The ear is [Guidepup's Virtual Screen Reader](https://github.com/guidepup/virtual-screen-reader) (spec-based, text-only, headless); rule checks are axe-core via Playwright.
 
 ## Safety rules that hold everywhere
 
@@ -112,7 +167,6 @@ The ear is [Guidepup's Virtual Screen Reader](https://github.com/guidepup/virtua
 ## Roadmap
 
 - [ ] Real-reader confirmation runners (VoiceOver/NVDA) behind the existing `Ear` port — PR label `verified: virtual + NVDA`
-- [ ] In-sandbox ear replay polish (VSR act-on-radio in the sandbox's headless build) so fix branches run 100% inside Nebius
 - [ ] Auditor recall tuning on axe-invisible barriers (focus order, silent updates) — see `bench/results.json`
 - [ ] GitHub App install flow (org-wide PR gating) and an MCP server so coding agents can call Blind-Run
 - [ ] Nightly production monitoring with transcript-diff regression alerts
