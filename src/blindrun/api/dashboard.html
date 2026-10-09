@@ -184,7 +184,7 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var
 </main>
 <script>
 const $ = (id) => document.getElementById(id);
-const state = { findings: [], branches: {}, phrases: 0, tokens: null, es: null };
+const state = { findings: [], branches: {}, phrases: 0, tokens: null, task: null, es: null };
 
 function esc(s) { return (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 
@@ -263,10 +263,10 @@ function showPr(data) {
 function setStatus(runId, data) {
   state.status = data.to || data.status || (data.task ? "started" : state.status);
   if (data.tokens != null) state.tokens = data.tokens;
-  if (runId === "demo") $("run-title").textContent = 'Recorded demo — "buy the cheapest item"';
-  else $("run-title").textContent = `Run ${runId}`;
-  const bits = [`status <strong>${esc(state.status)}</strong>`];
-  if (data.task) bits.push(`task <span class="mono">${esc(data.task)}</span>`);
+  if (data.task) state.task = data.task;
+  const bits = [runId === "demo" ? "recorded run" : `run <span class="mono">${esc(runId)}</span>`,
+                `status <strong>${esc(state.status)}</strong>`];
+  if (state.task) bits.push(`task <span class="mono">${esc(state.task)}</span>`);
   if (data.reason) bits.push(esc(data.reason));
   if (state.tokens != null) bits.push(`<span class="mono">${state.tokens.toLocaleString()} tokens</span>`);
   $("run-meta").innerHTML = bits.join(" · ");
@@ -277,7 +277,7 @@ function watch(runId) {
   if (state.es) state.es.close();
   $("transcript").innerHTML = ""; $("pr-banner").classList.add("hidden");
   $("diff-section").classList.add("hidden"); $("branches-section").classList.add("hidden");
-  state.phrases = 0; state.findings = []; state.branches = {}; state.tokens = null;
+  state.phrases = 0; state.findings = []; state.branches = {}; state.tokens = null; state.task = null;
   renderFindings();
   const es = new EventSource(`/v1/runs/${runId}/events`);
   state.es = es;

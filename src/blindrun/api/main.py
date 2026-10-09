@@ -98,6 +98,14 @@ async def get_run(run_id: str) -> dict:
 
 _REPLAY_ID = "demo"  # reserved run id: replays the recorded flagship run for judges
 _REPLAY_FILE = Path(__file__).resolve().parents[3] / "bench" / "recorded_run.jsonl"
+# demo-PR evidence (transcript diff + patch) served so the dashboard's PR banner
+# link resolves on the API host; the same path works when the repo is served
+# statically (GitHub Pages) because evidence/ sits at the repo root
+_EVIDENCE_DIR = Path(__file__).resolve().parents[3] / "evidence"
+if _EVIDENCE_DIR.is_dir():
+    from fastapi.staticfiles import StaticFiles
+
+    app.mount("/evidence", StaticFiles(directory=str(_EVIDENCE_DIR)), name="evidence")
 
 
 def _replay_events() -> list[Event] | None:

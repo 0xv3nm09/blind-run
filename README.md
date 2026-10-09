@@ -49,7 +49,7 @@ with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**.
   branch ends `"radio, S, not checked, position 1, set size 3 … Added to cart"`.
 - **The winning fix is the W3C pattern.** No human picked it: three candidates ran in parallel
   sandbox branches, two honestly failed ear verification, the fieldset/legend/native-radio
-  fix passed, and the PR ([kept verbatim in `docs/demo-pr/`](docs/demo-pr/20261008-135412-pr-body.md))
+  fix passed, and the PR ([kept verbatim in `docs/demo-pr/`](evidence/20261008-135412-pr-body.md))
   carries the before/after transcript diff — `"Choose a size first"` → `"Order confirmed"`.
 - **Detection benchmark over 21 planted bugs + 5 clean controls** (`make bench`, Wilson 95% CIs
   in `bench/results.json`): axe-core alone recalls **52.4%** and catches **0 of the 10
