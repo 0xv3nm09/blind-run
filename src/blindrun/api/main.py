@@ -120,11 +120,12 @@ def _replay_events() -> list[Event] | None:
 
 
 @app.get("/v1/runs/{run_id}/events")
-async def run_events(run_id: str, after_seq: int = -1):
+async def run_events(run_id: str, after_seq: int = -1, interval: float = 0.12):
     if run_id == _REPLAY_ID:
         events = _replay_events()
         if events is None:
             raise HTTPException(404, "no recorded demo run (bench/recorded_run.jsonl)")
+        interval = min(max(interval, 0.05), 1.0)  # ?interval=0.3 reads better on video
 
         async def replay_gen():
             import asyncio
@@ -133,7 +134,7 @@ async def run_events(run_id: str, after_seq: int = -1):
                 if ev.seq <= after_seq:
                     continue
                 yield {"event": "update", "id": str(ev.seq), "data": ev.model_dump_json()}
-                await asyncio.sleep(0.12)  # let judges watch it stream
+                await asyncio.sleep(interval)  # let judges watch it stream
 
         return EventSourceResponse(replay_gen(), ping=15)
 

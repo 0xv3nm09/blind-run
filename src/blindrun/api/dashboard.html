@@ -279,7 +279,10 @@ function watch(runId) {
   $("diff-section").classList.add("hidden"); $("branches-section").classList.add("hidden");
   state.phrases = 0; state.findings = []; state.branches = {}; state.tokens = null; state.task = null;
   renderFindings();
-  const es = new EventSource(`/v1/runs/${runId}/events`);
+  // ?interval= slows the demo replay (default 0.12s/event) — e.g. /?interval=0.3
+  const q = new URLSearchParams(location.search);
+  const replayQs = runId === "demo" && q.get("interval") ? `?interval=${encodeURIComponent(q.get("interval"))}` : "";
+  const es = new EventSource(`/v1/runs/${runId}/events${replayQs}`);
   state.es = es;
   es.addEventListener("update", (e) => {
     const ev = JSON.parse(e.data);
