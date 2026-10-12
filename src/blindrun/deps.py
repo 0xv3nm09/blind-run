@@ -36,7 +36,7 @@ def build_deps(settings: Settings | None = None, **overrides) -> Deps:
         ),
         "ear": make_ear(s.ear_driver, world=world),
         "sandbox": make_sandbox(s.sandbox_backend, world=world, base_dir=s.demo_shop_dir),
-        "search": make_search(s.search_backend),
+        "search": make_search(s.search_backend, api_key=s.tavily_api_key),
         "vcs": make_vcs(s.vcs_backend, base_dir=s.demo_shop_dir),
         "store": make_store(s.store_backend),
         "events": make_events(s.events_backend),

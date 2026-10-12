@@ -192,6 +192,9 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
         findings = policy.triage(raws, run_id=run_id, transcript=transcript)
         await deps.store.add_findings(findings)
         for f in findings:
+            wcag_url = ""
+            if hasattr(deps.search, "docs"):  # grounded citation; degrades offline
+                wcag_url = await deps.search.docs(f.wcag_sc)
             await deps.events.emit(
                 run_id,
                 "finding.new",
@@ -205,6 +208,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
                     "seen": f.seen,
                     "element_hint": f.element_hint,
                     "route": f.route.value if f.route else None,
+                    "wcag_url": wcag_url,
                 },
             )
         fixable = [f for f in findings if f.route and f.route.value in ("auto_fix", "fix_and_flag")]
@@ -374,7 +378,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
             body_md=(
                 f"### {task}\n"
                 f"- WCAG {target.wcag_sc} — {target.heard!r} ({target.severity})\n"
-                f"- Fix follows the W3C pattern: {pattern.url}\n"
+                f"- Fix follows the W3C pattern ({pattern.source}): {pattern.url}\n"
                 f"- Verified: {'✅ task completes by ear' if verification.passed else '❌ not verified'}\n\n"
                 f"```diff\n{diff}\n```"
             ),

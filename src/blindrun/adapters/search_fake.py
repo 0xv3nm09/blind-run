@@ -52,3 +52,7 @@ class CachedSearch:
             keyboard=[],
             source="cache",
         )
+
+    async def docs(self, wcag_sc: str) -> str:
+        """Offline floor for the WCAG Understanding doc (TavilySearch confirms live)."""
+        return f"https://www.w3.org/WAI/WCAG22/Understanding/{wcag_sc.replace('.', '-')}.html"

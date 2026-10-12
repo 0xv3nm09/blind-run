@@ -62,13 +62,13 @@ def make_sandbox(backend: str, *, world: dict | None = None, base_dir: str = "de
     raise ValueError(f"unknown sandbox backend: {backend}")
 
 
-def make_search(backend: str):
+def make_search(backend: str, *, api_key: str = ""):
     if backend in ("cache", "fake"):
         return CachedSearch()
     if backend == "tavily":
-        from .search_tavily import TavilySearch  # lands with DR-6
+        from .search_tavily import TavilySearch
 
-        return TavilySearch()
+        return TavilySearch(api_key=api_key)
     raise ValueError(f"unknown search backend: {backend}")
 
 

@@ -202,7 +202,7 @@ function renderFindings() {
   $("findings-body").innerHTML = rows.map((f) => `
     <tr>
       <td><span class="chip ${esc(f.severity)}">${esc(f.severity)}</span></td>
-      <td class="wcag">${esc(f.wcag_sc)}</td>
+      <td class="wcag">${f.wcag_url ? `<a href="${esc(f.wcag_url)}" target="_blank" rel="noopener">${esc(f.wcag_sc)}</a>` : esc(f.wcag_sc)}</td>
       <td>${esc(f.category || "")}</td>
       <td class="quote">${esc(f.heard)}</td>
       <td class="quote">${esc(f.seen)}</td>

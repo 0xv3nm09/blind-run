@@ -188,6 +188,7 @@ Every model call in the pipeline runs on **Nebius Token Factory** against **NVID
 - **Nebius Token Factory** — all inference (Nemotron 3 Super, Ultra-550B, 3.5 Lightning, Nano-30B, Qwen3-Embedding-8B) and **Nebius Sandboxes (ConTree)** for isolated fix-branch builds and in-sandbox ear verification
 - **NVIDIA Nemotron open models** — every planning, auditing, fixing and guard role
 - **Guidepup Virtual Screen Reader** + Playwright (headless, text-only ear) · **axe-core** (rule-engine baseline)
+- **Tavily** — live retrieval grounds the fix loop: the W3C ARIA pattern for the fixer and the WCAG Understanding doc for every finding (degrades to the local cache offline)
 - **FastAPI + SSE** API · pure-CSS light dashboard · **pytest** offline-first test suite
 
 ## Where this goes (future use cases & work)
