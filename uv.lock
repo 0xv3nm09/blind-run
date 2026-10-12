@@ -211,6 +211,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
+    { name = "httpx" },
     { name = "openai" },
     { name = "orjson" },
     { name = "pydantic" },
@@ -275,6 +276,7 @@ requires-dist = [
     { name = "axe-playwright-python", marker = "extra == 'ear'", specifier = "~=0.1.8" },
     { name = "contree-sdk", marker = "extra == 'sandbox'", specifier = "~=0.3.6" },
     { name = "fastapi", specifier = "~=0.142" },
+    { name = "httpx", specifier = "~=0.28" },
     { name = "numpy", marker = "extra == 'metrics'", specifier = "~=2.5" },
     { name = "openai", specifier = "~=3.24" },
     { name = "openinference-instrumentation-openai", marker = "extra == 'tracing'", specifier = "~=0.1.63" },

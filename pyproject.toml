@@ -19,6 +19,7 @@ dependencies = [
     # cli + logs
     "typer~=0.19",
     "structlog~=26.1",
+    "httpx~=0.28",
 ]
 
 [project.optional-dependencies]
