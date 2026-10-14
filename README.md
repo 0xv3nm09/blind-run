@@ -13,7 +13,8 @@ the transcript diff, before and after.
 
 Built for the [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/)
 (Coding and Agentic Engineering track). All model inference runs on **Nebius Token Factory**
-with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**.
+with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**; **Tavily retrieval**
+grounds the fixer with live W3C guidance and links every finding to the official WCAG docs.
 
 ## Why it matters
 
@@ -81,6 +82,13 @@ The ear is [Guidepup's Virtual Screen Reader](https://github.com/guidepup/virtua
 without a pixel ever being looked at. Rule-checking uses axe-core via Playwright as the
 baseline the ear is measured against.
 
+**Tavily retrieval is load-bearing in this loop, not a bolt-on call.** Before the fixer writes
+code, a runtime Tavily query retrieves the *current* authoritative W3C ARIA APG pattern — and
+the PR cites the fetched URL with its source. Every auditor finding is linked to the official
+WCAG Understanding document, also retrieved live. Without a `TAVILY_API_KEY` the same code
+paths degrade to the bundled cache — a run never fails because search did
+(`SEARCH_BACKEND=cache|tavily` in `.env`; `src/blindrun/adapters/search_tavily.py`).
+
 ## The fix loop
 
 <p align="center">
@@ -141,8 +149,10 @@ LLM_BACKEND=tokenfactory EAR_DRIVER=virtual SANDBOX_BACKEND=contree VCS_BACKEND=
 Fix candidates apply, serve and ear-verify **inside Nebius Sandboxes branches** (Token
 Factory's code-execution product — the track's "write, run, and test code in Token Factory",
 executed literally). Set `SANDBOX_BACKEND=local` to run the same verification on your own
-machine instead; the recorded demo replays either way. Live runs need `NEBIUS_API_KEY` in
-`.env` (Token Factory credits; a full run costs about a cent).
+machine instead; the recorded demo replays either way. Set `SEARCH_BACKEND=tavily` +
+`TAVILY_API_KEY` to activate live W3C/WCAG retrieval (the cache backend keeps everything
+working offline). Live runs need `NEBIUS_API_KEY` in `.env` (Token Factory credits; a full
+run costs about a cent).
 
 ## Repository layout
 
