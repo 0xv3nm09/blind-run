@@ -1,0 +1,49 @@
+{"seq":0,"run_id":"run_ad8c38245860","type":"run.started","at":"2026-10-14T07:00:29.780461Z","data":{"task":"read the page summary","url":"https://en.wikipedia.org/wiki/Web_accessibility","driver":"virtual"}}
+{"seq":1,"run_id":"run_ad8c38245860","type":"run.status","at":"2026-10-14T07:00:29.780701Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_ad8c38245860","type":"plan.ready","at":"2026-10-14T07:00:46.032132Z","data":{"steps":["heading","next","act"],"success_phrase":"Item added to cart"}}
+{"seq":3,"run_id":"run_ad8c38245860","type":"run.status","at":"2026-10-14T07:00:46.032311Z","data":{"from":"planning","to":"listening"}}
+{"seq":4,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.664069Z","data":{"i":0,"text":"document","step":0}}
+{"seq":5,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.664249Z","data":{"i":1,"text":"heading, Contents, level 2","step":0}}
+{"seq":6,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.664639Z","data":{"i":2,"text":"button, Hide Contents","step":1}}
+{"seq":7,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.754623Z","data":{"i":3,"text":"button, Toggle the table of contents, has popup menu","step":1}}
+{"seq":8,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.793722Z","data":{"i":4,"text":"end, Table of Contents","step":3}}
+{"seq":9,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.795246Z","data":{"i":5,"text":"end of navigation, Contents","step":4}}
+{"seq":10,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.796431Z","data":{"i":6,"text":"heading, Web accessibility, level 1","step":5}}
+{"seq":11,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.797615Z","data":{"i":7,"text":"Web accessibility","step":6}}
+{"seq":12,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.801208Z","data":{"i":8,"text":"end of heading, Web accessibility, level 1","step":7}}
+{"seq":13,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.813363Z","data":{"i":9,"text":"button, 25 languages, Go to an article in another language. Available in 25 languages, has popup menu","step":8}}
+{"seq":14,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.865573Z","data":{"i":10,"text":"navigation, Namespaces","step":9}}
+{"seq":15,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.869805Z","data":{"i":11,"text":"list","step":10}}
+{"seq":16,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.949790Z","data":{"i":12,"text":"listitem, level 1, position 1, set size 2","step":11}}
+{"seq":17,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.950530Z","data":{"i":13,"text":"link, Article, View the content page [ctrl-option-c]","step":12}}
+{"seq":18,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.951323Z","data":{"i":14,"text":"Article","step":13}}
+{"seq":19,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.952196Z","data":{"i":15,"text":"end of link, Article, View the content page [ctrl-option-c]","step":14}}
+{"seq":20,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.953019Z","data":{"i":16,"text":"end of listitem, level 1, position 1, set size 2","step":15}}
+{"seq":21,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.953612Z","data":{"i":17,"text":"listitem, level 1, position 2, set size 2","step":16}}
+{"seq":22,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.954296Z","data":{"i":18,"text":"link, Talk, Discuss improvements to the content page [ctrl-option-t]","step":17}}
+{"seq":23,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.954851Z","data":{"i":19,"text":"Talk","step":18}}
+{"seq":24,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.955405Z","data":{"i":20,"text":"end of link, Talk, Discuss improvements to the content page [ctrl-option-t]","step":19}}
+{"seq":25,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.955929Z","data":{"i":21,"text":"end of listitem, level 1, position 2, set size 2","step":20}}
+{"seq":26,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.956488Z","data":{"i":22,"text":"end of list","step":21}}
+{"seq":27,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.957069Z","data":{"i":23,"text":"end of navigation, Namespaces","step":22}}
+{"seq":28,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.958059Z","data":{"i":24,"text":"navigation, Views","step":23}}
+{"seq":29,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.958743Z","data":{"i":25,"text":"list","step":24}}
+{"seq":30,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.959466Z","data":{"i":26,"text":"listitem, level 1, position 1, set size 3","step":25}}
+{"seq":31,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.960307Z","data":{"i":27,"text":"link, Read","step":26}}
+{"seq":32,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.960962Z","data":{"i":28,"text":"Read","step":27}}
+{"seq":33,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.961608Z","data":{"i":29,"text":"end of link, Read","step":28}}
+{"seq":34,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.962351Z","data":{"i":30,"text":"end of listitem, level 1, position 1, set size 3","step":29}}
+{"seq":35,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.963109Z","data":{"i":31,"text":"listitem, level 1, position 2, set size 3","step":30}}
+{"seq":36,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.963977Z","data":{"i":32,"text":"link, Edit, Edit this page [ctrl-option-e]","step":31}}
+{"seq":37,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.967516Z","data":{"i":33,"text":"Edit","step":32}}
+{"seq":38,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.968311Z","data":{"i":34,"text":"end of link, Edit, Edit this page [ctrl-option-e]","step":33}}
+{"seq":39,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.969127Z","data":{"i":35,"text":"end of listitem, level 1, position 2, set size 3","step":34}}
+{"seq":40,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.972375Z","data":{"i":36,"text":"listitem, level 1, position 3, set size 3","step":35}}
+{"seq":41,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.973451Z","data":{"i":37,"text":"link, View history, Past revisions of this page [ctrl-option-h]","step":36}}
+{"seq":42,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.974845Z","data":{"i":38,"text":"View history","step":37}}
+{"seq":43,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.975428Z","data":{"i":39,"text":"end of link, View history, Past revisions of this page [ctrl-option-h]","step":38}}
+{"seq":44,"run_id":"run_ad8c38245860","type":"ear.phrase","at":"2026-10-14T07:00:49.975964Z","data":{"i":40,"text":"end of listitem, level 1, position 3, set size 3","step":39}}
+{"seq":45,"run_id":"run_ad8c38245860","type":"ear.done","at":"2026-10-14T07:00:50.247769Z","data":{"reached_success":false,"phrases":41,"degraded":false}}
+{"seq":46,"run_id":"run_ad8c38245860","type":"run.status","at":"2026-10-14T07:00:50.247841Z","data":{"from":"listening","to":"auditing"}}
+{"seq":47,"run_id":"run_ad8c38245860","type":"run.status","at":"2026-10-14T07:00:50.765229Z","data":{"from":"auditing","to":"done","reason":"no findings"}}
+{"seq":48,"run_id":"run_ad8c38245860","type":"run.finished","at":"2026-10-14T07:00:50.765314Z","data":{"status":"done","tokens":2987,"cost_usd":0.0}}

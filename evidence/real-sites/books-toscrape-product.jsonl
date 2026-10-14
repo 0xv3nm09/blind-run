@@ -1,0 +1,50 @@
+{"seq":0,"run_id":"run_5caf05f1c9b9","type":"run.started","at":"2026-10-14T06:55:46.664653Z","data":{"task":"add this book to the basket","url":"https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_5caf05f1c9b9","type":"run.status","at":"2026-10-14T06:55:46.664701Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_5caf05f1c9b9","type":"plan.ready","at":"2026-10-14T06:55:50.800622Z","data":{"steps":["heading","next","next","next","act"],"success_phrase":"Item added to basket"}}
+{"seq":3,"run_id":"run_5caf05f1c9b9","type":"run.status","at":"2026-10-14T06:55:50.800769Z","data":{"from":"planning","to":"listening"}}
+{"seq":4,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.687710Z","data":{"i":0,"text":"document","step":0}}
+{"seq":5,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.688511Z","data":{"i":1,"text":"heading, A Light in the Attic, level 1","step":0}}
+{"seq":6,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.689492Z","data":{"i":2,"text":"paragraph","step":1}}
+{"seq":7,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.691112Z","data":{"i":3,"text":"£51.77","step":2}}
+{"seq":8,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.692337Z","data":{"i":4,"text":"end of paragraph","step":3}}
+{"seq":9,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.707196Z","data":{"i":5,"text":"paragraph","step":5}}
+{"seq":10,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.707688Z","data":{"i":6,"text":"In stock (22 available)","step":6}}
+{"seq":11,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.708278Z","data":{"i":7,"text":"end of paragraph","step":7}}
+{"seq":12,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.708712Z","data":{"i":8,"text":"paragraph","step":8}}
+{"seq":13,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.709191Z","data":{"i":9,"text":"separator, orientated horizontally, max value 100, min value 0","step":9}}
+{"seq":14,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.709631Z","data":{"i":10,"text":"alert","step":10}}
+{"seq":15,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.710059Z","data":{"i":11,"text":"strong","step":11}}
+{"seq":16,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.710580Z","data":{"i":12,"text":"Warning!","step":12}}
+{"seq":17,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.711027Z","data":{"i":13,"text":"end of strong","step":13}}
+{"seq":18,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.711441Z","data":{"i":14,"text":"This is a demo website for web scraping purposes. Prices and ratings here were randomly assigned and have no real meaning.","step":14}}
+{"seq":19,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.711935Z","data":{"i":15,"text":"end of alert","step":15}}
+{"seq":20,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.712474Z","data":{"i":16,"text":"heading, Product Description, level 2","step":16}}
+{"seq":21,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.712989Z","data":{"i":17,"text":"paragraph","step":17}}
+{"seq":22,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.713696Z","data":{"i":18,"text":"It's hard to imagine a world without A Light in the Attic. This now-classic collection of poetry and drawings from Shel Silverstein celebrates its 20th anniversary with this special edition. Silverstein's humorous and creative verse can amuse the dowdiest of readers. Lemon-faced adults and fidgety kids sit still and read these rhythmic words and laugh and smile and love th It's hard to imagine a world without A Light in the Attic. This now-classic collection of poetry and drawings from Shel Silverstein celebrates its 20th anniversary with this special edition. Silverstein's humorous and creative verse can amuse the dowdiest of readers. Lemon-faced adults and fidgety kids sit still and read these rhythmic words and laugh and smile and love that Silverstein. Need proof of his genius? RockabyeRockabye baby, in the treetopDon't you know a treetopIs no safe place to rock?And who put you up there,And your cradle, too?Baby, I think someone down here'sGot it in for you. Shel, you never sounded so good. ...more","step":18}}
+{"seq":23,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.714296Z","data":{"i":19,"text":"end of paragraph","step":19}}
+{"seq":24,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.723286Z","data":{"i":20,"text":"heading, Product Information, level 2","step":20}}
+{"seq":25,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.728803Z","data":{"i":21,"text":"table","step":21}}
+{"seq":26,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.730801Z","data":{"i":22,"text":"rowgroup","step":22}}
+{"seq":27,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.732973Z","data":{"i":23,"text":"row, UPC a897fe39b1053632","step":23}}
+{"seq":28,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.736572Z","data":{"i":24,"text":"rowheader, UPC","step":24}}
+{"seq":29,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.737598Z","data":{"i":25,"text":"cell, a897fe39b1053632","step":25}}
+{"seq":30,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.743086Z","data":{"i":26,"text":"end of row, UPC a897fe39b1053632","step":26}}
+{"seq":31,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.743605Z","data":{"i":27,"text":"row, Product Type Books","step":27}}
+{"seq":32,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.744253Z","data":{"i":28,"text":"rowheader, Product Type","step":28}}
+{"seq":33,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.744884Z","data":{"i":29,"text":"cell, Books","step":29}}
+{"seq":34,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.745726Z","data":{"i":30,"text":"end of row, Product Type Books","step":30}}
+{"seq":35,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.746392Z","data":{"i":31,"text":"row, Price (excl. tax) £51.77","step":31}}
+{"seq":36,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.746960Z","data":{"i":32,"text":"rowheader, Price (excl. tax)","step":32}}
+{"seq":37,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.747608Z","data":{"i":33,"text":"cell, £51.77","step":33}}
+{"seq":38,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.748309Z","data":{"i":34,"text":"end of row, Price (excl. tax) £51.77","step":34}}
+{"seq":39,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.749046Z","data":{"i":35,"text":"row, Price (incl. tax) £51.77","step":35}}
+{"seq":40,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.750794Z","data":{"i":36,"text":"rowheader, Price (incl. tax)","step":36}}
+{"seq":41,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.756563Z","data":{"i":37,"text":"cell, £51.77","step":37}}
+{"seq":42,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.757583Z","data":{"i":38,"text":"end of row, Price (incl. tax) £51.77","step":38}}
+{"seq":43,"run_id":"run_5caf05f1c9b9","type":"ear.phrase","at":"2026-10-14T06:55:54.758244Z","data":{"i":39,"text":"row, Tax £0.00","step":39}}
+{"seq":44,"run_id":"run_5caf05f1c9b9","type":"ear.done","at":"2026-10-14T06:55:54.833999Z","data":{"reached_success":false,"phrases":40,"degraded":false}}
+{"seq":45,"run_id":"run_5caf05f1c9b9","type":"run.status","at":"2026-10-14T06:55:54.834098Z","data":{"from":"listening","to":"auditing"}}
+{"seq":46,"run_id":"run_5caf05f1c9b9","type":"finding.new","at":"2026-10-14T06:55:56.001164Z","data":{"id":"fnd_d4584f9791c4","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<button>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/4-1-2.html"}}
+{"seq":47,"run_id":"run_5caf05f1c9b9","type":"finding.new","at":"2026-10-14T06:55:56.001191Z","data":{"id":"fnd_853fec32f4f2","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<button>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/4-1-2.html"}}
+{"seq":48,"run_id":"run_5caf05f1c9b9","type":"run.status","at":"2026-10-14T06:55:56.001204Z","data":{"from":"auditing","to":"done","reason":"no findings"}}
+{"seq":49,"run_id":"run_5caf05f1c9b9","type":"run.finished","at":"2026-10-14T06:55:56.001212Z","data":{"status":"done","tokens":1555,"cost_usd":0.0}}

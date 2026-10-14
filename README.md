@@ -59,7 +59,12 @@ with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**.
 - **Two live-found Token Factory platform bugs**, bisected and repro'd (a `pattern` keyword in
   any `json_schema` response_format → HTTP 500; reasoning consuming the whole output budget) —
   full write-up in [FEEDBACK.md](FEEDBACK.md).
-- **Runs without keys.** Every stage sits behind a port with a fake adapter; 15 offline tests
+- **Beyond the planted shop** (`evidence/real-sites/`): on a real product page we didn't
+  author (books.toscrape.com), the walk + auditor caught two genuine blockers — nameless
+  buttons the screen reader announces as silence; on Wikipedia's accessibility article the
+  same pipeline returned **zero findings, twice** (41–42 phrases, no degradation) — precision
+  holds on a real page that's actually accessible.
+- **Runs without keys.** Every stage sits behind a port with a fake adapter; 19 offline tests
   + CI cover the whole pipeline with zero network.
 
 ## How it works
@@ -152,8 +157,9 @@ src/blindrun/
 runner/virtual_run.mjs         the ear: Guidepup VSR walker with auto-act + success detection
 demo-shop/                     8 planted-bug pages + 5 clean controls (bench/truth.json = 21 bugs)
 bench/                         recorded flagship run, benchmark results, bug truth
-docs/                          diagrams (make_diagrams.py renders them), screenshots, demo PR
-tests/                         15 offline tests (fakes end-to-end) + live API probes
+evidence/                      demo PR artifacts + real-site detection runs (real-sites/)
+docs/                          diagrams (make_diagrams.py renders them), screenshots
+tests/                         19 offline tests (fakes end-to-end) + live API probes
 ```
 
 ## Model routing (.env)

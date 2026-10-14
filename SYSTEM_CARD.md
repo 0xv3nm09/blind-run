@@ -64,3 +64,11 @@ cost and wall-clock per fixed issue. Results: `bench/results.json`, dashboard: `
 Runs, findings, redacted transcripts (text), patch diffs. Screenshots/audio (when a real reader
 records) deleted after 14 days. No customer code leaves the user's repo + Sandboxes; model calls
 carry only the cited file and evidence quotes.
+
+## Real-world validation (Oct 12)
+
+- Real product page (books.toscrape.com, not authored by us): walk + auditor found 2 genuine
+  blockers (nameless buttons announced as silence) — `evidence/real-sites/books-toscrape-product.jsonl`.
+- Wikipedia "Web accessibility" article: 0 findings on two independent runs (41–42 phrases,
+  degraded=false) — precision holds on a real, mostly-accessible page. Zero findings is a
+  claim of nothing found, not nothing ran: the recordings contain the full transcript.

@@ -2,7 +2,7 @@
 
 from datetime import UTC, datetime
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from blindrun.types import (
     USD,
@@ -42,6 +42,13 @@ class Phrase(Frozen):
     text: str = Field(max_length=500)  # what the screen reader announced
     t_ms: int = Field(ge=0)  # time since the ear started
     step: int = Field(ge=0)  # which plan step produced it
+
+    @field_validator("text", mode="before")
+    @classmethod
+    def _clip_text(cls, v: str) -> str:
+        # real pages announce walls of text (product descriptions, articles);
+        # clip at the boundary instead of failing the run
+        return v[:500] if isinstance(v, str) and len(v) > 500 else v
 
 
 class Shot(Frozen):

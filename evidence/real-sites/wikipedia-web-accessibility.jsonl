@@ -1,0 +1,50 @@
+{"seq":0,"run_id":"run_354ebcbc4b29","type":"run.started","at":"2026-10-14T06:56:07.658807Z","data":{"task":"read the page summary","url":"https://en.wikipedia.org/wiki/Web_accessibility","driver":"virtual"}}
+{"seq":1,"run_id":"run_354ebcbc4b29","type":"run.status","at":"2026-10-14T06:56:07.659401Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_354ebcbc4b29","type":"plan.ready","at":"2026-10-14T06:56:16.081699Z","data":{"steps":["heading","next","next","next","next","next"],"success_phrase":"End of document reached."}}
+{"seq":3,"run_id":"run_354ebcbc4b29","type":"run.status","at":"2026-10-14T06:56:16.081974Z","data":{"from":"planning","to":"listening"}}
+{"seq":4,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.250930Z","data":{"i":0,"text":"document","step":0}}
+{"seq":5,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.251079Z","data":{"i":1,"text":"heading, Contents, level 2","step":0}}
+{"seq":6,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.251328Z","data":{"i":2,"text":"button, Hide Contents","step":1}}
+{"seq":7,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.334965Z","data":{"i":3,"text":"button, Toggle the table of contents, has popup menu","step":1}}
+{"seq":8,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.366647Z","data":{"i":4,"text":"end, Table of Contents","step":2}}
+{"seq":9,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.367453Z","data":{"i":5,"text":"end of navigation, Contents","step":3}}
+{"seq":10,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.368212Z","data":{"i":6,"text":"heading, Web accessibility, level 1","step":4}}
+{"seq":11,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.368848Z","data":{"i":7,"text":"Web accessibility","step":5}}
+{"seq":12,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.369543Z","data":{"i":8,"text":"end of heading, Web accessibility, level 1","step":6}}
+{"seq":13,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.370224Z","data":{"i":9,"text":"button, 25 languages, Go to an article in another language. Available in 25 languages, has popup menu","step":7}}
+{"seq":14,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.408036Z","data":{"i":10,"text":"navigation, Namespaces","step":8}}
+{"seq":15,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.408650Z","data":{"i":11,"text":"list","step":9}}
+{"seq":16,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.409183Z","data":{"i":12,"text":"listitem, level 1, position 1, set size 2","step":10}}
+{"seq":17,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.409652Z","data":{"i":13,"text":"link, Article, View the content page [ctrl-option-c]","step":11}}
+{"seq":18,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.410220Z","data":{"i":14,"text":"Article","step":12}}
+{"seq":19,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.417523Z","data":{"i":15,"text":"end of link, Article, View the content page [ctrl-option-c]","step":13}}
+{"seq":20,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.418777Z","data":{"i":16,"text":"end of listitem, level 1, position 1, set size 2","step":14}}
+{"seq":21,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.419914Z","data":{"i":17,"text":"listitem, level 1, position 2, set size 2","step":15}}
+{"seq":22,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.422550Z","data":{"i":18,"text":"link, Talk, Discuss improvements to the content page [ctrl-option-t]","step":16}}
+{"seq":23,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.427523Z","data":{"i":19,"text":"Talk","step":17}}
+{"seq":24,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.459618Z","data":{"i":20,"text":"end of link, Talk, Discuss improvements to the content page [ctrl-option-t]","step":18}}
+{"seq":25,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.462975Z","data":{"i":21,"text":"end of listitem, level 1, position 2, set size 2","step":19}}
+{"seq":26,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.466923Z","data":{"i":22,"text":"end of list","step":20}}
+{"seq":27,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.469194Z","data":{"i":23,"text":"end of navigation, Namespaces","step":21}}
+{"seq":28,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.469629Z","data":{"i":24,"text":"navigation, Views","step":22}}
+{"seq":29,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.470075Z","data":{"i":25,"text":"list","step":23}}
+{"seq":30,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.470583Z","data":{"i":26,"text":"listitem, level 1, position 1, set size 3","step":24}}
+{"seq":31,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.471917Z","data":{"i":27,"text":"link, Read","step":25}}
+{"seq":32,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.472607Z","data":{"i":28,"text":"Read","step":26}}
+{"seq":33,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.473110Z","data":{"i":29,"text":"end of link, Read","step":27}}
+{"seq":34,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.473608Z","data":{"i":30,"text":"end of listitem, level 1, position 1, set size 3","step":28}}
+{"seq":35,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.474110Z","data":{"i":31,"text":"listitem, level 1, position 2, set size 3","step":29}}
+{"seq":36,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.474579Z","data":{"i":32,"text":"link, Edit, Edit this page [ctrl-option-e]","step":30}}
+{"seq":37,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.475022Z","data":{"i":33,"text":"Edit","step":31}}
+{"seq":38,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.475446Z","data":{"i":34,"text":"end of link, Edit, Edit this page [ctrl-option-e]","step":32}}
+{"seq":39,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.475850Z","data":{"i":35,"text":"end of listitem, level 1, position 2, set size 3","step":33}}
+{"seq":40,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.477734Z","data":{"i":36,"text":"listitem, level 1, position 3, set size 3","step":34}}
+{"seq":41,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.478229Z","data":{"i":37,"text":"link, View history, Past revisions of this page [ctrl-option-h]","step":35}}
+{"seq":42,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.478728Z","data":{"i":38,"text":"View history","step":36}}
+{"seq":43,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.479275Z","data":{"i":39,"text":"end of link, View history, Past revisions of this page [ctrl-option-h]","step":37}}
+{"seq":44,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.479852Z","data":{"i":40,"text":"end of listitem, level 1, position 3, set size 3","step":38}}
+{"seq":45,"run_id":"run_354ebcbc4b29","type":"ear.phrase","at":"2026-10-14T06:56:19.480328Z","data":{"i":41,"text":"end of list","step":39}}
+{"seq":46,"run_id":"run_354ebcbc4b29","type":"ear.done","at":"2026-10-14T06:56:19.589148Z","data":{"reached_success":false,"phrases":42,"degraded":false}}
+{"seq":47,"run_id":"run_354ebcbc4b29","type":"run.status","at":"2026-10-14T06:56:19.589228Z","data":{"from":"listening","to":"auditing"}}
+{"seq":48,"run_id":"run_354ebcbc4b29","type":"run.status","at":"2026-10-14T06:56:20.949756Z","data":{"from":"auditing","to":"done","reason":"no findings"}}
+{"seq":49,"run_id":"run_354ebcbc4b29","type":"run.finished","at":"2026-10-14T06:56:20.949782Z","data":{"status":"done","tokens":1785,"cost_usd":0.0}}

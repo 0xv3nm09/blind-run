@@ -60,6 +60,11 @@ def run(
             print(f"            heard: {f.heard!r}")
             print(f"            seen:  {f.seen!r}")
     print(f"\nrun {run_id}: {status.value}, {len(findings)} finding(s)")
+    if status == RunStatus.escalated:
+        print(
+            "escalated = the verifier refused to ship an unverified fix (the honest outcome).\n"
+            "Re-run (fix sampling varies), or replay the recorded flagship: make up → Play demo run."
+        )
     raise typer.Exit(code=0 if status == RunStatus.done else 1)
 
 
