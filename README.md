@@ -176,6 +176,11 @@ run costs about a cent).
 
 ## For judges: verifying the stack is real
 
+The stage-by-stage deep dive — every model call, the Tavily queries, the search/replace
+protocol, the sandbox branch lifecycle, and the full failure-handling catalogue with file
+references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+
 Everything below is checkable in minutes, no trust required:
 
 1. **The API calls are real.** `src/blindrun/adapters/llm_tokenfactory.py` points the OpenAI
