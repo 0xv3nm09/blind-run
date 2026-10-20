@@ -23,15 +23,31 @@ grounds the fixer with live W3C guidance and links every finding to the official
 - **~4,928 web-accessibility lawsuits were filed in a year, ~70% targeting e-commerce**
   (UsableNet tracking). One blocker in a checkout is a dropped sale and a complaint.
 - **Automated tooling has a hard ceiling**: Deque's coverage study puts it at ~57% of issues,
-  and the failure modes it misses at 0.00% — focus order, meaningful sequence — are exactly
-  the ones that block a task. Our own benchmark agrees: axe caught **0 of 10** planted
-  blockers that a screen-reader user cannot get past. Rules read code; **Blind-Run listens
-  to the page the way a user does**.
+  and an independent GDS audit of 142 tools found the best catch only **30–40%**. The failure
+  modes scored at 0.00% — focus order, meaningful sequence — are exactly the ones that block a
+  task. Our own benchmark agrees: axe caught **0 of 10** planted blockers that a screen-reader
+  user cannot get past. Rules read code; **Blind-Run listens to the page the way a user does**.
+- **The market ships claims, not proof**: 22.6% of top homepages now bolt on accessibility
+  overlays — automated widgets that promise fixes nobody verifies. Blind-Run is the
+  counter-position: **every fix ships with the transcript that proves it**.
 - **Public entities now have a compliance clock**: the ADA Title II web rule reaches large
   entities April 2027, small ones 2028 — audits that cost cents per page instead of weeks
   of manual review change what "continuous compliance" looks like.
 - **The economics**: a full listen → audit → fix → verify → PR loop costs **≈$0.01** in
   inference and runs unattended. 1.3 billion people (WHO) navigate by ear or keyboard.
+
+## Why an agent — and why now
+
+- **Rules can't write fixes.** Linters point at code; they don't change it — and the blocking
+  failures are structural (a control that renders but can't be operated), invisible to rule
+  engines 0-of-10 times in our benchmark.
+- **Models can't be trusted to self-verify.** An LLM that writes a fix will also "confirm" it.
+  Blind-Run's oracle is deterministic — the screen reader's transcript — so agentic fixing is
+  safe to automate and cheap enough to run on every PR (≈$0.01).
+- **The timing is not a coincidence.** WebAIM 2026 links rising failure rates to AI-generated
+  code, just as agentic coding tools start writing most UI. ADA Title II (Apr 2027 / 2028)
+  turns accessibility from goodwill into procurement paperwork. And 1.3 billion users (WHO)
+  were never a niche. The wave creating the bugs is the same wave that needs the guardrail.
 
 ## Use cases today
 
@@ -224,6 +240,7 @@ Every model call in the pipeline runs on **Nebius Token Factory** against **NVID
 
 - Compliance reporting for ADA Title II (Apr 2027 / 2028) and EN 301 549 procurement: cents-per-page continuous evidence vs. point-in-time manual audits
 - Agency / audit tooling: the transcript diff is auditable output a human reviewer can sign, and the accessibility tooling market is already $0.85B → $1.15B (6.2% CAGR)
+- The loop itself — task → experience → fix → prove — generalizes to any oracle you can render as text; accessibility is the first, hardest-honest one
 
 ## License
 
