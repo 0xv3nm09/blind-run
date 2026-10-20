@@ -4,6 +4,7 @@ Sampling per NVIDIA model cards; reasoning switch per role; strict JSON with one
 repair turn; tenacity owns retries (never stacked); every call updates the Budget.
 """
 
+import structlog
 from openai import APIConnectionError, APIStatusError, APITimeoutError, AsyncOpenAI, RateLimitError
 from pydantic import BaseModel, ValidationError
 from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_random_exponential
@@ -221,6 +222,15 @@ class TokenFactoryLLM:
         if r.usage is not None:
             budget.tokens_used += r.usage.total_tokens or 0
         budget.calls += 1
+        # visible proof for live inspection: every call names its model
+        log = structlog.get_logger(__name__)
+        log.info(
+            "llm.call",
+            role=role,
+            model=model,
+            tokens=(r.usage.total_tokens if r.usage else None) or 0,
+            base_url=self.c.base_url,
+        )
         return r.choices[0].message.content or ""
 
     async def structured(

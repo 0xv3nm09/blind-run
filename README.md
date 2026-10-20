@@ -170,6 +170,27 @@ machine instead; the recorded demo replays either way. Set `SEARCH_BACKEND=tavil
 working offline). Live runs need `NEBIUS_API_KEY` in `.env` (Token Factory credits; a full
 run costs about a cent).
 
+## For judges: verifying the stack is real
+
+Everything below is checkable in minutes, no trust required:
+
+1. **The API calls are real.** `src/blindrun/adapters/llm_tokenfactory.py` points the OpenAI
+   SDK at `https://api.tokenfactory.nebius.com/v1/` — there is no local model anywhere in the
+   repo. Run live with your own key (`.env`: `NEBIUS_API_KEY`, `LLM_BACKEND=tokenfactory`)
+   and every call logs its role, model ID, token count and the base URL as it happens:
+   `llm.call role=fixer model=nvidia/Nemotron-3-Ultra-550b-a55b tokens=1234 …`.
+2. **The recorded demo is a real run.** `bench/recorded_run.jsonl` carries the event stream
+   with token accounting (7,414 tokens for the flagship), the in-branch ear transcript, and
+   the PR artifact it produced is committed under `evidence/`.
+3. **Sandboxes usage is canonical.** `sandbox_contree.py` builds one parent checkpoint
+   (Node 22 + Playwright + Chromium + Guidepup) and runs each fix candidate as a parallel
+   disposable branch — apply → serve → ear replay inside the branch (the fix.branch events in
+   any live run come from real branch verdicts).
+4. **Correct usage details** a reviewer can poke at: per-role model routing, per-role sampling
+   (reasoning budgets, `chat_template_kwargs`), `json_schema` structured output with a
+   client-side sanitizer (we found `pattern` → HTTP 500 and documented it), rate-limit aware
+   retries, and token/cost accounting in every run.
+
 ## Repository layout
 
 ```
