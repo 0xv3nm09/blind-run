@@ -1,7 +1,9 @@
 .PHONY: setup up test lint dr7 serve bench demo
 
-setup: ## install everything (day 1: lean core)
+setup: ## install everything: python env, the ear's node deps, chromium
 	uv sync && uv run python -m blindrun --help
+	cd runner && npm ci
+	uv run playwright install chromium
 
 up: ## API + dashboard (fakes, no Docker needed)
 	uv run uvicorn blindrun.api.main:app --reload

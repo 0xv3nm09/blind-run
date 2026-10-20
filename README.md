@@ -146,9 +146,13 @@ watch the same arc in real time.
 
 ## Quick start
 
+Prerequisites: [uv](https://docs.astral.sh/uv/) (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
+and Node 22+ for the ear. Then one command sets everything up, including the ear's
+Guidepup/Playwright packages and Chromium:
+
 ```bash
-uv sync                       # day-1 core is lean; no Docker, no Redis, no keys
-make test                     # unit + pipeline tests (offline)
+make setup                    # python env + ear node deps + chromium (one command)
+make test                     # unit + pipeline tests (offline, no keys)
 make up                       # open http://localhost:8000 — the recorded demo plays itself
 ```
 
@@ -229,6 +233,23 @@ Every model call in the pipeline runs on **Nebius Token Factory** against **NVID
 - **Nemotron 3 Ultra-550B** is the fixer: with the round-1 prompt anchoring verbatim search/replace blocks, it proposed the W3C-APG radio-group fix that passed ear verification (this is the shipped configuration — see `.env.example`).
 - **Nemotron 3.5 Lightning** covers high-volume fast lanes and **Nano-30B** the guard role (both routed in config; the recorded flagship exercises Super + Ultra). Duplicate findings are deduped structurally in code.
 - **Nebius Sandboxes (ConTree)** build and ear-verify every fix candidate in isolated microVMs — the verification replay runs entirely inside the sandbox (parent checkpoint: Node 22 + Playwright + Chromium + Guidepup, built once and branched per candidate).
+
+## Design decisions (the load-bearing ones)
+
+1. **The oracle is deterministic.** Pass/fail is a string check on the screen-reader
+   transcript. Models draft; code verifies. This is why agentic fixing is safe to automate.
+2. **Fakes first, everywhere.** Every stage sits behind a port with a fake adapter — the
+   whole pipeline runs offline in tests with zero keys, and the same tests cover real and
+   fake wiring.
+3. **Degrade, don't crash.** Search down → cached patterns. Sandbox unreachable → local
+   verification. A 3,000-character product description → clipped at the schema boundary.
+   Runs end in an honest status, never a stack trace.
+4. **Escalation is a feature.** When no candidate passes ear verification, the run says so
+   and keeps the evidence — the verifier refusing to ship an unverified fix is the product
+   working, not failing.
+5. **Evidence must be quotable.** Findings quote real transcript lines and link the official
+   WCAG doc; PRs carry the before/after transcript. Nothing asks you to trust a model.
+6. **Nothing auto-merges.** A human reviews and merges; Blind-Run's job ends at proof.
 
 ## Safety rules that hold everywhere
 

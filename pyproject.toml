@@ -20,6 +20,8 @@ dependencies = [
     "typer~=0.19",
     "structlog~=26.1",
     "httpx~=0.28",
+    "playwright~=1.63",
+    "axe-playwright-python~=0.1",
 ]
 
 [project.optional-dependencies]
