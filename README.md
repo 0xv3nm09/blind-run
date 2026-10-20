@@ -182,7 +182,7 @@ tests/                         19 offline tests (fakes end-to-end) + live API pr
 | Escalation | `nvidia/Nemotron-3-Ultra-550b-a55b` |
 | Auditor vision A/B | `openbmb/MiniCPM-V-4_5` (text-only Super is default) |
 | Guard | `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` |
-| Embeddings (dedupe) | `Qwen/Qwen3-Embedding-8B` |
+| Embeddings (dedupe) | `Qwen/Qwen3-Embedding-8B` — routed in config; the shipped loop dedupes structurally in code |
 
 ## Powered by Nebius Token Factory + NVIDIA Nemotron
 
@@ -190,7 +190,7 @@ Every model call in the pipeline runs on **Nebius Token Factory** against **NVID
 
 - **Nemotron 3 Super (120B-A12B)** plans the keyboard-only walk and audits the transcript against the ARIA tree.
 - **Nemotron 3 Ultra-550B** is the fixer: with the round-1 prompt anchoring verbatim search/replace blocks, it proposed the W3C-APG radio-group fix that passed ear verification (this is the shipped configuration — see `.env.example`).
-- **Nemotron 3.5 Lightning** covers high-volume fast lanes; **Nano-30B** is the guard role; **Qwen3-Embedding-8B** merges duplicate findings.
+- **Nemotron 3.5 Lightning** covers high-volume fast lanes and **Nano-30B** the guard role (both routed in config; the recorded flagship exercises Super + Ultra). Duplicate findings are deduped structurally in code.
 - **Nebius Sandboxes (ConTree)** build and ear-verify every fix candidate in isolated microVMs — the verification replay runs entirely inside the sandbox (parent checkpoint: Node 22 + Playwright + Chromium + Guidepup, built once and branched per candidate).
 
 ## Safety rules that hold everywhere
