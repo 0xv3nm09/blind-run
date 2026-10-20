@@ -238,6 +238,10 @@ Every model call in the pipeline runs on **Nebius Token Factory** against **NVID
 
 1. **The oracle is deterministic.** Pass/fail is a string check on the screen-reader
    transcript. Models draft; code verifies. This is why agentic fixing is safe to automate.
+2. **Best-of-3 parallel verification.** The fixer's sampling variance is absorbed by
+   concurrency, not luck: three alternative fixes run in three parallel Sandboxes branches,
+   and only the one whose task completes by ear ships — in the recorded flagship, two of the
+   three honestly failed. Watching candidates get rejected is the product working.
 2. **Fakes first, everywhere.** Every stage sits behind a port with a fake adapter — the
    whole pipeline runs offline in tests with zero keys, and the same tests cover real and
    fake wiring.
