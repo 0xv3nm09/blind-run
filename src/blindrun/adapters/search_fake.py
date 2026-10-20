@@ -43,6 +43,24 @@ _KNOWN = {
 }
 
 
+# WCAG 2.2 Understanding slugs for the criteria our audits emit (live-verified 200s)
+_WCAG_SLUGS = {
+    "1.1.1": "non-text-content",
+    "1.3.1": "info-and-relationships",
+    "1.3.2": "meaningful-sequence",
+    "1.4.3": "contrast-minimum",
+    "1.4.11": "non-text-contrast",
+    "2.1.1": "keyboard",
+    "2.4.3": "focus-order",
+    "2.4.7": "focus-visible",
+    "2.5.3": "label-in-name",
+    "3.2.3": "consistent-navigation",
+    "3.3.2": "labels-or-instructions",
+    "4.1.2": "name-role-value",
+    "4.1.3": "status-messages",
+}
+
+
 class CachedSearch:
     async def pattern(self, widget: str) -> Pattern:
         return _KNOWN.get(widget.lower().strip()) or Pattern(
@@ -54,5 +72,9 @@ class CachedSearch:
         )
 
     async def docs(self, wcag_sc: str) -> str:
-        """Offline floor for the WCAG Understanding doc (TavilySearch confirms live)."""
-        return f"https://www.w3.org/WAI/WCAG22/Understanding/{wcag_sc.replace('.', '-')}.html"
+        """Offline floor for the WCAG Understanding doc (TavilySearch confirms live).
+        Real W3C URLs use names, not numbers — verified: number-dash URLs 404."""
+        slug = _WCAG_SLUGS.get(wcag_sc.strip())
+        if slug:
+            return f"https://www.w3.org/WAI/WCAG22/Understanding/{slug}.html"
+        return "https://www.w3.org/WAI/WCAG22/Understanding/"  # index: never a dead link

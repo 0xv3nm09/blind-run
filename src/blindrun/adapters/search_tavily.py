@@ -68,7 +68,7 @@ class TavilySearch:
 
     async def docs(self, wcag_sc: str) -> str:
         """Official WCAG Understanding doc for a Success Criterion (e.g. '4.1.2')."""
-        fallback = f"https://www.w3.org/WAI/WCAG22/Understanding/{wcag_sc.replace('.', '-')}.html"
+        fallback = await self._cache.docs(wcag_sc)
         try:
             data = await self._search(f"Understanding WCAG Success Criterion {wcag_sc} site:w3.org", n=3)
             hit = next(
