@@ -104,6 +104,14 @@ Every item below was hit while building Blind-Run and verified live against the 
   of the requested format (~1 in 3 rounds in our logs) — a format-anchored retry solves it, but
   worth knowing.
 
+## Post-validation (Oct 26, 2026)
+
+Every workaround documented above was re-validated across **9 consecutive live runs**
+(the flagship fix run plus an 8-task detection sweep, all on Token Factory with real
+screen-reader walks): zero 500s (the `pattern` sanitizer held), zero empty-content
+failures (the budget caps + retry held), and the format-anchored retry absorbed the
+intermittent prose replies. The documented behaviors are stable, not one-off.
+
 ## What we built on top (so support can gauge the surface)
 
 - 7-port adapter architecture (LLM/Ear/Sandbox/Search/VCS/Store/Events) with fakes + reals.
