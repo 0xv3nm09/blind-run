@@ -16,7 +16,7 @@ until its retrieval has returned, and no finding is reported without its groundi
 When the auditor triages a barrier (e.g. a silent radio group), the orchestrator calls:
 
 ```python
-pattern = await deps.search.pattern("radio")   # widget category from the finding
+pattern = await deps.search.pattern("radio")  # widget category from the finding
 ```
 
 - **Request:** `POST https://api.tavily.com/search` · header `Authorization: Bearer <key>`
@@ -34,7 +34,7 @@ pattern = await deps.search.pattern("radio")   # widget category from the findin
 Each finding the auditor emits is grounded with the official standard:
 
 ```python
-wcag_url = await deps.search.docs("4.1.2")   # → w3.org Understanding URL
+wcag_url = await deps.search.docs("4.1.2")  # → w3.org Understanding URL
 ```
 
 - **Request:** `POST /search` · `"Understanding WCAG Success Criterion 4.1.2 site:w3.org"`
