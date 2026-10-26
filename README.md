@@ -16,6 +16,17 @@ Built for the [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackat
 with NVIDIA Nemotron open models; fix builds run in **Nebius Sandboxes**; **Tavily retrieval**
 grounds the fixer with live W3C guidance and links every finding to the official WCAG docs.
 
+## Compliance at a glance
+
+The full requirement-by-requirement map (each rule → status → the file that satisfies it) is in
+[docs/COMPLIANCE.md](docs/COMPLIANCE.md). Headlines:
+
+- ✅ **Runs on Nebius Token Factory** — every model call (Nemotron-3 Super plans/audits, Ultra fixes)
+- ✅ **Track 1 fit** — fixes are written, run and ear-tested inside Nebius Sandboxes branches
+- ✅ MIT license · README highlights Nemotron + Token Factory + Tavily · platform feedback documented (2 live-found bugs)
+- ✅ Demo video 2:45 (under the 3:00 limit) — public on YouTube at submission
+- ⏳ Public repo + hosted demo URL — both activate at the submission flip (GitHub Pages mode ships in this repo)
+
 ## Why it matters
 
 - **95.9% of the top million homepages fail WCAG** — 56.1 detectable errors per page on
@@ -187,9 +198,7 @@ keep warm — the demo can never go down during judging.
 
 The stage-by-stage deep dive — every model call, the Tavily queries, the search/replace
 protocol, the sandbox branch lifecycle, and the full failure-handling catalogue with file
-references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). A line-by-line map of every
-official submission requirement and where this repo satisfies it is in
-[docs/COMPLIANCE.md](docs/COMPLIANCE.md).
+references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 
 Everything below is checkable in minutes, no trust required:
