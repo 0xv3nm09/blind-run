@@ -1,0 +1,16 @@
+{"seq":0,"run_id":"run_c37bce7d7bc4","type":"run.started","at":"2026-10-26T17:52:07.255875Z","data":{"task":"find the cheapest trail shoe and open it","url":"http://127.0.0.1:8933/catalog.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_c37bce7d7bc4","type":"run.status","at":"2026-10-26T17:52:07.255931Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_c37bce7d7bc4","type":"llm.call","at":"2026-10-26T17:52:16.456240Z","data":{"role":"planner","model":"nvidia/nemotron-3-super-120b-a12b","tokens":1237}}
+{"seq":3,"run_id":"run_c37bce7d7bc4","type":"plan.ready","at":"2026-10-26T17:52:16.456327Z","data":{"steps":["heading","next","next","act"],"success_phrase":"Trail Shoe details displayed"}}
+{"seq":4,"run_id":"run_c37bce7d7bc4","type":"run.status","at":"2026-10-26T17:52:16.456427Z","data":{"from":"planning","to":"listening"}}
+{"seq":5,"run_id":"run_c37bce7d7bc4","type":"ear.phrase","at":"2026-10-26T17:52:17.580703Z","data":{"i":0,"text":"document","step":0}}
+{"seq":6,"run_id":"run_c37bce7d7bc4","type":"ear.phrase","at":"2026-10-26T17:52:17.580778Z","data":{"i":1,"text":"heading, Catalog, level 1","step":0}}
+{"seq":7,"run_id":"run_c37bce7d7bc4","type":"ear.phrase","at":"2026-10-26T17:52:17.581598Z","data":{"i":2,"text":"navigation, Products","step":1}}
+{"seq":8,"run_id":"run_c37bce7d7bc4","type":"ear.phrase","at":"2026-10-26T17:52:17.583238Z","data":{"i":3,"text":"link, Shoes","step":2}}
+{"seq":9,"run_id":"run_c37bce7d7bc4","type":"ear.done","at":"2026-10-26T17:52:17.655149Z","data":{"reached_success":false,"phrases":4,"degraded":false}}
+{"seq":10,"run_id":"run_c37bce7d7bc4","type":"run.status","at":"2026-10-26T17:52:17.655203Z","data":{"from":"listening","to":"auditing"}}
+{"seq":11,"run_id":"run_c37bce7d7bc4","type":"llm.call","at":"2026-10-26T17:52:19.207211Z","data":{"role":"auditor","model":"nvidia/nemotron-3-super-120b-a12b","tokens":408}}
+{"seq":12,"run_id":"run_c37bce7d7bc4","type":"finding.new","at":"2026-10-26T17:52:19.208135Z","data":{"id":"fnd_faf2acf6e595","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<aria> ... <group>:   - button   - button   - button </aria>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":13,"run_id":"run_c37bce7d7bc4","type":"finding.new","at":"2026-10-26T17:52:19.208168Z","data":{"id":"fnd_b5f4efa47d99","wcag_sc":"2.4.7","category":"focus","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<aria> ... <group>:   - button   - button   - button </aria>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"}}
+{"seq":14,"run_id":"run_c37bce7d7bc4","type":"run.status","at":"2026-10-26T17:52:19.208198Z","data":{"from":"auditing","to":"done","reason":"no findings"}}
+{"seq":15,"run_id":"run_c37bce7d7bc4","type":"run.finished","at":"2026-10-26T17:52:19.208219Z","data":{"status":"done","tokens":1645,"cost_usd":0.0}}

@@ -199,6 +199,13 @@ machine instead; the recorded demo replays either way. Set `SEARCH_BACKEND=tavil
 working offline). Live runs need `NEBIUS_API_KEY` in `.env` (Token Factory credits; a full
 run costs about a cent).
 
+## Real-run guide
+
+Every prerequisite, command, expected timing/cost, the honest done-vs-escalated meanings, and a
+troubleshooting table — in [docs/RUN-GUIDE.md](docs/RUN-GUIDE.md). All 8 demo-shop use-case tasks
+were run for real on Oct 26; measured numbers are on the console's Use cases page and the
+recordings live in `evidence/real-sites/`.
+
 ## Hosted demo (GitHub Pages)
 
 The dashboard auto-detects its host: with the API it streams live; on static hosting

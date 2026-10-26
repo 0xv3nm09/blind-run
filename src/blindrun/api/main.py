@@ -113,6 +113,12 @@ if _EVIDENCE_DIR.is_dir():
 
     app.mount("/evidence", StaticFiles(directory=str(_EVIDENCE_DIR)), name="evidence")
 
+_BENCH_DIR = Path(__file__).resolve().parents[3] / "bench"
+if _BENCH_DIR.is_dir():
+    from fastapi.staticfiles import StaticFiles as _SFB
+
+    app.mount("/bench", _SFB(directory=str(_BENCH_DIR)), name="bench")
+
 
 def _replay_events() -> list[Event] | None:
     if not _REPLAY_FILE.is_file():

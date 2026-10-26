@@ -124,5 +124,15 @@ export function makeRunner({ onEvent, onStatus, onDone, mode }) {
   };
 }
 
+export const loadUseCaseResults = async () => {
+  const root = staticRoot();
+  const candidates = [`${root}bench/usecase_results.json`, "./bench/usecase_results.json", "/bench/usecase_results.json"];
+  for (const url of candidates) {
+    const r = await fetch(url);
+    if (r.ok) return r.json();
+  }
+  return [];
+};
+
 export const loadBench = async (mode) =>
   mode === "static" ? loadStaticBench() : await loadApiBench().catch(() => loadStaticBench());

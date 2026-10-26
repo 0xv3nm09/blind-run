@@ -1,0 +1,52 @@
+{"seq":0,"run_id":"run_2b646f38c2de","type":"run.started","at":"2026-10-26T17:53:42.641013Z","data":{"task":"select a country from the dropdown","url":"http://127.0.0.1:8933/controls/combobox.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_2b646f38c2de","type":"run.status","at":"2026-10-26T17:53:42.641075Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_2b646f38c2de","type":"llm.call","at":"2026-10-26T17:53:51.085215Z","data":{"role":"planner","model":"nvidia/nemotron-3-super-120b-a12b","tokens":1113}}
+{"seq":3,"run_id":"run_2b646f38c2de","type":"plan.ready","at":"2026-10-26T17:53:51.085277Z","data":{"steps":["heading","next","next","next","act"],"success_phrase":"Country selected"}}
+{"seq":4,"run_id":"run_2b646f38c2de","type":"run.status","at":"2026-10-26T17:53:51.085329Z","data":{"from":"planning","to":"listening"}}
+{"seq":5,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.237367Z","data":{"i":0,"text":"document","step":0}}
+{"seq":6,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.237428Z","data":{"i":1,"text":"heading, Control: combobox (clean), level 1","step":0}}
+{"seq":7,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.242037Z","data":{"i":2,"text":"Color","step":1}}
+{"seq":8,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.242995Z","data":{"i":3,"text":"combobox, Color, has popup listbox, not expanded, 1 control","step":2}}
+{"seq":9,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.254131Z","data":{"i":4,"text":"status","step":3}}
+{"seq":10,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.256263Z","data":{"i":5,"text":"end of main","step":5}}
+{"seq":11,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.257006Z","data":{"i":6,"text":"end of document","step":6}}
+{"seq":12,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.257914Z","data":{"i":7,"text":"document","step":7}}
+{"seq":13,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.258614Z","data":{"i":8,"text":"navigation","step":8}}
+{"seq":14,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.259266Z","data":{"i":9,"text":"link, Nimbus Goods","step":9}}
+{"seq":15,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.259875Z","data":{"i":10,"text":"link, Catalog","step":10}}
+{"seq":16,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.260512Z","data":{"i":11,"text":"end of navigation","step":11}}
+{"seq":17,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.261149Z","data":{"i":12,"text":"main","step":12}}
+{"seq":18,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.261841Z","data":{"i":13,"text":"heading, Control: combobox (clean), level 1","step":13}}
+{"seq":19,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.264068Z","data":{"i":14,"text":"Color","step":14}}
+{"seq":20,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.264890Z","data":{"i":15,"text":"combobox, Color, has popup listbox, not expanded, 1 control","step":15}}
+{"seq":21,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.267374Z","data":{"i":16,"text":"status","step":16}}
+{"seq":22,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.268103Z","data":{"i":17,"text":"end of main","step":17}}
+{"seq":23,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.268755Z","data":{"i":18,"text":"end of document","step":18}}
+{"seq":24,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.271720Z","data":{"i":19,"text":"document","step":19}}
+{"seq":25,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.273136Z","data":{"i":20,"text":"navigation","step":20}}
+{"seq":26,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.274319Z","data":{"i":21,"text":"link, Nimbus Goods","step":21}}
+{"seq":27,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.275636Z","data":{"i":22,"text":"link, Catalog","step":22}}
+{"seq":28,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.277245Z","data":{"i":23,"text":"end of navigation","step":23}}
+{"seq":29,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.278171Z","data":{"i":24,"text":"main","step":24}}
+{"seq":30,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.281614Z","data":{"i":25,"text":"heading, Control: combobox (clean), level 1","step":25}}
+{"seq":31,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.284642Z","data":{"i":26,"text":"Color","step":26}}
+{"seq":32,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.285404Z","data":{"i":27,"text":"combobox, Color, has popup listbox, not expanded, 1 control","step":27}}
+{"seq":33,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.287962Z","data":{"i":28,"text":"status","step":28}}
+{"seq":34,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.288765Z","data":{"i":29,"text":"end of main","step":29}}
+{"seq":35,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.289494Z","data":{"i":30,"text":"end of document","step":30}}
+{"seq":36,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.290218Z","data":{"i":31,"text":"document","step":31}}
+{"seq":37,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.291017Z","data":{"i":32,"text":"navigation","step":32}}
+{"seq":38,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.291799Z","data":{"i":33,"text":"link, Nimbus Goods","step":33}}
+{"seq":39,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.292937Z","data":{"i":34,"text":"link, Catalog","step":34}}
+{"seq":40,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.293697Z","data":{"i":35,"text":"end of navigation","step":35}}
+{"seq":41,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.294502Z","data":{"i":36,"text":"main","step":36}}
+{"seq":42,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.295300Z","data":{"i":37,"text":"heading, Control: combobox (clean), level 1","step":37}}
+{"seq":43,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.297990Z","data":{"i":38,"text":"Color","step":38}}
+{"seq":44,"run_id":"run_2b646f38c2de","type":"ear.phrase","at":"2026-10-26T17:53:52.298924Z","data":{"i":39,"text":"combobox, Color, has popup listbox, not expanded, 1 control","step":39}}
+{"seq":45,"run_id":"run_2b646f38c2de","type":"ear.done","at":"2026-10-26T17:53:52.349074Z","data":{"reached_success":false,"phrases":40,"degraded":false}}
+{"seq":46,"run_id":"run_2b646f38c2de","type":"run.status","at":"2026-10-26T17:53:52.349169Z","data":{"from":"listening","to":"auditing"}}
+{"seq":47,"run_id":"run_2b646f38c2de","type":"llm.call","at":"2026-10-26T17:53:53.842398Z","data":{"role":"auditor","model":"nvidia/nemotron-3-super-120b-a12b","tokens":608}}
+{"seq":48,"run_id":"run_2b646f38c2de","type":"finding.new","at":"2026-10-26T17:53:53.842919Z","data":{"id":"fnd_058dfa294b0b","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.68,"heard":"combobox, Color, has popup listbox, not expanded, 1 control","seen":"<aria> contains no element matching this description; the ARIA tree lists only buttons and groups","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":49,"run_id":"run_2b646f38c2de","type":"finding.new","at":"2026-10-26T17:53:53.842938Z","data":{"id":"fnd_c33bef271c4e","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.17,"heard":"(no announcement after attempting to open/select)","seen":"No accessible label is provided on any element in the ARIA tree—buttons are unlabeled","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":50,"run_id":"run_2b646f38c2de","type":"run.status","at":"2026-10-26T17:53:53.842956Z","data":{"from":"auditing","to":"done"}}
+{"seq":51,"run_id":"run_2b646f38c2de","type":"run.finished","at":"2026-10-26T17:53:53.842967Z","data":{"status":"done","tokens":1721,"cost_usd":0.0}}

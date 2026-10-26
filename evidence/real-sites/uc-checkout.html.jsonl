@@ -1,0 +1,52 @@
+{"seq":0,"run_id":"run_8f398ec1fb52","type":"run.started","at":"2026-10-26T17:52:20.223539Z","data":{"task":"complete the checkout","url":"http://127.0.0.1:8933/checkout.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_8f398ec1fb52","type":"run.status","at":"2026-10-26T17:52:20.223603Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_8f398ec1fb52","type":"llm.call","at":"2026-10-26T17:52:38.096361Z","data":{"role":"planner","model":"nvidia/nemotron-3-super-120b-a12b","tokens":2043}}
+{"seq":3,"run_id":"run_8f398ec1fb52","type":"plan.ready","at":"2026-10-26T17:52:38.096468Z","data":{"steps":["heading","next","act","next","next","act","next","act","next","act"],"success_phrase":"Order completed"}}
+{"seq":4,"run_id":"run_8f398ec1fb52","type":"run.status","at":"2026-10-26T17:52:38.096550Z","data":{"from":"planning","to":"listening"}}
+{"seq":5,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.214438Z","data":{"i":0,"text":"document","step":0}}
+{"seq":6,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.214543Z","data":{"i":1,"text":"heading, Checkout, level 1","step":0}}
+{"seq":7,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.215737Z","data":{"i":2,"text":"form","step":1}}
+{"seq":8,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.223262Z","data":{"i":3,"text":"Email","step":3}}
+{"seq":9,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.224020Z","data":{"i":4,"text":"textbox, Email","step":4}}
+{"seq":10,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.235391Z","data":{"i":5,"text":"Card number","step":6}}
+{"seq":11,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.239058Z","data":{"i":6,"text":"textbox, Card number","step":7}}
+{"seq":12,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.239847Z","data":{"i":7,"text":"button, button","step":8}}
+{"seq":13,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.246425Z","data":{"i":8,"text":"Place order","step":10}}
+{"seq":14,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.247121Z","data":{"i":9,"text":"end of button, button","step":11}}
+{"seq":15,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.247762Z","data":{"i":10,"text":"end of form","step":12}}
+{"seq":16,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.248814Z","data":{"i":11,"text":"paragraph","step":13}}
+{"seq":17,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.249699Z","data":{"i":12,"text":"Card number is required","step":14}}
+{"seq":18,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.250383Z","data":{"i":13,"text":"end of paragraph","step":15}}
+{"seq":19,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.251229Z","data":{"i":14,"text":"end of main","step":16}}
+{"seq":20,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.251962Z","data":{"i":15,"text":"end of document","step":17}}
+{"seq":21,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.252713Z","data":{"i":16,"text":"document","step":18}}
+{"seq":22,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.253780Z","data":{"i":17,"text":"navigation","step":19}}
+{"seq":23,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.254490Z","data":{"i":18,"text":"link, Nimbus Goods","step":20}}
+{"seq":24,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.258163Z","data":{"i":19,"text":"link, Catalog","step":21}}
+{"seq":25,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.260650Z","data":{"i":20,"text":"link, Cart","step":22}}
+{"seq":26,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.262312Z","data":{"i":21,"text":"end of navigation","step":23}}
+{"seq":27,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.263601Z","data":{"i":22,"text":"main","step":24}}
+{"seq":28,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.266301Z","data":{"i":23,"text":"heading, Checkout, level 1","step":25}}
+{"seq":29,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.267544Z","data":{"i":24,"text":"form","step":26}}
+{"seq":30,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.268661Z","data":{"i":25,"text":"Email","step":27}}
+{"seq":31,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.269875Z","data":{"i":26,"text":"textbox, Email","step":28}}
+{"seq":32,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.272692Z","data":{"i":27,"text":"Card number","step":29}}
+{"seq":33,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.273429Z","data":{"i":28,"text":"textbox, Card number","step":30}}
+{"seq":34,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.274243Z","data":{"i":29,"text":"button, button","step":31}}
+{"seq":35,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.276244Z","data":{"i":30,"text":"Place order","step":32}}
+{"seq":36,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.276986Z","data":{"i":31,"text":"end of button, button","step":33}}
+{"seq":37,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.277766Z","data":{"i":32,"text":"end of form","step":34}}
+{"seq":38,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.278553Z","data":{"i":33,"text":"paragraph","step":35}}
+{"seq":39,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.279349Z","data":{"i":34,"text":"Card number is required","step":36}}
+{"seq":40,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.280714Z","data":{"i":35,"text":"end of paragraph","step":37}}
+{"seq":41,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.282230Z","data":{"i":36,"text":"end of main","step":38}}
+{"seq":42,"run_id":"run_8f398ec1fb52","type":"ear.phrase","at":"2026-10-26T17:52:39.283055Z","data":{"i":37,"text":"end of document","step":39}}
+{"seq":43,"run_id":"run_8f398ec1fb52","type":"ear.done","at":"2026-10-26T17:52:39.334173Z","data":{"reached_success":false,"phrases":38,"degraded":false}}
+{"seq":44,"run_id":"run_8f398ec1fb52","type":"run.status","at":"2026-10-26T17:52:39.334235Z","data":{"from":"listening","to":"auditing"}}
+{"seq":45,"run_id":"run_8f398ec1fb52","type":"llm.call","at":"2026-10-26T17:52:41.778370Z","data":{"role":"auditor","model":"nvidia/nemotron-3-super-120b-a12b","tokens":590}}
+{"seq":46,"run_id":"run_8f398ec1fb52","type":"finding.new","at":"2026-10-26T17:52:41.778828Z","data":{"id":"fnd_8c6711d22ddd","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button, button","seen":"<button> element inside <group>","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":47,"run_id":"run_8f398ec1fb52","type":"finding.new","at":"2026-10-26T17:52:41.778845Z","data":{"id":"fnd_c2b151926ef5","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button, button","seen":"<button> element inside <group>","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":48,"run_id":"run_8f398ec1fb52","type":"finding.new","at":"2026-10-26T17:52:41.778852Z","data":{"id":"fnd_7484c51d29b2","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button, button","seen":"<button> element inside <group>","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":49,"run_id":"run_8f398ec1fb52","type":"finding.new","at":"2026-10-26T17:52:41.778859Z","data":{"id":"fnd_aacf04dd6aca","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<group> containing three <button> elements","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":50,"run_id":"run_8f398ec1fb52","type":"run.status","at":"2026-10-26T17:52:41.778875Z","data":{"from":"auditing","to":"done"}}
+{"seq":51,"run_id":"run_8f398ec1fb52","type":"run.finished","at":"2026-10-26T17:52:41.778888Z","data":{"status":"done","tokens":2633,"cost_usd":0.0}}

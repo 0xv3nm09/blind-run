@@ -1,58 +1,59 @@
-{"seq": 0, "run_id": "run_0b791c5f7520", "type": "run.started", "at": "2026-10-08T08:52:24.868395Z", "data": {"task": "buy the cheapest item", "url": "http://127.0.0.1:8933/product.html", "driver": "virtual"}}
-{"seq": 1, "run_id": "run_0b791c5f7520", "type": "run.status", "at": "2026-10-08T08:52:24.868763Z", "data": {"from": "queued", "to": "planning"}}
-{"seq": 2, "run_id": "run_0b791c5f7520", "type": "plan.ready", "at": "2026-10-08T08:52:31.262827Z", "data": {"steps": ["heading", "next", "act"], "success_phrase": "Item added to cart"}}
-{"seq": 3, "run_id": "run_0b791c5f7520", "type": "run.status", "at": "2026-10-08T08:52:31.262929Z", "data": {"from": "planning", "to": "listening"}}
-{"seq": 4, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.920611Z", "data": {"i": 0, "text": "document", "step": 0}}
-{"seq": 5, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.920698Z", "data": {"i": 1, "text": "heading, Trail Runner X, level 1", "step": 0}}
-{"seq": 6, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.921064Z", "data": {"i": 2, "text": "paragraph", "step": 1}}
-{"seq": 7, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.927824Z", "data": {"i": 3, "text": "$49.00", "step": 3}}
-{"seq": 8, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.928307Z", "data": {"i": 4, "text": "end of paragraph", "step": 4}}
-{"seq": 9, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.928829Z", "data": {"i": 5, "text": "Size", "step": 5}}
-{"seq": 10, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.929275Z", "data": {"i": 6, "text": "S", "step": 6}}
-{"seq": 11, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.929773Z", "data": {"i": 7, "text": "M", "step": 7}}
-{"seq": 12, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.930221Z", "data": {"i": 8, "text": "L", "step": 8}}
-{"seq": 13, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.930737Z", "data": {"i": 9, "text": "end, Size", "step": 9}}
-{"seq": 14, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.931422Z", "data": {"i": 10, "text": "button", "step": 10}}
-{"seq": 15, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.958779Z", "data": {"i": 11, "text": "button", "step": 11}}
-{"seq": 16, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.962631Z", "data": {"i": 12, "text": "button, Add to cart", "step": 12}}
-{"seq": 17, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.965283Z", "data": {"i": 13, "text": "button, submit-btn-2", "step": 13}}
-{"seq": 18, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.967836Z", "data": {"i": 14, "text": "Buy now", "step": 14}}
-{"seq": 19, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.968293Z", "data": {"i": 15, "text": "end of button, submit-btn-2", "step": 15}}
-{"seq": 20, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.968777Z", "data": {"i": 16, "text": "paragraph", "step": 16}}
-{"seq": 21, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.969253Z", "data": {"i": 17, "text": "Choose a size first", "step": 17}}
-{"seq": 22, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.971488Z", "data": {"i": 18, "text": "end of paragraph", "step": 18}}
-{"seq": 23, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.972129Z", "data": {"i": 19, "text": "end of main", "step": 19}}
-{"seq": 24, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.972587Z", "data": {"i": 20, "text": "contentinfo", "step": 20}}
-{"seq": 25, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.973075Z", "data": {"i": 21, "text": "link, About", "step": 21}}
-{"seq": 26, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.973524Z", "data": {"i": 22, "text": "\u00b7", "step": 22}}
-{"seq": 27, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.974039Z", "data": {"i": 23, "text": "link, Support", "step": 23}}
-{"seq": 28, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.974454Z", "data": {"i": 24, "text": "end of contentinfo", "step": 24}}
-{"seq": 29, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.976122Z", "data": {"i": 25, "text": "end of document", "step": 25}}
-{"seq": 30, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.976717Z", "data": {"i": 26, "text": "document", "step": 26}}
-{"seq": 31, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.977188Z", "data": {"i": 27, "text": "navigation", "step": 27}}
-{"seq": 32, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.977723Z", "data": {"i": 28, "text": "link, Nimbus Goods", "step": 28}}
-{"seq": 33, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.978183Z", "data": {"i": 29, "text": "link, Catalog", "step": 29}}
-{"seq": 34, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.978772Z", "data": {"i": 30, "text": "link, Cart", "step": 30}}
-{"seq": 35, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.979353Z", "data": {"i": 31, "text": "end of navigation", "step": 31}}
-{"seq": 36, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.979899Z", "data": {"i": 32, "text": "main", "step": 32}}
-{"seq": 37, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.980357Z", "data": {"i": 33, "text": "heading, Trail Runner X, level 1", "step": 33}}
-{"seq": 38, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.980878Z", "data": {"i": 34, "text": "paragraph", "step": 34}}
-{"seq": 39, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.983016Z", "data": {"i": 35, "text": "$49.00", "step": 35}}
-{"seq": 40, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.983605Z", "data": {"i": 36, "text": "end of paragraph", "step": 36}}
-{"seq": 41, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.984121Z", "data": {"i": 37, "text": "Size", "step": 37}}
-{"seq": 42, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.984618Z", "data": {"i": 38, "text": "S", "step": 38}}
-{"seq": 43, "run_id": "run_0b791c5f7520", "type": "ear.phrase", "at": "2026-10-08T08:52:32.985106Z", "data": {"i": 39, "text": "M", "step": 39}}
-{"seq": 44, "run_id": "run_0b791c5f7520", "type": "ear.done", "at": "2026-10-08T08:52:33.040092Z", "data": {"reached_success": false, "phrases": 40, "degraded": false}}
-{"seq": 45, "run_id": "run_0b791c5f7520", "type": "run.status", "at": "2026-10-08T08:52:33.040151Z", "data": {"from": "listening", "to": "auditing"}}
-{"seq": 46, "run_id": "run_0b791c5f7520", "type": "finding.new", "at": "2026-10-08T08:52:34.226017Z", "data": {"id": "fnd_3fdf4d9369b2", "wcag_sc": "4.1.2", "category": "label", "severity": "blocker", "confidence": 0.68, "heard": "button", "seen": "<button>", "element_hint": "", "route": "fix_and_flag", "wcag_url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
-{"seq": 47, "run_id": "run_0b791c5f7520", "type": "finding.new", "at": "2026-10-08T08:52:34.226057Z", "data": {"id": "fnd_91d1e4430259", "wcag_sc": "4.1.2", "category": "label", "severity": "blocker", "confidence": 0.68, "heard": "button", "seen": "<button>", "element_hint": "", "route": "fix_and_flag", "wcag_url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
-{"seq": 48, "run_id": "run_0b791c5f7520", "type": "finding.new", "at": "2026-10-08T08:52:34.226067Z", "data": {"id": "fnd_71084f07f97c", "wcag_sc": "4.1.2", "category": "role", "severity": "blocker", "confidence": 0.17, "heard": "(silence)", "seen": "<group> containing three <button> elements", "element_hint": "", "route": "human", "wcag_url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
-{"seq": 49, "run_id": "run_0b791c5f7520", "type": "run.status", "at": "2026-10-08T08:52:34.226091Z", "data": {"from": "auditing", "to": "fixing"}}
-{"seq": 50, "run_id": "run_0b791c5f7520", "type": "fix.branch", "at": "2026-10-08T08:54:12.378361Z", "data": {"patch_id": "fix_r1_01", "verdict": "passed", "axe_after": 0, "tail": "nebius sandbox ear: success heard; last heard: button | button | button, Add to cart | button, submit-btn-2 | Buy now | end of button, submi"}}
-{"seq": 51, "run_id": "run_0b791c5f7520", "type": "fix.branch", "at": "2026-10-08T08:54:12.378467Z", "data": {"patch_id": "fix_r1_02", "verdict": "failed_ear", "axe_after": 0, "tail": "nebius sandbox ear: walk ended without success; last heard: paragraph | $49.00 | end of paragraph | Size | S | M | L | end, Size"}}
-{"seq": 52, "run_id": "run_0b791c5f7520", "type": "fix.branch", "at": "2026-10-08T08:54:12.378478Z", "data": {"patch_id": "fix_r1_03", "verdict": "failed_ear", "axe_after": 0, "tail": "nebius sandbox ear: walk ended without success; last heard: main | heading, Trail Runner X, level 1 | paragraph | $49.00 | end of paragraph "}}
-{"seq": 53, "run_id": "run_0b791c5f7520", "type": "run.status", "at": "2026-10-08T08:54:12.378548Z", "data": {"from": "fixing", "to": "verifying"}}
-{"seq": 54, "run_id": "run_0b791c5f7520", "type": "fix.verified", "at": "2026-10-08T08:54:12.378845Z", "data": {"passed": true, "level": "virtual", "transcript_diff": "--- ear before\n+++ ear after\n@@ -3,11 +3,15 @@\n paragraph\n $49.00\n end of paragraph\n+group, Size\n Size\n+radio, S, not checked, position 1, set size 3\n S\n+radio, M, not checked, position 2, set size 3\n M\n+radio, L, not checked, position 3, set size 3\n L\n-end, Size\n+end of group, Size\n button\n button\n button, Add to cart\n@@ -15,26 +19,4 @@\n Buy now\n end of button, submit-btn-2\n paragraph\n-Choose a size first\n-end of paragraph\n-end of main\n-contentinfo\n-link, About\n-\u00b7\n-link, Support\n-end of contentinfo\n-end of document\n-document\n-navigation\n-link, Nimbus Goods\n-link, Catalog\n-link, Cart\n-end of navigation\n-main\n-heading, Trail Runner X, level 1\n-paragraph\n-$49.00\n-end of paragraph\n-Size\n-S\n-M\n+Order confirmed", "patch_diff": "<<<SEARCH\n    <div id=\"size-picker\" aria-label=\"Size\">\n      <div class=\"size\" onclick=\"pick(this)\">S</div>\n      <div class=\"size\" onclick=\"pick(this)\">M</div>\n      <div class=\"size\" onclick=\"pick(this)\">L</div>\n    </div>\n===\n    <fieldset id=\"size-picker\">\n      <legend>Size</legend>\n      <label><input type=\"radio\" name=\"size\" value=\"S\" class=\"size\" onclick=\"pick(this)\"> S</label>\n      <label><input type=\"radio\" name=\"size\" value=\"M\" class=\"size\" onclick=\"pick(this)\"> M</label>\n      <label><input type=\"radio\" name=\"size\" value=\"L\" class=\"size\" onclick=\"pick(this)\"> L</label>\n    </fieldset>\n>>>", "wcag_sc": "4.1.2", "heard": "button"}}
-{"seq": 55, "run_id": "run_0b791c5f7520", "type": "pr.opened", "at": "2026-10-08T08:54:12.382211Z", "data": {"url": "/evidence/20261008-135412-pr-body.md"}}
-{"seq": 56, "run_id": "run_0b791c5f7520", "type": "run.status", "at": "2026-10-08T08:54:12.382257Z", "data": {"from": "verifying", "to": "done"}}
-{"seq": 57, "run_id": "run_0b791c5f7520", "type": "run.finished", "at": "2026-10-08T08:54:12.382296Z", "data": {"status": "done", "tokens": 7414, "cost_usd": 0.0}}
+{"seq":0,"run_id":"run_272be3a4a939","type":"run.started","at":"2026-10-26T17:47:25.614226Z","data":{"task":"buy the cheapest item","url":"http://127.0.0.1:8933/product.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_272be3a4a939","type":"run.status","at":"2026-10-26T17:47:25.614281Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_272be3a4a939","type":"llm.call","at":"2026-10-26T17:47:36.668760Z","data":{"role":"planner","model":"nvidia/nemotron-3-super-120b-a12b","tokens":1100}}
+{"seq":3,"run_id":"run_272be3a4a939","type":"plan.ready","at":"2026-10-26T17:47:36.668871Z","data":{"steps":["heading","next","next","act"],"success_phrase":"Added to cart"}}
+{"seq":4,"run_id":"run_272be3a4a939","type":"run.status","at":"2026-10-26T17:47:36.668964Z","data":{"from":"planning","to":"listening"}}
+{"seq":5,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.491770Z","data":{"i":0,"text":"document","step":0}}
+{"seq":6,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.491922Z","data":{"i":1,"text":"heading, Trail Runner X, level 1","step":0}}
+{"seq":7,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.492339Z","data":{"i":2,"text":"paragraph","step":1}}
+{"seq":8,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.493064Z","data":{"i":3,"text":"$49.00","step":2}}
+{"seq":9,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.502887Z","data":{"i":4,"text":"end of paragraph","step":4}}
+{"seq":10,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.503635Z","data":{"i":5,"text":"Size","step":5}}
+{"seq":11,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.504470Z","data":{"i":6,"text":"S","step":6}}
+{"seq":12,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.505168Z","data":{"i":7,"text":"M","step":7}}
+{"seq":13,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.505872Z","data":{"i":8,"text":"L","step":8}}
+{"seq":14,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.506652Z","data":{"i":9,"text":"end, Size","step":9}}
+{"seq":15,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.507466Z","data":{"i":10,"text":"button","step":10}}
+{"seq":16,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.544115Z","data":{"i":11,"text":"button","step":11}}
+{"seq":17,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.549684Z","data":{"i":12,"text":"button, Add to cart","step":12}}
+{"seq":18,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.553136Z","data":{"i":13,"text":"button, submit-btn-2","step":13}}
+{"seq":19,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.556646Z","data":{"i":14,"text":"Buy now","step":14}}
+{"seq":20,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.557429Z","data":{"i":15,"text":"end of button, submit-btn-2","step":15}}
+{"seq":21,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.558255Z","data":{"i":16,"text":"paragraph","step":16}}
+{"seq":22,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.559004Z","data":{"i":17,"text":"Choose a size first","step":17}}
+{"seq":23,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.563656Z","data":{"i":18,"text":"end of paragraph","step":18}}
+{"seq":24,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.565759Z","data":{"i":19,"text":"end of main","step":19}}
+{"seq":25,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.567270Z","data":{"i":20,"text":"contentinfo","step":20}}
+{"seq":26,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.568211Z","data":{"i":21,"text":"link, About","step":21}}
+{"seq":27,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.569311Z","data":{"i":22,"text":"·","step":22}}
+{"seq":28,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.570282Z","data":{"i":23,"text":"link, Support","step":23}}
+{"seq":29,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.571177Z","data":{"i":24,"text":"end of contentinfo","step":24}}
+{"seq":30,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.572158Z","data":{"i":25,"text":"end of document","step":25}}
+{"seq":31,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.575281Z","data":{"i":26,"text":"document","step":26}}
+{"seq":32,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.576366Z","data":{"i":27,"text":"navigation","step":27}}
+{"seq":33,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.577284Z","data":{"i":28,"text":"link, Nimbus Goods","step":28}}
+{"seq":34,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.578438Z","data":{"i":29,"text":"link, Catalog","step":29}}
+{"seq":35,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.579691Z","data":{"i":30,"text":"link, Cart","step":30}}
+{"seq":36,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.580565Z","data":{"i":31,"text":"end of navigation","step":31}}
+{"seq":37,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.581430Z","data":{"i":32,"text":"main","step":32}}
+{"seq":38,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.582209Z","data":{"i":33,"text":"heading, Trail Runner X, level 1","step":33}}
+{"seq":39,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.582992Z","data":{"i":34,"text":"paragraph","step":34}}
+{"seq":40,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.585490Z","data":{"i":35,"text":"$49.00","step":35}}
+{"seq":41,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.586281Z","data":{"i":36,"text":"end of paragraph","step":36}}
+{"seq":42,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.587027Z","data":{"i":37,"text":"Size","step":37}}
+{"seq":43,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.587776Z","data":{"i":38,"text":"S","step":38}}
+{"seq":44,"run_id":"run_272be3a4a939","type":"ear.phrase","at":"2026-10-26T17:47:38.588510Z","data":{"i":39,"text":"M","step":39}}
+{"seq":45,"run_id":"run_272be3a4a939","type":"ear.done","at":"2026-10-26T17:47:38.670144Z","data":{"reached_success":false,"phrases":40,"degraded":false}}
+{"seq":46,"run_id":"run_272be3a4a939","type":"run.status","at":"2026-10-26T17:47:38.670227Z","data":{"from":"listening","to":"auditing"}}
+{"seq":47,"run_id":"run_272be3a4a939","type":"llm.call","at":"2026-10-26T17:47:39.983954Z","data":{"role":"auditor","model":"nvidia/nemotron-3-super-120b-a12b","tokens":505}}
+{"seq":48,"run_id":"run_272be3a4a939","type":"finding.new","at":"2026-10-26T17:47:39.984866Z","data":{"id":"fnd_0086acc3022c","wcag_sc":"4.1.2","category":"role","severity":"minor","confidence":0.68,"heard":"button","seen":"first two buttons inside the group lack accessible names","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":49,"run_id":"run_272be3a4a939","type":"finding.new","at":"2026-10-26T17:47:39.984886Z","data":{"id":"fnd_37bcc3729ad3","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.17,"heard":"(no announcement)","seen":"<group> containing three <button> elements","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":50,"run_id":"run_272be3a4a939","type":"run.status","at":"2026-10-26T17:47:39.984907Z","data":{"from":"auditing","to":"fixing"}}
+{"seq":51,"run_id":"run_272be3a4a939","type":"llm.call","at":"2026-10-26T17:49:33.507691Z","data":{"role":"fixer","model":"nvidia/Nemotron-3-Ultra-550b-a55b","tokens":9353}}
+{"seq":52,"run_id":"run_272be3a4a939","type":"fix.branch","at":"2026-10-26T17:49:43.371314Z","data":{"patch_id":"fix_r1_01","verdict":"passed","axe_after":0,"tail":"nebius sandbox ear: success heard; last heard: button | button | button, Add to cart | button, submit-btn-2 | Buy now | end of button, submi"}}
+{"seq":53,"run_id":"run_272be3a4a939","type":"fix.branch","at":"2026-10-26T17:49:43.371570Z","data":{"patch_id":"fix_r1_02","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear: walk ended without success; last heard: main | heading, Trail Runner X, level 1 | paragraph | $49.00 | end of paragraph "}}
+{"seq":54,"run_id":"run_272be3a4a939","type":"run.status","at":"2026-10-26T17:49:43.371797Z","data":{"from":"fixing","to":"verifying"}}
+{"seq":55,"run_id":"run_272be3a4a939","type":"fix.verified","at":"2026-10-26T17:49:43.372422Z","data":{"passed":true,"level":"virtual","transcript_diff":"--- ear before\n+++ ear after\n@@ -3,11 +3,11 @@\n paragraph\n $49.00\n end of paragraph\n-Size\n-S\n-M\n-L\n-end, Size\n+radiogroup, Size\n+radio, S, not checked, position 1, set size 3\n+radio, M, not checked, position 2, set size 3\n+radio, L, not checked, position 3, set size 3\n+end of radiogroup, Size\n button\n button\n button, Add to cart\n@@ -15,26 +15,4 @@\n Buy now\n end of button, submit-btn-2\n paragraph\n-Choose a size first\n-end of paragraph\n-end of main\n-contentinfo\n-link, About\n-·\n-link, Support\n-end of contentinfo\n-end of document\n-document\n-navigation\n-link, Nimbus Goods\n-link, Catalog\n-link, Cart\n-end of navigation\n-main\n-heading, Trail Runner X, level 1\n-paragraph\n-$49.00\n-end of paragraph\n-Size\n-S\n-M\n+Order confirmed","patch_diff":"<<<SEARCH\n    <div id=\"size-picker\" aria-label=\"Size\">\n      <div class=\"size\" onclick=\"pick(this)\">S</div>\n      <div class=\"size\" onclick=\"pick(this)\">M</div>\n      <div class=\"size\" onclick=\"pick(this)\">L</div>\n    </div>\n===\n    <div id=\"size-picker\" role=\"radiogroup\" aria-label=\"Size\">\n      <button class=\"size\" role=\"radio\" aria-checked=\"false\" onclick=\"pick(this)\">S</button>\n      <button class=\"size\" role=\"radio\" aria-checked=\"false\" onclick=\"pick(this)\">M</button>\n      <button class=\"size\" role=\"radio\" aria-checked=\"false\" onclick=\"pick(this)\">L</button>\n    </div>\n>>>","wcag_sc":"4.1.2","heard":"button"}}
+{"seq":56,"run_id":"run_272be3a4a939","type":"pr.opened","at":"2026-10-26T17:49:43.380288Z","data":{"url":"file:///Users/v3nm/Desktop/BlindRun-Project/repo/.blindrun/20261026-224943-pr-body.md"}}
+{"seq":57,"run_id":"run_272be3a4a939","type":"run.status","at":"2026-10-26T17:49:43.380373Z","data":{"from":"verifying","to":"done"}}
+{"seq":58,"run_id":"run_272be3a4a939","type":"run.finished","at":"2026-10-26T17:49:43.380419Z","data":{"status":"done","tokens":10958,"cost_usd":0.0}}

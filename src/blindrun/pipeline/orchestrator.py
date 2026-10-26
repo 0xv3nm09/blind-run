@@ -80,6 +80,16 @@ def _success_heard(phrase: str, transcript: list[str]) -> bool:
     return any(sp in norm(t) or norm(t) in sp for t in transcript if t.strip())
 
 
+async def _emit_llm(deps: Deps, run_id: RunId, budget: Budget, role: str, before: int) -> None:
+    """Emit the inference call as a pipeline event — judges see the real API activity."""
+    models = getattr(deps.llm, "models", {}) or {}
+    await deps.events.emit(
+        run_id,
+        "llm.call",
+        {"role": role, "model": models.get(role, "nemotron"), "tokens": budget.tokens_used - before},
+    )
+
+
 async def _snapshot(url: str) -> str:
     """ARIA snapshot of the start page, for the planner (python Playwright)."""
     from playwright.async_api import async_playwright
@@ -122,6 +132,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
         # ---------- plan ----------
         await advance(deps, run_id, RunStatus.planning)
         aria = deps.world.get("aria_yaml") or await _snapshot(url)
+        _b = budget.tokens_used
         plan = await deps.llm.structured(
             "planner",
             [
@@ -138,6 +149,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
             Plan,
             budget=budget,
         )
+        await _emit_llm(deps, run_id, budget, "planner", _b)
         await deps.events.emit(
             run_id, "plan.ready", {"steps": plan.steps, "success_phrase": plan.success_phrase}
         )
@@ -168,6 +180,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
         transcript = before.transcript()
         raws: list[RawFinding] = []
         if not before.reached_success:
+            _b = budget.tokens_used
             audited = await deps.llm.structured(
                 "auditor",
                 [
@@ -188,6 +201,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
                 _AuditorReply,
                 budget=budget,
             )
+            await _emit_llm(deps, run_id, budget, "auditor", _b)
             raws.extend(RawFinding.model_validate(f.model_dump()) for f in audited.findings)
         raws.extend(checks_mod.run_checks(before))
         findings = policy.triage(raws, run_id=run_id, transcript=transcript)
@@ -285,12 +299,15 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
                 )
             # Models break JSON escaping and unified-diff syntax constantly; verbatim
             # search/replace blocks are what they get right. Plain text in, edits extracted.
+            _b = budget.tokens_used
             fixer_text = await deps.llm.text("fixer", round_messages, budget=budget)
+            await _emit_llm(deps, run_id, budget, "fixer", _b)
             edits = _extract_edit_blocks(fixer_text)
             if not edits:
                 # Nemotron sometimes surfaces its reasoning as content instead of
                 # the blocks — one format-anchored retry before giving up the round
                 log.warning("fixer_round_no_edits", round_no=round_no, head=fixer_text[:200])
+                _b2 = budget.tokens_used
                 fixer_text = await deps.llm.text(
                     "fixer",
                     [
@@ -304,6 +321,7 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
                     ],
                     budget=budget,
                 )
+                await _emit_llm(deps, run_id, budget, "fixer", _b2)
                 edits = _extract_edit_blocks(fixer_text)
             if not edits:
                 continue  # feedback round retries with the file re-quoted; exhausted loop escalates below

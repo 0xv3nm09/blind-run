@@ -1,0 +1,65 @@
+{"seq":0,"run_id":"run_cdc3d9b4e5e2","type":"run.started","at":"2026-10-26T17:53:05.862372Z","data":{"task":"open the dialog and submit it","url":"http://127.0.0.1:8933/controls/dialog.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_cdc3d9b4e5e2","type":"run.status","at":"2026-10-26T17:53:05.862423Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_cdc3d9b4e5e2","type":"llm.call","at":"2026-10-26T17:53:23.327267Z","data":{"role":"planner","model":"nvidia/nemotron-3-super-120b-a12b","tokens":2134}}
+{"seq":3,"run_id":"run_cdc3d9b4e5e2","type":"plan.ready","at":"2026-10-26T17:53:23.327347Z","data":{"steps":["heading","next","act","next","next","next","act"],"success_phrase":"Added to cart"}}
+{"seq":4,"run_id":"run_cdc3d9b4e5e2","type":"run.status","at":"2026-10-26T17:53:23.327432Z","data":{"from":"planning","to":"listening"}}
+{"seq":5,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.532818Z","data":{"i":0,"text":"document","step":0}}
+{"seq":6,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.532893Z","data":{"i":1,"text":"heading, Control: dialog (clean), level 1","step":0}}
+{"seq":7,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.548467Z","data":{"i":2,"text":"button, Open dialog","step":1}}
+{"seq":8,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.568854Z","data":{"i":3,"text":"dialog, Remove item?, modal","step":1}}
+{"seq":9,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.568906Z","data":{"i":4,"text":"button, Remove","step":1}}
+{"seq":10,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.572613Z","data":{"i":5,"text":"button, Open dialog","step":2}}
+{"seq":11,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.574843Z","data":{"i":6,"text":"dialog, Remove item?, modal","step":2}}
+{"seq":12,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.574876Z","data":{"i":7,"text":"button, Remove","step":2}}
+{"seq":13,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.575846Z","data":{"i":8,"text":"button, Cancel","step":3}}
+{"seq":14,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.578548Z","data":{"i":9,"text":"button, Open dialog","step":3}}
+{"seq":15,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.579358Z","data":{"i":10,"text":"paragraph","step":4}}
+{"seq":16,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.580699Z","data":{"i":11,"text":"Kept","step":5}}
+{"seq":17,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.585215Z","data":{"i":12,"text":"end of paragraph","step":7}}
+{"seq":18,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.588118Z","data":{"i":13,"text":"end of main","step":8}}
+{"seq":19,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.592830Z","data":{"i":14,"text":"end of document","step":9}}
+{"seq":20,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.595718Z","data":{"i":15,"text":"document","step":10}}
+{"seq":21,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.599025Z","data":{"i":16,"text":"navigation","step":11}}
+{"seq":22,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.600072Z","data":{"i":17,"text":"link, Nimbus Goods","step":12}}
+{"seq":23,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.601281Z","data":{"i":18,"text":"link, Catalog","step":13}}
+{"seq":24,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.602345Z","data":{"i":19,"text":"end of navigation","step":14}}
+{"seq":25,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.603164Z","data":{"i":20,"text":"main","step":15}}
+{"seq":26,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.604216Z","data":{"i":21,"text":"heading, Control: dialog (clean), level 1","step":16}}
+{"seq":27,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.604988Z","data":{"i":22,"text":"button, Open dialog","step":17}}
+{"seq":28,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.616815Z","data":{"i":23,"text":"dialog, Remove item?, modal","step":17}}
+{"seq":29,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.616894Z","data":{"i":24,"text":"button, Remove","step":17}}
+{"seq":30,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.617804Z","data":{"i":25,"text":"button, Cancel","step":18}}
+{"seq":31,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.622602Z","data":{"i":26,"text":"button, Open dialog","step":18}}
+{"seq":32,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.627245Z","data":{"i":27,"text":"paragraph","step":19}}
+{"seq":33,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.628555Z","data":{"i":28,"text":"Kept","step":20}}
+{"seq":34,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.629373Z","data":{"i":29,"text":"end of paragraph","step":21}}
+{"seq":35,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.630540Z","data":{"i":30,"text":"end of main","step":22}}
+{"seq":36,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.631676Z","data":{"i":31,"text":"end of document","step":23}}
+{"seq":37,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.632635Z","data":{"i":32,"text":"document","step":24}}
+{"seq":38,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.633446Z","data":{"i":33,"text":"navigation","step":25}}
+{"seq":39,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.634256Z","data":{"i":34,"text":"link, Nimbus Goods","step":26}}
+{"seq":40,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.635023Z","data":{"i":35,"text":"link, Catalog","step":27}}
+{"seq":41,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.635792Z","data":{"i":36,"text":"end of navigation","step":28}}
+{"seq":42,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.636511Z","data":{"i":37,"text":"main","step":29}}
+{"seq":43,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.637702Z","data":{"i":38,"text":"heading, Control: dialog (clean), level 1","step":30}}
+{"seq":44,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.638499Z","data":{"i":39,"text":"button, Open dialog","step":31}}
+{"seq":45,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.640189Z","data":{"i":40,"text":"dialog, Remove item?, modal","step":31}}
+{"seq":46,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.640234Z","data":{"i":41,"text":"button, Remove","step":31}}
+{"seq":47,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.641027Z","data":{"i":42,"text":"button, Cancel","step":32}}
+{"seq":48,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.642778Z","data":{"i":43,"text":"button, Open dialog","step":32}}
+{"seq":49,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.643623Z","data":{"i":44,"text":"paragraph","step":33}}
+{"seq":50,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.644461Z","data":{"i":45,"text":"Kept","step":34}}
+{"seq":51,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.645275Z","data":{"i":46,"text":"end of paragraph","step":35}}
+{"seq":52,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.646302Z","data":{"i":47,"text":"end of main","step":36}}
+{"seq":53,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.647300Z","data":{"i":48,"text":"end of document","step":37}}
+{"seq":54,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.648873Z","data":{"i":49,"text":"document","step":38}}
+{"seq":55,"run_id":"run_cdc3d9b4e5e2","type":"ear.phrase","at":"2026-10-26T17:53:24.649913Z","data":{"i":50,"text":"navigation","step":39}}
+{"seq":56,"run_id":"run_cdc3d9b4e5e2","type":"ear.done","at":"2026-10-26T17:53:24.704258Z","data":{"reached_success":false,"phrases":51,"degraded":false}}
+{"seq":57,"run_id":"run_cdc3d9b4e5e2","type":"run.status","at":"2026-10-26T17:53:24.704329Z","data":{"from":"listening","to":"auditing"}}
+{"seq":58,"run_id":"run_cdc3d9b4e5e2","type":"llm.call","at":"2026-10-26T17:53:26.229654Z","data":{"role":"auditor","model":"nvidia/nemotron-3-super-120b-a12b","tokens":652}}
+{"seq":59,"run_id":"run_cdc3d9b4e5e2","type":"finding.new","at":"2026-10-26T17:53:26.230268Z","data":{"id":"fnd_414246c11d48","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.38,"heard":"button","seen":"<button>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":60,"run_id":"run_cdc3d9b4e5e2","type":"finding.new","at":"2026-10-26T17:53:26.230288Z","data":{"id":"fnd_6fa555da45e6","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.38,"heard":"button","seen":"<button>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":61,"run_id":"run_cdc3d9b4e5e2","type":"finding.new","at":"2026-10-26T17:53:26.230299Z","data":{"id":"fnd_c197ec89de8d","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.38,"heard":"button","seen":"<button>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":62,"run_id":"run_cdc3d9b4e5e2","type":"finding.new","at":"2026-10-26T17:53:26.230308Z","data":{"id":"fnd_8787a28f4a11","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<group> containing three <button> elements","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":63,"run_id":"run_cdc3d9b4e5e2","type":"run.status","at":"2026-10-26T17:53:26.230329Z","data":{"from":"auditing","to":"done","reason":"no findings"}}
+{"seq":64,"run_id":"run_cdc3d9b4e5e2","type":"run.finished","at":"2026-10-26T17:53:26.230342Z","data":{"status":"done","tokens":2786,"cost_usd":0.0}}

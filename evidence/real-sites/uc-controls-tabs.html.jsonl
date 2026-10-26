@@ -1,0 +1,52 @@
+{"seq":0,"run_id":"run_1f93a857c4fe","type":"run.started","at":"2026-10-26T17:53:27.293897Z","data":{"task":"read what is on the shipping tab","url":"http://127.0.0.1:8933/controls/tabs.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_1f93a857c4fe","type":"run.status","at":"2026-10-26T17:53:27.293958Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_1f93a857c4fe","type":"llm.call","at":"2026-10-26T17:53:38.784347Z","data":{"role":"planner","model":"nvidia/nemotron-3-super-120b-a12b","tokens":1713}}
+{"seq":3,"run_id":"run_1f93a857c4fe","type":"plan.ready","at":"2026-10-26T17:53:38.784384Z","data":{"steps":["heading","next","next","next","next","act","next","next"],"success_phrase":"Shipping tab selected"}}
+{"seq":4,"run_id":"run_1f93a857c4fe","type":"run.status","at":"2026-10-26T17:53:38.784413Z","data":{"from":"planning","to":"listening"}}
+{"seq":5,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.913616Z","data":{"i":0,"text":"document","step":0}}
+{"seq":6,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.913819Z","data":{"i":1,"text":"heading, Control: tabs (clean), level 1","step":0}}
+{"seq":7,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.913849Z","data":{"i":2,"text":"tablist, Product details, orientated horizontally","step":1}}
+{"seq":8,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.914342Z","data":{"i":3,"text":"tab, Description, selected, 1 control, position 1, set size 3","step":2}}
+{"seq":9,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.915280Z","data":{"i":4,"text":"tab, Care, not selected, 1 control, position 2, set size 3","step":3}}
+{"seq":10,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.916206Z","data":{"i":5,"text":"tab, Shipping, not selected, 1 control, position 3, set size 3","step":4}}
+{"seq":11,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.927176Z","data":{"i":6,"text":"tab, Shipping, selected, 1 control, position 3, set size 3","step":5}}
+{"seq":12,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.928723Z","data":{"i":7,"text":"end of tablist, Product details, orientated horizontally","step":6}}
+{"seq":13,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.929535Z","data":{"i":8,"text":"tabpanel, Shipping","step":7}}
+{"seq":14,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.930331Z","data":{"i":9,"text":"Free returns for 30 days.","step":8}}
+{"seq":15,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.931401Z","data":{"i":10,"text":"end of tabpanel, Shipping","step":9}}
+{"seq":16,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.932236Z","data":{"i":11,"text":"end of main","step":10}}
+{"seq":17,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.932931Z","data":{"i":12,"text":"end of document","step":11}}
+{"seq":18,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.933679Z","data":{"i":13,"text":"document","step":12}}
+{"seq":19,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.934412Z","data":{"i":14,"text":"navigation","step":13}}
+{"seq":20,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.935079Z","data":{"i":15,"text":"link, Nimbus Goods","step":14}}
+{"seq":21,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.935769Z","data":{"i":16,"text":"link, Catalog","step":15}}
+{"seq":22,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.936515Z","data":{"i":17,"text":"end of navigation","step":16}}
+{"seq":23,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.937269Z","data":{"i":18,"text":"main","step":17}}
+{"seq":24,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.938039Z","data":{"i":19,"text":"heading, Control: tabs (clean), level 1","step":18}}
+{"seq":25,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.938793Z","data":{"i":20,"text":"tablist, Product details, orientated horizontally","step":19}}
+{"seq":26,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.939735Z","data":{"i":21,"text":"tab, Description, not selected, 1 control, position 1, set size 3","step":20}}
+{"seq":27,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.942530Z","data":{"i":22,"text":"tab, Care, not selected, 1 control, position 2, set size 3","step":21}}
+{"seq":28,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.943669Z","data":{"i":23,"text":"tab, Shipping, selected, 1 control, position 3, set size 3","step":22}}
+{"seq":29,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.945084Z","data":{"i":24,"text":"end of tablist, Product details, orientated horizontally","step":23}}
+{"seq":30,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.946537Z","data":{"i":25,"text":"tabpanel, Shipping","step":24}}
+{"seq":31,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.948013Z","data":{"i":26,"text":"Free returns for 30 days.","step":25}}
+{"seq":32,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.949864Z","data":{"i":27,"text":"end of tabpanel, Shipping","step":26}}
+{"seq":33,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.952967Z","data":{"i":28,"text":"end of main","step":27}}
+{"seq":34,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.954151Z","data":{"i":29,"text":"end of document","step":28}}
+{"seq":35,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.955158Z","data":{"i":30,"text":"document","step":29}}
+{"seq":36,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.956027Z","data":{"i":31,"text":"navigation","step":30}}
+{"seq":37,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.956831Z","data":{"i":32,"text":"link, Nimbus Goods","step":31}}
+{"seq":38,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.957605Z","data":{"i":33,"text":"link, Catalog","step":32}}
+{"seq":39,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.958323Z","data":{"i":34,"text":"end of navigation","step":33}}
+{"seq":40,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.959103Z","data":{"i":35,"text":"main","step":34}}
+{"seq":41,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.959899Z","data":{"i":36,"text":"heading, Control: tabs (clean), level 1","step":35}}
+{"seq":42,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.961150Z","data":{"i":37,"text":"tablist, Product details, orientated horizontally","step":36}}
+{"seq":43,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.961933Z","data":{"i":38,"text":"tab, Description, not selected, 1 control, position 1, set size 3","step":37}}
+{"seq":44,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.962689Z","data":{"i":39,"text":"tab, Care, not selected, 1 control, position 2, set size 3","step":38}}
+{"seq":45,"run_id":"run_1f93a857c4fe","type":"ear.phrase","at":"2026-10-26T17:53:39.963495Z","data":{"i":40,"text":"tab, Shipping, selected, 1 control, position 3, set size 3","step":39}}
+{"seq":46,"run_id":"run_1f93a857c4fe","type":"ear.done","at":"2026-10-26T17:53:40.016468Z","data":{"reached_success":false,"phrases":41,"degraded":false}}
+{"seq":47,"run_id":"run_1f93a857c4fe","type":"run.status","at":"2026-10-26T17:53:40.016599Z","data":{"from":"listening","to":"auditing"}}
+{"seq":48,"run_id":"run_1f93a857c4fe","type":"llm.call","at":"2026-10-26T17:53:41.626022Z","data":{"role":"auditor","model":"nvidia/nemotron-3-super-120b-a12b","tokens":711}}
+{"seq":49,"run_id":"run_1f93a857c4fe","type":"finding.new","at":"2026-10-26T17:53:41.626615Z","data":{"id":"fnd_ab9895581faf","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.17,"heard":"(no announcement after selecting Shipping tab)","seen":"<tabpanel>Shipping\nFree returns for 30 days.\n</tabpanel>","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"}}
+{"seq":50,"run_id":"run_1f93a857c4fe","type":"run.status","at":"2026-10-26T17:53:41.626643Z","data":{"from":"auditing","to":"done","reason":"no findings"}}
+{"seq":51,"run_id":"run_1f93a857c4fe","type":"run.finished","at":"2026-10-26T17:53:41.626658Z","data":{"status":"done","tokens":2424,"cost_usd":0.0}}

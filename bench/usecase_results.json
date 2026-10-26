@@ -1,0 +1,82 @@
+[
+ {
+  "page": "product.html",
+  "task": "buy the cheapest item",
+  "status": "done",
+  "findings": 2,
+  "tokens": 1946,
+  "calls": 2,
+  "seconds": 21.3,
+  "record": "evidence/real-sites/uc-product.html.jsonl"
+ },
+ {
+  "page": "catalog.html",
+  "task": "find the cheapest trail shoe and open it",
+  "status": "done",
+  "findings": 2,
+  "tokens": 1645,
+  "calls": 2,
+  "seconds": 12.9,
+  "record": "evidence/real-sites/uc-catalog.html.jsonl"
+ },
+ {
+  "page": "checkout.html",
+  "task": "complete the checkout",
+  "status": "done",
+  "findings": 4,
+  "tokens": 2633,
+  "calls": 2,
+  "seconds": 22.6,
+  "record": "evidence/real-sites/uc-checkout.html.jsonl"
+ },
+ {
+  "page": "search.html",
+  "task": "search for running shoes",
+  "status": "done",
+  "findings": 3,
+  "tokens": 3082,
+  "calls": 2,
+  "seconds": 23.1,
+  "record": "evidence/real-sites/uc-search.html.jsonl"
+ },
+ {
+  "page": "controls/dialog.html",
+  "task": "open the dialog and submit it",
+  "status": "done",
+  "findings": 4,
+  "tokens": 2786,
+  "calls": 2,
+  "seconds": 21.3,
+  "record": "evidence/real-sites/uc-controls-dialog.html.jsonl"
+ },
+ {
+  "page": "controls/tabs.html",
+  "task": "read what is on the shipping tab",
+  "status": "done",
+  "findings": 1,
+  "tokens": 2424,
+  "calls": 2,
+  "seconds": 15.4,
+  "record": "evidence/real-sites/uc-controls-tabs.html.jsonl"
+ },
+ {
+  "page": "controls/combobox.html",
+  "task": "select a country from the dropdown",
+  "status": "done",
+  "findings": 2,
+  "tokens": 1721,
+  "calls": 2,
+  "seconds": 12.2,
+  "record": "evidence/real-sites/uc-controls-combobox.html.jsonl"
+ },
+ {
+  "page": "controls/live-cart.html",
+  "task": "add an item and hear the cart update",
+  "status": "done",
+  "findings": 0,
+  "tokens": 962,
+  "calls": 1,
+  "seconds": 9.0,
+  "record": "evidence/real-sites/uc-controls-live-cart.html.jsonl"
+ }
+]

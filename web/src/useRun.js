@@ -1,9 +1,9 @@
 import { useEffect, useReducer, useRef, useState } from "react";
-import { makeRunner, loadBench } from "./data.js";
+import { makeRunner, loadBench, loadUseCaseResults } from "./data.js";
 
 const initial = () => ({
   status: "connecting", task: null, tokens: null, stage: "",
-  phrases: [], findings: [], branches: {}, verified: null, pr: null,
+  phrases: [], findings: [], branches: {}, verified: null, pr: null, calls: [],
   diff: null,
 });
 
@@ -39,6 +39,8 @@ function reducer(state, ev) {
       return { ...state, verified: d };
     case "pr.opened":
       return { ...state, pr: d };
+    case "llm.call":
+      return { ...state, calls: [...(state.calls ?? []), d] };
     case "run.finished":
       return { ...state, tokens: d.tokens ?? state.tokens, status: d.status ?? state.status };
     default:
@@ -49,6 +51,7 @@ function reducer(state, ev) {
 export function useRun() {
   const [state, dispatch] = useReducer(reducer, initial());
   const [bench, setBench] = useState(null);
+  const [ucResults, setUcResults] = useState([]);
   const [mode, setMode] = useState(null); // "live" | "static"
   const [paused, setPaused] = useState(false);
   const [speed, setSpeedState] = useState(1);
@@ -65,6 +68,7 @@ export function useRun() {
     runnerRef.current = runner;
     runner.start();
     loadBench().then(setBench);
+    loadUseCaseResults().then(setUcResults);
     return () => runner.close();
   }, []);
 
@@ -79,5 +83,5 @@ export function useRun() {
     runnerRef.current?.setSpeed(speedRef.current);
   }, [speed]);
 
-  return { state, bench, paused, setPaused, speed, setSpeed: setSpeedState, mode };
+  return { state, bench, ucResults, paused, setPaused, speed, setSpeed: setSpeedState, mode };
 }
