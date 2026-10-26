@@ -219,7 +219,9 @@ keep warm — the demo can never go down during judging.
 
 The stage-by-stage deep dive — every model call, the Tavily queries, the search/replace
 protocol, the sandbox branch lifecycle, and the full failure-handling catalogue with file
-references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). The operations ledger of
+ every recorded run — inference calls, latencies, verdicts, artifacts — is in
+ [docs/RUN-RECORDS.md](docs/RUN-RECORDS.md).
 
 
 Everything below is checkable in minutes, no trust required:

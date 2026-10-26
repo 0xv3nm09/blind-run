@@ -641,6 +641,7 @@ function AboutView() {
       </div>
       <Panel title="Documentation" sub="Everything is checkable in the repo.">
         <div className="chips-row">
+          <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/docs/RUN-RECORDS.md" target="_blank" rel="noopener">Run records</a>
           <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/docs/COMPLIANCE.md" target="_blank" rel="noopener">Compliance map</a>
           <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architecture deep-dive</a>
           <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/FEEDBACK.md" target="_blank" rel="noopener">Platform feedback</a>
