@@ -158,14 +158,19 @@ watch the same arc in real time.
 ## Quick start
 
 Prerequisites: [uv](https://docs.astral.sh/uv/) (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
-and Node 22+ for the ear. Then one command sets everything up, including the ear's
-Guidepup/Playwright packages and Chromium:
+and Node 22+ for the ear. From zero to a running system:
 
 ```bash
-make setup                    # python env + ear node deps + chromium (one command)
-make test                     # unit + pipeline tests (offline, no keys)
-make up                       # open http://localhost:8000 — the recorded demo plays itself
+git clone https://github.com/0xv3nm09/blind-run.git && cd blind-run
+make setup     # installs everything: python env, the ear's Guidepup/Playwright node deps, Chromium
+make test      # system health: 19 offline tests over the whole pipeline — no keys, no network
+make up        # start it: http://localhost:8000 — the recorded demo auto-plays
 ```
+
+Each step proves something: `setup` ends by printing the CLI help (install OK), `test` is the
+offline health check (fakes exercise the real wiring), and `up` shows the product. More
+health commands — including the full pipeline on fakes and the live Sandboxes regression
+probe — are in [ARCHITECTURE.md → System health](docs/ARCHITECTURE.md#system-health).
 
 **Judge 2-minute test:** open the dashboard (auto-plays a recorded real run), press
 **Play demo run** to replay it, then go live:

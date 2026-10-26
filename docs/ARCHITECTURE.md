@@ -10,6 +10,19 @@ the pass/fail oracle is a string check on a screen-reader transcript, never a mo
 
 ---
 
+## System health — commands that prove each layer
+
+| Command | Layer it proves | Needs |
+|---|---|---|
+| `make test` | whole pipeline on fakes (offline): orchestrator, apply ladder, extraction, Tavily behavior, policy | nothing — no keys, no network |
+| `make dr7` | one full run end-to-end on fakes, event stream printed | nothing |
+| `make dr3` | the real virtual ear hears the demo page (Node + Chromium) | `make setup` |
+| `make dr1` | a real Nemotron planner call on Token Factory, with per-call logging | `NEBIUS_API_KEY` in `.env` |
+| winner-patch probe | the live Sandboxes path: parent checkpoint → branch → apply → serve → ear replay, expecting `passed` | key + `SANDBOX_BACKEND=contree` |
+
+The winner-patch probe (re-run the recorded flagship's winning diff through `check_branch`)
+is the fast live regression for the hardest integration.
+
 ## 1. The pipeline, stage by stage
 
 ### 1.1 Plan — `orchestrator.run_flow` → `TokenFactoryLLM.structured()`
