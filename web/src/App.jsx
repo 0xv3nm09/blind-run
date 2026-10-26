@@ -463,7 +463,7 @@ function StackView() {
       </div>
       <Panel title="Cost & operations" sub="Measured, per run.">
         <div className="chips-row">
-          <span className="meta mono accent">7,414 tokens ≈ $0.01 full loop</span>
+          <span className="meta mono accent">10,958 tokens ≈ $0.01 full loop</span>
           <span className="meta mono">21-page benchmark costs cents</span>
           <span className="meta mono">60 RPM / 400K TPM — never a factor</span>
           <span className="meta mono">every call logged: role · model · tokens</span>
