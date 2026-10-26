@@ -225,3 +225,5 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/19px var
 .call-foot { padding: 6px 12px; font: 400 10.5px/15px var(--mono); color: var(--text-3);
   border-top: 1px solid var(--line); }
 .findings tr.uc-detail:hover td { background: var(--surface-2); }
+.uc-proof .call-line { grid-template-columns: 64px 1fr 90px 150px; }
+.uc-proof .call-line .c-model { font-size: 10.5px; word-break: normal; }
