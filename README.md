@@ -138,8 +138,8 @@ watch the same arc in real time.
 
 | | |
 | :---: | :---: |
-| <img src="docs/screenshots/ui-transcript.png" width="410" alt="Console: transcript streaming in dark mode"> | <img src="docs/screenshots/ui-branches.png" width="410" alt="Console: findings and fix candidates with the winner ringed"> |
-| **The walk, as heard** — all 40 phrases timestamped; teal lines are controls the walker acted on: bare `S, M, L`, then `button, button` | **Findings + fix candidates** — each finding quotes the transcript and links its WCAG doc; candidates ran in parallel Sandboxes branches, the ear-verified one is ringed |
+| <img src="docs/screenshots/ui-demo-full.png" width="410" alt="The full console: find and fix in one frame"> | <img src="docs/screenshots/ui-usecases.png" width="410" alt="Use cases page with a proof row expanded"> |
+| **The demo screen — find and fix in one frame**: the stage rail, the transcript as heard, findings with WCAG links, Sandboxes-verified candidates (winner ringed), the live API-call log, and the diff — status `done`, 10,958 tokens ≈ $0.01 | **Use cases — real measured results**: 8 tasks run against the live pipeline; click a row for its proof (product.html expanded: planner 16.7s call, auditor 1.4s, findings quoted, recording path) |
 | <img src="docs/screenshots/ui-diff.png" width="410" alt="Before/after transcript diff in dark mode"> | <img src="docs/screenshots/ui-benchmark.png" width="410" alt="Benchmark results with confidence intervals in dark mode"> |
 | **The transcript diff** — the winner's evidence, line by line: bare text → labelled radios, dead end → confirmation | **Results page** — axe vs ear with Wilson 95% CIs as range bars; the ear lane's precision and clean-control FP count shown |
 
