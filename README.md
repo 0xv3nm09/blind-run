@@ -2,6 +2,10 @@
 
 [![CI](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml/badge.svg)](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml)
 
+<p align="center">
+  <img src="docs/screenshots/cover.png" alt="Blind-Run cover: an agent that proves a web task can be completed by ear — and fixes the code until it can" width="820">
+</p>
+
 **An agent that proves a web flow can be completed by ear — and fixes the code until it can.**
 
 You give it a URL and a task in plain English ("buy the cheapest item"). It drives a
@@ -138,6 +142,11 @@ watch the same arc in real time.
 | **The walk, as heard** — bare `S, M, L` text and nameless `button, button` moments highlighted | **Three candidates, one survivor** — verdicts from in-sandbox ear replays; the PR banner follows |
 | <img src="docs/screenshots/ui-diff.png" width="410" alt="Before/after transcript diff"> | <img src="docs/screenshots/ui-benchmark.png" width="410" alt="Benchmark table"> |
 | **The evidence in one panel** — before/after transcript: dead end → radios → confirmation | **Benchmark** — axe vs ear with Wilson CIs, per lane |
+
+<p align="center">
+  <img src="docs/screenshots/demo.gif" alt="Guided tour of the Blind-Run console: the recorded run streaming, fix candidates with verdicts, the before/after transcript diff, and the benchmark" width="720">
+</p>
+<p align="center"><sub><b>17-second guided tour</b> — stream → candidates → diff → benchmark</sub></p>
 
 ## Status (Oct 8, 2026)
 
