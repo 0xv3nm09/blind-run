@@ -104,6 +104,32 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var
 .hidden-caption, caption.hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .footer-note { margin-top: 24px; font: 400 13px/20px var(--font-sans); color: var(--text-tertiary); }
 .footer-note a { color: var(--accent); }
+
+/* stage stepper */
+.stages { display: flex; align-items: center; gap: 6px; margin: 18px 0 0; flex-wrap: wrap; }
+.stage { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px;
+         font: 500 12px/18px var(--font-sans); color: var(--text-tertiary);
+         border: 1px solid var(--border-default); background: var(--bg-surface); }
+.stage .n { font: 600 10px/14px var(--font-mono); color: var(--text-tertiary); }
+.stage.active { color: var(--accent); border-color: var(--accent-border); background: var(--accent-tint); }
+.stage.done { color: var(--pass); border-color: var(--pass-border); background: var(--pass-tint); }
+.stage-arrow { color: var(--text-tertiary); font: 400 12px/18px var(--font-sans); }
+
+/* stream controls */
+.stream-controls { display: inline-flex; gap: 6px; align-items: center; margin-left: 12px; }
+.stream-controls button { height: 26px; padding: 0 10px; font: 500 12px/18px var(--font-sans); }
+.speed.active { color: var(--accent); border-color: var(--accent); }
+
+/* token factory strip */
+.stack-strip { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 0; }
+.stack-chip { font: 400 12px/18px var(--font-mono); color: var(--text-secondary);
+              border: 1px solid var(--border-default); border-radius: var(--radius-sm);
+              padding: 2px 8px; background: var(--bg-surface); }
+.stack-chip strong { color: var(--accent); font-weight: 600; }
+
+/* panel explainer */
+.panel-sub { font: 400 13px/18px var(--font-sans); color: var(--text-tertiary); margin: 2px 0 0; }
+.panel-head .titles { display: flex; flex-direction: column; }
 </style>
 </head>
 <body>
@@ -115,6 +141,12 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var
     <input id="run-id" placeholder="paste a run id…" spellcheck="false" aria-label="Run id">
     <button class="btn-secondary" id="watch-btn">Watch live</button>
     <button class="btn-primary" id="demo-btn">Play demo run</button>
+    <span class="stream-controls hidden" id="stream-controls" role="group" aria-label="Stream controls">
+      <button class="btn-secondary" id="pause-btn" aria-pressed="false">Pause</button>
+      <button class="btn-secondary speed" data-i="0.24" aria-label="Slow">0.5×</button>
+      <button class="btn-secondary speed active" data-i="0.12" aria-label="Normal speed">1×</button>
+      <button class="btn-secondary speed" data-i="0.06" aria-label="Fast">2×</button>
+    </span>
   </div>
 </header>
 <main class="page" id="main">
@@ -125,11 +157,20 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var
   against a shop with planted accessibility bugs.</p>
   <p class="run-meta" id="run-meta" role="status">Loading the recorded demo…</p>
 
+  <div class="stages" id="stages" aria-label="Pipeline stage"></div>
+
+  <div class="stack-strip" id="stack-strip">
+    <span class="stack-chip"><strong>Nemotron-3 Super</strong> · plan + audit</span>
+    <span class="stack-chip"><strong>Nemotron-3 Ultra</strong> · fix</span>
+    <span class="stack-chip"><strong>Nebius Sandboxes</strong> · 3 parallel branches</span>
+    <span class="stack-chip" id="stack-tokens">all inference on Nebius Token Factory</span>
+  </div>
+
   <div id="pr-banner" class="banner pass hidden" role="status"></div>
 
   <section class="section hidden" id="branches-section">
     <div class="panel">
-      <div class="panel-head"><span class="panel-title">Fix candidates — verified in parallel, one winner</span><span class="count" id="branch-count"></span></div>
+      <div class="panel-head"><div class="titles"><span class="panel-title">Fix candidates — verified in parallel, one winner</span><span class="panel-sub">Each candidate ran in its own Nebius Sandboxes branch — applied, served, and re-listened to there. Only one let the task finish by ear.</span></div><span class="count" id="branch-count"></span></div>
       <div class="panel-body"><div class="branches" id="branches"></div></div>
     </div>
   </section>
@@ -166,7 +207,7 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var
 
   <section class="section">
     <div class="panel">
-      <div class="panel-head"><span class="panel-title">Transcript — what the screen reader said</span><span class="count" id="phrase-count">0 phrases</span></div>
+      <div class="panel-head"><div class="titles"><span class="panel-title">Transcript — what the screen reader said</span><span class="panel-sub">Exactly what a screen-reader user hears, timestamped. Highlighted lines are interactive controls the walker acted on.</span></div><span class="count" id="phrase-count">0 phrases</span></div>
       <div class="transcript" id="transcript" role="log" aria-live="polite" aria-relevant="additions" aria-label="Screen reader transcript"></div>
     </div>
   </section>
@@ -184,7 +225,22 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var
 </main>
 <script>
 const $ = (id) => document.getElementById(id);
-const state = { findings: [], branches: {}, phrases: 0, tokens: null, task: null, es: null };
+const state = { findings: [], branches: {}, phrases: 0, tokens: null, task: null, es: null,
+                 runId: null, lastSeq: -1, interval: 0.12, paused: false };
+
+const STAGES = [
+  ["plan", "Plan"], ["listen", "Listen"], ["audit", "Audit"],
+  ["fix", "Fix"], ["verify", "Verify"], ["report", "Report"],
+];
+function renderStages(cur) {
+  const idx = STAGES.findIndex(([k]) => k === cur);
+  $("stages").innerHTML = STAGES.map(([k, label], i) => {
+    const cls = idx < 0 ? "" : i < idx ? "done" : i === idx ? "active" : "";
+    return (i ? '<span class="stage-arrow" aria-hidden="true">→</span>' : "")
+         + `<span class="stage ${cls}" ${i === idx ? 'aria-current="step"' : ""}>`
+         + `<span class="n">${i + 1}</span>${label}</span>`;
+  }).join("");
+}
 
 function esc(s) { return (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 
@@ -262,13 +318,18 @@ function showPr(data) {
 /* ---------- status ---------- */
 function setStatus(runId, data) {
   state.status = data.to || data.status || (data.task ? "started" : state.status);
+  const stageMap = { planning: "plan", listening: "listen", auditing: "audit",
+                     fixing: "fix", verifying: "verify", done: "report",
+                     escalated: "report", failed: "report" };
+  if (stageMap[state.status]) renderStages(stageMap[state.status]);
   if (data.tokens != null) state.tokens = data.tokens;
   if (data.task) state.task = data.task;
   const bits = [runId === "demo" ? "recorded run" : `run <span class="mono">${esc(runId)}</span>`,
                 `status <strong>${esc(state.status)}</strong>`];
   if (state.task) bits.push(`task <span class="mono">${esc(state.task)}</span>`);
   if (data.reason) bits.push(esc(data.reason));
-  if (state.tokens != null) bits.push(`<span class="mono">${state.tokens.toLocaleString()} tokens</span>`);
+  if (state.tokens != null) { bits.push(`<span class="mono">${state.tokens.toLocaleString()} tokens</span>`);
+    $("stack-tokens").textContent = `${state.tokens.toLocaleString()} tokens ≈ $0.01 · on Nebius Token Factory`; }
   $("run-meta").innerHTML = bits.join(" · ");
 }
 
@@ -278,14 +339,27 @@ function watch(runId) {
   $("transcript").innerHTML = ""; $("pr-banner").classList.add("hidden");
   $("diff-section").classList.add("hidden"); $("branches-section").classList.add("hidden");
   state.phrases = 0; state.findings = []; state.branches = {}; state.tokens = null; state.task = null;
-  renderFindings();
-  // ?interval= slows the demo replay (default 0.12s/event) — e.g. /?interval=0.3
+  state.runId = runId; state.lastSeq = -1; state.paused = false;
+  renderFindings(); renderStages("");
+  $("stack-tokens").textContent = "all inference on Nebius Token Factory";
+  $("stream-controls").classList.remove("hidden");
+  $("pause-btn").textContent = "Pause"; $("pause-btn").setAttribute("aria-pressed", "false");
   const q = new URLSearchParams(location.search);
-  const replayQs = runId === "demo" && q.get("interval") ? `?interval=${encodeURIComponent(q.get("interval"))}` : "";
-  const es = new EventSource(`/v1/runs/${runId}/events${replayQs}`);
-  state.es = es;
+  if (runId === "demo" && q.get("interval") && !location.search.includes("reopened")) state.interval = parseFloat(q.get("interval"));
+  openStream(runId);
+  wireControls(runId);
+}
+
+function openStream(runId) {
+  if (state.es) state.es.close();
+  const qs = new URLSearchParams();
+  if (state.lastSeq >= 0) qs.set("after_seq", state.lastSeq);
+  if (runId === "demo") qs.set("interval", state.interval);
+  const es = new EventSource(`/v1/runs/${runId}/events${qs.toString() ? "?" + qs : ""}`);
+  state.es = es; state.paused = false;
   es.addEventListener("update", (e) => {
     const ev = JSON.parse(e.data);
+    if (typeof ev.seq === "number") state.lastSeq = ev.seq;
     if (ev.type === "ear.phrase") addPhrase(ev.data.text, ev.data.t_ms ?? 0);
     else if (ev.type === "finding.new") upsertFinding(ev.data);
     else if (ev.type === "fix.branch") { state.branches[ev.data.patch_id] = ev.data; renderBranches(); }
@@ -299,6 +373,22 @@ function watch(runId) {
 $("watch-btn").addEventListener("click", () => { const id = $("run-id").value.trim(); if (id) watch(id); });
 $("run-id").addEventListener("keydown", (e) => { if (e.key === "Enter") $("watch-btn").click(); });
 $("demo-btn").addEventListener("click", () => watch("demo"));
+
+function wireControls(runId) {
+  const pb = $("pause-btn");
+  pb.onclick = () => {
+    if (state.paused) { openStream(runId); pb.textContent = "Pause"; pb.setAttribute("aria-pressed", "false"); }
+    else { state.es.close(); state.paused = true; pb.textContent = "Resume"; pb.setAttribute("aria-pressed", "true"); }
+  };
+  document.querySelectorAll(".speed").forEach((b) => {
+    b.onclick = () => {
+      document.querySelectorAll(".speed").forEach((x) => x.classList.remove("active"));
+      b.classList.add("active");
+      state.interval = parseFloat(b.dataset.i);
+      openStream(runId); // reopens from lastSeq at the new pace
+    };
+  });
+}
 
 /* ---------- benchmark ---------- */
 async function loadBench() {
