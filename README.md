@@ -170,7 +170,7 @@ make up        # start it: http://localhost:8000 — the recorded demo auto-play
 Each step proves something: `setup` ends by printing the CLI help (install OK), `test` is the
 offline health check (fakes exercise the real wiring), and `up` shows the product. More
 health commands — including the full pipeline on fakes and the live Sandboxes regression
-probe — are in [ARCHITECTURE.md → System health](docs/ARCHITECTURE.md#system-health).
+probe — are in [ARCHITECTURE.md → System health](docs/ARCHITECTURE.md#system-health--commands-that-prove-each-layer).
 
 **Judge 2-minute test:** open the dashboard (auto-plays a recorded real run), press
 **Play demo run** to replay it, then go live:
