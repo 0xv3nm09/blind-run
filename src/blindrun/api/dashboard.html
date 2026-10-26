@@ -229,7 +229,10 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/20px var
 <script>
 const $ = (id) => document.getElementById(id);
 const state = { findings: [], branches: {}, phrases: 0, tokens: null, task: null, es: null,
-                 runId: null, lastSeq: -1, interval: 0.12, paused: false };
+                 runId: null, lastSeq: -1, interval: 0.12, paused: false,
+                 staticSite: false, staticTimer: null };
+// repo-root prefix for static hosting (site lives at <user>.github.io/<repo>/)
+const ROOT = location.pathname.replace(/src\/blindrun\/api\/dashboard\.html.*$/, "");
 
 const STAGES = [
   ["plan", "Plan"], ["listen", "Listen"], ["audit", "Audit"],
@@ -314,7 +317,8 @@ function renderDiff(diffText) {
 }
 function showPr(data) {
   const b = $("pr-banner");
-  b.innerHTML = `Verified fix opened as a pull request — a human reviews and merges. <a href="${esc(data.url)}">${esc(data.url)}</a>`;
+  const href = state.staticSite ? ROOT + String(data.url).replace(/^\//, "") : data.url;
+  b.innerHTML = `Verified fix opened as a pull request — a human reviews and merges. <a href="${esc(href)}">${esc(data.url)}</a>`;
   b.classList.remove("hidden");
 }
 
@@ -348,30 +352,61 @@ function watch(runId) {
   $("stream-controls").classList.remove("hidden");
   $("pause-btn").textContent = "Pause"; $("pause-btn").setAttribute("aria-pressed", "false");
   const q = new URLSearchParams(location.search);
-  if (runId === "demo" && q.get("interval") && !location.search.includes("reopened")) state.interval = parseFloat(q.get("interval"));
-  openStream(runId);
+  if (runId === "demo" && q.get("interval")) state.interval = parseFloat(q.get("interval"));
+  if (state.staticSite) startStaticReplay(runId);
+  else openStream(runId);
   wireControls(runId);
 }
 
+/* ---------- static replay (GitHub Pages): no API, the page IS the demo ---------- */
+async function startStaticReplay(runId) {
+  if (runId !== "demo") {
+    setStatus(runId, { status: "live runs need the local API — clone the repo and make up" });
+    return;
+  }
+  if (!state.staticEvents) {
+    const res = await fetch(`${ROOT}bench/recorded_run.jsonl`);
+    if (!res.ok) { setStatus(runId, { status: "recorded run not found on this host" }); return; }
+    state.staticEvents = (await res.text()).split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  }
+  clearTimeout(state.staticTimer);
+  state.paused = false;
+  const evs = state.staticEvents;
+  let i = evs.findIndex((e) => e.seq > state.lastSeq);
+  if (i < 0) i = 0;
+  const step = () => {
+    if (state.paused) return;
+    if (i >= evs.length) return;
+    handleEvent(runId, evs[i]);
+    state.lastSeq = evs[i].seq;
+    i += 1;
+    state.staticTimer = setTimeout(step, state.interval * 1000);
+  };
+  step();
+}
+
 function openStream(runId) {
+  if (state.staticSite) { startStaticReplay(runId); return; }
   if (state.es) state.es.close();
   const qs = new URLSearchParams();
   if (state.lastSeq >= 0) qs.set("after_seq", state.lastSeq);
   if (runId === "demo") qs.set("interval", state.interval);
   const es = new EventSource(`/v1/runs/${runId}/events${qs.toString() ? "?" + qs : ""}`);
   state.es = es; state.paused = false;
-  es.addEventListener("update", (e) => {
-    const ev = JSON.parse(e.data);
-    if (typeof ev.seq === "number") state.lastSeq = ev.seq;
+  es.addEventListener("update", (e) => handleEvent(runId, JSON.parse(e.data)));
+}
+
+function handleEvent(runId, ev) {
+  if (!ev || !ev.type) return;
+  {
     if (ev.type === "ear.phrase") addPhrase(ev.data.text, ev.data.t_ms ?? 0);
     else if (ev.type === "finding.new") upsertFinding(ev.data);
     else if (ev.type === "fix.branch") { state.branches[ev.data.patch_id] = ev.data; renderBranches(); }
     else if (ev.type === "fix.verified" && ev.data.transcript_diff) renderDiff(ev.data.transcript_diff);
     else if (ev.type === "pr.opened") showPr(ev.data);
     else if (ev.type.startsWith("run.")) setStatus(runId, ev.data);
-    if (ev.type === "run.finished" || ev.type === "run.failed") es.close();
-  });
-  es.onerror = () => { if (state.phrases === 0) setStatus(runId, { status: "not found — start one with curl POST /v1/runs" }); es.close(); };
+    if (ev.type === "run.finished" || ev.type === "run.failed") { if (state.es) state.es.close(); }
+  }
 }
 $("watch-btn").addEventListener("click", () => { const id = $("run-id").value.trim(); if (id) watch(id); });
 $("run-id").addEventListener("keydown", (e) => { if (e.key === "Enter") $("watch-btn").click(); });
@@ -381,7 +416,9 @@ function wireControls(runId) {
   const pb = $("pause-btn");
   pb.onclick = () => {
     if (state.paused) { openStream(runId); pb.textContent = "Pause"; pb.setAttribute("aria-pressed", "false"); }
-    else { state.es.close(); state.paused = true; pb.textContent = "Resume"; pb.setAttribute("aria-pressed", "true"); }
+    else { state.paused = true; clearTimeout(state.staticTimer);
+           if (state.es) state.es.close();
+           pb.textContent = "Resume"; pb.setAttribute("aria-pressed", "true"); }
   };
   document.querySelectorAll(".speed").forEach((b) => {
     b.onclick = () => {
@@ -395,9 +432,12 @@ function wireControls(runId) {
 
 /* ---------- benchmark ---------- */
 async function loadBench() {
+  if (state.staticBench) { renderBench(state.staticBench); return; }
   const res = await fetch("/v1/benchmark/latest");
   if (!res.ok) { $("bench-body").innerHTML = '<div class="empty">No benchmark results yet.</div>'; return; }
-  const b = await res.json();
+  renderBench(await res.json());
+}
+function renderBench(b) {
   const row = (name, c, extra) => `<tr><td>${name}</td><td class="num">${c.recall}</td><td class="num">[${c.recall_ci95.join(", ")}]</td><td class="num">${c.recall_axe_invisible}</td>${extra || ""}</tr>`;
   $("bench-body").innerHTML = `<table class="findings">
     <thead><tr><th scope="col">Condition</th><th scope="col" class="num">Recall</th><th scope="col" class="num">95% confidence interval</th><th scope="col" class="num">Recall (axe-invisible)</th><th scope="col" class="num">Precision</th><th scope="col" class="num">False positives on clean controls</th></tr></thead>
@@ -408,9 +448,21 @@ async function loadBench() {
     </tbody></table>`;
 }
 
-/* judge cold-open: play the recorded demo immediately */
-watch("demo");
-loadBench();
+/* boot: if there is no API behind this page (GitHub Pages), become the static demo */
+(async () => {
+  try {
+    const r = await fetch("v1/benchmark/latest");
+    state.staticSite = !r.ok;
+  } catch { state.staticSite = true; }
+  if (state.staticSite) {
+    try {
+      const r = await fetch(`${ROOT}bench/results.json`);
+      if (r.ok) state.staticBench = await r.json();
+    } catch { /* benchmark panel shows its empty state */ }
+  }
+  watch("demo");
+  loadBench();
+})();
 </script>
 </body>
 </html>

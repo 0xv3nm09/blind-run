@@ -174,6 +174,15 @@ machine instead; the recorded demo replays either way. Set `SEARCH_BACKEND=tavil
 working offline). Live runs need `NEBIUS_API_KEY` in `.env` (Token Factory credits; a full
 run costs about a cent).
 
+## Hosted demo (GitHub Pages)
+
+The dashboard auto-detects its host: with the API it streams live; on static hosting
+(GitHub Pages, `https://<user>.github.io/blind-run/`) it becomes the demo itself —
+fetching `bench/recorded_run.jsonl` and replaying the recorded Sandboxes run entirely
+client-side, with the same stage timeline, pause/speed controls, findings, diff, and
+benchmark table. Root `index.html` redirects into it. No keys, no backend, nothing to
+keep warm — the demo can never go down during judging.
+
 ## For judges: verifying the stack is real
 
 The stage-by-stage deep dive — every model call, the Tavily queries, the search/replace
