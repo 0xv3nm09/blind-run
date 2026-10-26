@@ -138,10 +138,10 @@ watch the same arc in real time.
 
 | | |
 | :---: | :---: |
-| <img src="docs/screenshots/ui-transcript.png" width="410" alt="Transcript streaming"> | <img src="docs/screenshots/ui-branches.png" width="410" alt="Fix branches and PR banner"> |
-| **The walk, as heard** — bare `S, M, L` text and nameless `button, button` moments highlighted | **Three candidates, one survivor** — verdicts from in-sandbox ear replays; the PR banner follows |
-| <img src="docs/screenshots/ui-diff.png" width="410" alt="Before/after transcript diff"> | <img src="docs/screenshots/ui-benchmark.png" width="410" alt="Benchmark table"> |
-| **The evidence in one panel** — before/after transcript: dead end → radios → confirmation | **Benchmark** — axe vs ear with Wilson CIs, per lane |
+| <img src="docs/screenshots/ui-transcript.png" width="410" alt="Console: transcript streaming in dark mode"> | <img src="docs/screenshots/ui-branches.png" width="410" alt="Console: findings and fix candidates with the winner ringed"> |
+| **The walk, as heard** — all 40 phrases timestamped; teal lines are controls the walker acted on: bare `S, M, L`, then `button, button` | **Findings + fix candidates** — each finding quotes the transcript and links its WCAG doc; candidates ran in parallel Sandboxes branches, the ear-verified one is ringed |
+| <img src="docs/screenshots/ui-diff.png" width="410" alt="Before/after transcript diff in dark mode"> | <img src="docs/screenshots/ui-benchmark.png" width="410" alt="Benchmark results with confidence intervals in dark mode"> |
+| **The transcript diff** — the winner's evidence, line by line: bare text → labelled radios, dead end → confirmation | **Results page** — axe vs ear with Wilson 95% CIs as range bars; the ear lane's precision and clean-control FP count shown |
 
 <p align="center">
   <img src="docs/screenshots/demo.gif" alt="Guided tour of the Blind-Run console: the recorded run streaming, fix candidates with verdicts, the before/after transcript diff, and the benchmark" width="720">
