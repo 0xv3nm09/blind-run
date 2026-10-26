@@ -33,6 +33,18 @@ Every item below was hit while building Blind-Run and verified live against the 
 6. **Loved**: OpenAI compatibility is exact (SDK drop-in), price/performance is excellent for agent
    loops (our whole 21-page benchmark costs cents), and the Nemotron models' instruction-following
    on JSON tasks is strong once schemas avoid `pattern`.
+7. **Model IDs have inconsistent casing across the catalog** — `nvidia/nemotron-3-super-120b-a12b`
+   (lowercase) vs `nvidia/Nemotron-3-Ultra-550b-a55b` (mixed) vs `nvidia/Nemotron-3_5-Lightning`
+   (underscore). Easy to typo when hand-writing configs; a canonical listing (or case-insensitive
+   resolution with the canonical form echoed back) would remove a whole class of 404s.
+8. **First-call latency spike**: measured on Nemotron 3.5 Lightning — 9.5s on the first call,
+   then 1.8s / 1.8s warm (identical 10-token requests). Looks like connection warm-up rather than
+   model time. A documented warm-up call (or keepalive) would help latency-sensitive apps avoid
+   a confusing cold start.
+9. **Occasional empty `content` even with explicit `max_tokens` + `reasoning_budget`** — rare, but
+   it survives the caps, so we retry client-side. A distinct `finish_reason` for "reasoning
+   consumed everything" (instead of empty content with a normal-looking finish) would remove the
+   guesswork.
 
 ## Token Factory Sandboxes (ConTree, beta)
 
@@ -63,6 +75,15 @@ Every item below was hit while building Blind-Run and verified live against the 
    `whoami` showed beta limits. Suggestion: validate the `Project` header against known projects
    and 404 with "unknown project" instead of surfacing it as a permission failure. The `whoami`
    permission map endpoint was the decisive debugging tool — promote it in the quickstart.
+8. **The SDK is synchronous; asyncio apps wrap everything in threads.** We route every sandbox
+   call through `asyncio.to_thread` (and parallel candidate branches need one thread each). A
+   native async client — or an asyncio note in the quickstart — would save new users the
+   discovery cost.
+9. **A maintained browser-agent base image would save every Playwright user ~2–4 minutes of
+   parent setup.** Our parent installs Node 22 (NodeSource — no node images in the catalog) +
+   Playwright + Chromium + a screen reader on every fresh build. A `browser-tools` checkpoint
+   image (or a documented recipe page) is the single highest-leverage catalog addition for the
+   many browser/JS-agent use cases this platform is perfect for.
 
 ## NVIDIA models (via Token Factory)
 
@@ -73,8 +94,15 @@ Every item below was hit while building Blind-Run and verified live against the 
 - **Prompt-format finding**: the model writes reliable markdown search/replace blocks but unreliable
   JSON-escaped diffs; we switched the fixer to plain-text output with block extraction and both
   parse success and fix quality jumped. Worth adding to the agent-cookbook as a pattern.
-- **Nemotron 3.5 Lightning**: used for triage/summaries in our cost plan; pricing ($0.06/$0.24 per
-  1M) makes agent loops effectively free at hackathon scale.
+- **Nemotron 3.5 Lightning**: the fast lane in our router; pricing ($0.06/$0.24 per
+  1M) makes agent loops effectively free at hackathon scale. Measured latency: **1.8s warm**
+  (first call 9.5s — see TF item 8) — comfortably interactive.
+- **Nemotron 3 Ultra 550B**: our default fixer. With the round-1 prompt anchored on verbatim
+  search/replace blocks + a worked example, it proposed the W3C-APG fieldset/legend/radio fix
+  that passed ear verification on round 1 in the recorded flagship. It does need explicit
+  `max_tokens` + `reasoning_budget`, and it intermittently answers with reasoning prose instead
+  of the requested format (~1 in 3 rounds in our logs) — a format-anchored retry solves it, but
+  worth knowing.
 
 ## What we built on top (so support can gauge the surface)
 

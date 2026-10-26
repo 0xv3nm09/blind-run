@@ -257,33 +257,37 @@ tests/                         19 offline tests (fakes end-to-end) + live API pr
 
 ## Powered by Nebius Token Factory + NVIDIA Nemotron
 
-Every model call in the pipeline runs on **Nebius Token Factory** against **NVIDIA Nemotron open models**:
+Every model call in the pipeline is a runtime call to the Token Factory inference API
+(`api.tokenfactory.nebius.com/v1/`, OpenAI-compatible, per-service-account API key) — there is
+no local model anywhere in this repo, and per-call logs print `role / model / tokens / base_url`
+live so anyone running it can watch the stack prove itself.
 
-- **Nemotron 3 Super (120B-A12B)** plans the keyboard-only walk and audits the transcript against the ARIA tree.
-- **Nemotron 3 Ultra-550B** is the fixer: with the round-1 prompt anchoring verbatim search/replace blocks, it proposed the W3C-APG radio-group fix that passed ear verification (this is the shipped configuration — see `.env.example`).
-- **Nemotron 3.5 Lightning** covers high-volume fast lanes and **Nano-30B** the guard role (both routed in config; the recorded flagship exercises Super + Ultra). Duplicate findings are deduped structurally in code.
-- **Nebius Sandboxes (ConTree)** build and ear-verify every fix candidate in isolated microVMs — the verification replay runs entirely inside the sandbox (parent checkpoint: Node 22 + Playwright + Chromium + Guidepup, built once and branched per candidate).
+**Who does what** (the recorded flagship's hot path in bold):
 
-## Design decisions (the load-bearing ones)
+| Role | Model | Sampling | Observed (live) |
+|---|---|---|---|
+| **Planner** | **Nemotron-3 Super 120B-A12B** | temp 1.0 / top_p 0.95, thinking on | ~14s, ~1K tokens per plan; JSON-valid with the repair ladder as backup |
+| **Auditor** | **Nemotron-3 Super 120B-A12B** | temp 0.2, thinking off | careful, quote-grounded findings; confidence computed in code, not asked |
+| **Fixer** | **Nemotron-3 Ultra 550B-A55B** | temp 1.0, `max_tokens 16384` + `reasoning_budget 4096` | landed the flagship's W3C fix round-1; needs the explicit budget caps (reasoning otherwise eats the output — live-found, documented) |
+| Fast lane | Nemotron 3.5 Lightning | temp 0.3, thinking off | routed in config for high-volume lanes; measured **1.8s warm** (9.5s first-call warm-up) |
+| Guard / Embeddings | Nano-30B / Qwen3-Embedding-8B | — | routed in config; the shipped loop dedupes structurally in code |
 
-1. **The oracle is deterministic.** Pass/fail is a string check on the screen-reader
-   transcript. Models draft; code verifies. This is why agentic fixing is safe to automate.
-2. **Best-of-3 parallel verification.** The fixer's sampling variance is absorbed by
-   concurrency, not luck: three alternative fixes run in three parallel Sandboxes branches,
-   and only the one whose task completes by ear ships — in the recorded flagship, two of the
-   three honestly failed. Watching candidates get rejected is the product working.
-2. **Fakes first, everywhere.** Every stage sits behind a port with a fake adapter — the
-   whole pipeline runs offline in tests with zero keys, and the same tests cover real and
-   fake wiring.
-3. **Degrade, don't crash.** Search down → cached patterns. Sandbox unreachable → local
-   verification. A 3,000-character product description → clipped at the schema boundary.
-   Runs end in an honest status, never a stack trace.
-4. **Escalation is a feature.** When no candidate passes ear verification, the run says so
-   and keeps the evidence — the verifier refusing to ship an unverified fix is the product
-   working, not failing.
-5. **Evidence must be quotable.** Findings quote real transcript lines and link the official
-   WCAG doc; PRs carry the before/after transcript. Nothing asks you to trust a model.
-6. **Nothing auto-merges.** A human reviews and merges; Blind-Run's job ends at proof.
+**Nebius Sandboxes (ConTree)** do the verification: one parent checkpoint per process
+(python:3.12-slim + Node 22 + Playwright + Chromium + Guidepup — ~2–4 min, built once), then
+each fix candidate is a parallel disposable branch (~3–6s each): apply, serve on :8000 *inside
+the branch*, replay the ear there, return the verdict. The recorded flagship's branch heard
+`"radio, S, not checked, position 1, set size 3 … Added to cart"` — verification physically
+inside Token Factory.
+
+**Cost ledger (measured):** the full flagship loop — plan, walk, audit, 3 parallel sandbox
+verifications, PR — is **7,414 tokens ≈ $0.01**. The whole 21-bug benchmark costs cents.
+Rate limits (60 RPM / 400K TPM with adaptive windows) were never a factor at agent-loop scale.
+
+Tavily retrieval is the fourth pillar — see [How it works → Tavily](#how-it-works).
+
+**Platform feedback, including two Token Factory bugs we bisected live** (a `pattern` keyword
+in any `json_schema` → HTTP 500; reasoning consuming the whole output budget), is in
+[FEEDBACK.md](FEEDBACK.md).
 
 ## Safety rules that hold everywhere
 
