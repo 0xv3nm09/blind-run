@@ -227,3 +227,5 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/19px var
 .findings tr.uc-detail:hover td { background: var(--surface-2); }
 .uc-proof .call-line { grid-template-columns: 64px 1fr 90px 150px; }
 .uc-proof .call-line .c-model { font-size: 10.5px; word-break: normal; }
+.call-line.search .c-role { color: var(--warn); }
+.call-line.search { background: var(--warn-soft); }

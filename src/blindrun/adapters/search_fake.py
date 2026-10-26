@@ -63,6 +63,7 @@ _WCAG_SLUGS = {
 
 class CachedSearch:
     async def pattern(self, widget: str) -> Pattern:
+        self.last_source = "cache"
         return _KNOWN.get(widget.lower().strip()) or Pattern(
             widget=widget,
             url="https://www.w3.org/WAI/ARIA/apg/patterns/",
@@ -73,7 +74,9 @@ class CachedSearch:
 
     async def docs(self, wcag_sc: str) -> str:
         """Offline floor for the WCAG Understanding doc (TavilySearch confirms live).
+
         Real W3C URLs use names, not numbers — verified: number-dash URLs 404."""
+        self.last_docs_source = "cache"
         slug = _WCAG_SLUGS.get(wcag_sc.strip())
         if slug:
             return f"https://www.w3.org/WAI/WCAG22/Understanding/{slug}.html"

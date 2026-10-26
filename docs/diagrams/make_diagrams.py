@@ -234,6 +234,68 @@ _SEQ_LIFES = "".join(
 SEQ_BODY = SEQ_BODY.replace("FOREACH", _SEQ_LIFES)
 
 
+# ---------------------------------------------------------------- tavily flow
+TAV_BODY = """
+<div class="h">Tavily — retrieval inside the fix loop</div>
+<div class="sub">Two load-bearing runtime calls per run, with a hard degrade to the local cache. No key, no network — the run still completes.</div>
+
+<svg width="1124" height="470" style="display:block; margin-top:14px;">
+  <defs>
+    <marker id="ta" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L8,4.5 L0,9 z" fill="VAR(text)"/></marker>
+    <marker id="td" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L8,4.5 L0,9 z" fill="VAR(muted)"/></marker>
+    <marker id="to" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L8,4.5 L0,9 z" fill="VAR(accent)"/></marker>
+  </defs>
+
+  FOREACH
+
+  <!-- 1. pattern() -->
+  <text x="34" y="76" class="mono" font-size="11.5" fill="VAR(muted)">1 · before the fixer writes code</text>
+  <line x1="90" y1="108" x2="382" y2="108" stroke="VAR(text)" stroke-width="1.6" marker-end="url(#ta)"/>
+  <text x="130" y="98" font-size="11.5" fill="VAR(text)" class="mono">pattern("radio")</text>
+  <line x1="390" y1="130" x2="752" y2="130" stroke="VAR(accent)" stroke-width="1.6" marker-end="url(#to)"/>
+  <text x="470" y="120" font-size="11.5" fill="VAR(text)" class="mono">POST api.tavily.com/search · Bearer · advanced</text>
+  <line x1="760" y1="156" x2="398" y2="156" stroke="VAR(muted)" stroke-width="1.3" stroke-dasharray="5 4" marker-end="url(#td)"/>
+  <text x="462" y="148" font-size="11" fill="VAR(text)" class="mono">results + answer — w3.org preferred</text>
+  <line x1="390" y1="182" x2="98" y2="182" stroke="VAR(muted)" stroke-width="1.3" stroke-dasharray="5 4" marker-end="url(#td)"/>
+  <text x="150" y="174" font-size="11.5" fill="VAR(text)" class="mono">Pattern(url, summary, source="tavily")</text>
+  <line x1="390" y1="206" x2="1042" y2="206" stroke="VAR(text)" stroke-width="1.6" marker-end="url(#ta)"/>
+  <text x="520" y="198" font-size="11.5" fill="VAR(text)" class="mono">into the fixer prompt + cited in the PR with its source</text>
+
+  <!-- 2. docs() -->
+  <text x="34" y="252" class="mono" font-size="11.5" fill="VAR(muted)">2 · every finding, grounded</text>
+  <line x1="90" y1="284" x2="382" y2="284" stroke="VAR(text)" stroke-width="1.6" marker-end="url(#ta)"/>
+  <text x="130" y="274" font-size="11.5" fill="VAR(text)" class="mono">docs("4.1.2")</text>
+  <line x1="390" y1="306" x2="752" y2="306" stroke="VAR(accent)" stroke-width="1.6" marker-end="url(#to)"/>
+  <text x="452" y="296" font-size="11.5" fill="VAR(text)" class="mono">POST /search · "Understanding WCAG 4.1.2 site:w3.org"</text>
+  <line x1="760" y1="330" x2="98" y2="330" stroke="VAR(muted)" stroke-width="1.3" stroke-dasharray="5 4" marker-end="url(#td)"/>
+  <text x="140" y="322" font-size="11.5" fill="VAR(text)" class="mono">official Understanding URL → dashboard link on the finding</text>
+
+  <!-- 3. degrade -->
+  <text x="34" y="378" class="mono" font-size="11.5" fill="VAR(muted)">3 · any failure</text>
+  <line x1="390" y1="410" x2="958" y2="410" stroke="VAR(warn)" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#td)"/>
+  <text x="480" y="400" font-size="11.5" fill="VAR(text)" class="mono">error · no key · quota</text>
+  <rect x="962" y="390" width="150" height="40" rx="8" fill="VAR(bg)" stroke="VAR(border)"/>
+  <text x="978" y="408" font-size="12" class="mono" fill="VAR(text)">CachedSearch floor</text>
+  <text x="978" y="424" font-size="10.5" class="mono" fill="VAR(muted)">verified slug map</text>
+  <text x="96" y="443" font-size="11" fill="VAR(text)" class="mono">the run completes with cached patterns — search is an enhancement, never a dependency</text>
+</svg>
+"""
+
+_LIFES = """
+  <rect x="{lx}" y="8" width="124" height="30" rx="7" fill="VAR(panel2)" stroke="VAR(border)"/>
+  <text x="{x}" y="27" text-anchor="middle" font-size="12.5" font-weight="700" fill="VAR(text)">{name}</text>
+  <line x1="{x}" y1="38" x2="{x}" y2="456" stroke="VAR(border)" stroke-width="1.2" stroke-dasharray="3 3"/>
+"""
+_TAV_LIFES = "".join(
+    _LIFES.replace("{x}", str(x)).replace("{lx}", str(x - 62)).replace("{name}", name)
+    for x, name in [(90, "Orchestrator"), (390, "TavilySearch"), (760, "api.tavily.com"), (1035, "Consumers")]
+)
+TAV_BODY = TAV_BODY.replace("FOREACH", _TAV_LIFES)
+
+
 async def render(theme: str, body: str, name: str) -> None:
     html = (
         "<!doctype html><html><head><meta charset='utf-8'><style>"
@@ -268,6 +330,7 @@ async def main() -> None:
     for theme in ("light", "dark"):
         await render(theme, ARCH_BODY, "how-it-works")
         await render(theme, SEQ_BODY, "fix-loop")
+        await render(theme, TAV_BODY, "tavily-flow")
 
 
 if __name__ == "__main__":

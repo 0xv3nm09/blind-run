@@ -314,7 +314,14 @@ function CallsPanel({ state }) {
     >
       <div className="calls" ref={boxRef}>
         {calls.length === 0 && <div className="empty">Calls appear here as the models are invoked.</div>}
-        {calls.map((c, i) => (
+        {calls.map((c, i) => c.search ? (
+          <motion.div key={i} className="call-line search" initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}>
+            <span className="c-role">tavily</span>
+            <span className="c-model">{c.kind} · {String(c.query)}</span>
+            <span className="c-tokens">{c.source}</span>
+            <span className="c-url">api.tavily.com</span>
+          </motion.div>
+        ) : (
           <motion.div key={i} className="call-line" initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}>
             <span className="c-role">{c.role}</span>
             <span className="c-model">{String(c.model).split("/").pop()}</span>
@@ -642,6 +649,7 @@ function AboutView() {
       <Panel title="Documentation" sub="Everything is checkable in the repo.">
         <div className="chips-row">
           <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/docs/RUN-RECORDS.md" target="_blank" rel="noopener">Run records</a>
+          <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/docs/TAVILY.md" target="_blank" rel="noopener">Tavily deep-dive</a>
           <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/docs/COMPLIANCE.md" target="_blank" rel="noopener">Compliance map</a>
           <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architecture deep-dive</a>
           <a className="meta mono accent" href="https://github.com/0xv3nm09/blind-run/blob/main/FEEDBACK.md" target="_blank" rel="noopener">Platform feedback</a>

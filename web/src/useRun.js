@@ -41,6 +41,8 @@ function reducer(state, ev) {
       return { ...state, pr: d };
     case "llm.call":
       return { ...state, calls: [...(state.calls ?? []), d] };
+    case "search.call":
+      return { ...state, calls: [...(state.calls ?? []), { ...d, search: true }] };
     case "run.finished":
       return { ...state, tokens: d.tokens ?? state.tokens, status: d.status ?? state.status };
     default:

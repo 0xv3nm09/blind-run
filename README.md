@@ -221,7 +221,8 @@ The stage-by-stage deep dive — every model call, the Tavily queries, the searc
 protocol, the sandbox branch lifecycle, and the full failure-handling catalogue with file
 references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). The operations ledger of
  every recorded run — inference calls, latencies, verdicts, artifacts — is in
- [docs/RUN-RECORDS.md](docs/RUN-RECORDS.md).
+ [docs/RUN-RECORDS.md](docs/RUN-RECORDS.md); the Tavily retrieval architecture and records
+ are in [docs/TAVILY.md](docs/TAVILY.md).
 
 
 Everything below is checkable in minutes, no trust required:
@@ -318,7 +319,7 @@ in any `json_schema` → HTTP 500; reasoning consuming the whole output budget),
 - **Nebius Token Factory** — all inference (Nemotron 3 Super, Ultra-550B, 3.5 Lightning, Nano-30B, Qwen3-Embedding-8B) and **Nebius Sandboxes (ConTree)** for isolated fix-branch builds and in-sandbox ear verification
 - **NVIDIA Nemotron open models** — every planning, auditing, fixing and guard role
 - **Guidepup Virtual Screen Reader** + Playwright (headless, text-only ear) · **axe-core** (rule-engine baseline)
-- **Tavily** — live retrieval grounds the fix loop: the W3C ARIA pattern for the fixer and the WCAG Understanding doc for every finding (degrades to the local cache offline)
+- **Tavily** — live retrieval grounds the fix loop: the W3C ARIA pattern for the fixer and the WCAG Understanding doc for every finding (degrades to the local cache offline). Full architecture, call shapes, records and bonus-lane mapping: [docs/TAVILY.md](docs/TAVILY.md)
 - **FastAPI + SSE** API · pure-CSS light dashboard · **pytest** offline-first test suite
 
 ## Where this goes

@@ -210,6 +210,17 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
             wcag_url = ""
             if hasattr(deps.search, "docs"):  # grounded citation; degrades offline
                 wcag_url = await deps.search.docs(f.wcag_sc)
+                if hasattr(deps.search, "last_docs_source"):
+                    await deps.events.emit(
+                        run_id,
+                        "search.call",
+                        {
+                            "kind": "docs",
+                            "query": f"WCAG {f.wcag_sc}",
+                            "source": deps.search.last_docs_source,
+                            "url": wcag_url,
+                        },
+                    )
             await deps.events.emit(
                 run_id,
                 "finding.new",
@@ -236,6 +247,12 @@ async def run_flow(deps: Deps, run_id: RunId, req: dict) -> RunStatus:
         target = fixable[0]
         widget = "radio" if target.category.value == "label" else "dialog"
         pattern = await deps.search.pattern(widget)
+        if hasattr(deps.search, "last_source"):
+            await deps.events.emit(
+                run_id,
+                "search.call",
+                {"kind": "pattern", "query": widget, "source": pattern.source, "url": pattern.url},
+            )
         page_file = PurePosixPath(urlparse(url).path).name or "index.html"
         deps.world["page_file"] = page_file  # local sandbox serves this file after patching
         files = await deps.vcs.fetch(repo or "demo-shop", req.get("ref", "main"), [page_file])

@@ -56,6 +56,7 @@ class TavilySearch:
             apg = next((r for r in data.get("results", []) if "w3.org" in r.get("url", "")), None)
             url = apg["url"] if apg else cached.url
             summary = (data.get("answer") or (apg or {}).get("content", "") or cached.summary)[:400]
+            self.last_source = "tavily"
             return Pattern(
                 widget=widget,
                 url=url,
@@ -64,6 +65,7 @@ class TavilySearch:
                 source="tavily",
             )
         except Exception:  # noqa: BLE001 - degrade, never crash: search is an enhancement
+            self.last_source = "cache"
             return cached
 
     async def docs(self, wcag_sc: str) -> str:
@@ -75,6 +77,8 @@ class TavilySearch:
                 (r for r in data.get("results", []) if "w3.org/wai" in r.get("url", "").lower()),
                 None,
             )
+            self.last_docs_source = "tavily"
             return hit["url"] if hit else fallback
         except Exception:  # noqa: BLE001 - degrade, never crash: search is an enhancement
+            self.last_docs_source = "cache"
             return fallback
