@@ -9,5 +9,8 @@ dist/
 .blindrun/
 blindrun.db
 node_modules/
+web/node_modules/
 runner/node_modules/
+web/node_modules/
 .DS_Store
+web/node_modules/

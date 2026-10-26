@@ -102,6 +102,12 @@ _REPLAY_FILE = Path(__file__).resolve().parents[3] / "bench" / "recorded_run.jso
 # link resolves on the API host; the same path works when the repo is served
 # statically (GitHub Pages) because evidence/ sits at the repo root
 _EVIDENCE_DIR = Path(__file__).resolve().parents[3] / "evidence"
+_WEB_DIST = Path(__file__).resolve().parents[3] / "web" / "dist"
+if _WEB_DIST.is_dir():
+    from fastapi.staticfiles import StaticFiles as _SF
+
+    app.mount("/app", _SF(directory=str(_WEB_DIST), html=True), name="app")
+
 if _EVIDENCE_DIR.is_dir():
     from fastapi.staticfiles import StaticFiles
 

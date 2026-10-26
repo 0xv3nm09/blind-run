@@ -1,0 +1,57 @@
+@import './fonts.css';
+/* Blind-Run design system — derived from the researched spec (Linear/Stripe/Vercel/
+   Primer conventions), light default + designed dark theme. One accent. No AI-slop. */
+
+:root, [data-theme="light"] {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f6f8fa;
+  --inset: #eef1f4;
+  --text: #16181d;
+  --text-2: #5c636b;
+  --text-3: #8a939c;
+  --line: #e4e7ea;
+  --line-2: #d9dcdf;
+  --accent: #0f766e;
+  --accent-hover: #0d665f;
+  --accent-soft: #edf6f5;
+  --accent-line: #9fc9c4;
+  --ok: #1a7f37;      --ok-soft: #ecf8ef;      --ok-line: #b4dcc0;
+  --fail: #cf222e;    --fail-soft: #fdefef;    --fail-line: #f0b8b8;
+  --warn: #9a6700;    --warn-soft: #fbf8ec;    --warn-line: #e6d9a8;
+  --glow: none;
+  --shadow: 0 1px 2px rgba(0,0,0,.04);
+  --shadow-pop: 0 8px 30px rgba(0,0,0,.08);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #1c2129;
+  --inset: #21262d;
+  --text: #e6edf3;
+  --text-2: #9aa4b0;
+  --text-3: #6e7a86;
+  --line: #21262d;
+  --line-2: #30363d;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --accent-soft: rgba(45, 212, 191, .10);
+  --accent-line: rgba(45, 212, 191, .45);
+  --ok: #3fb950;      --ok-soft: rgba(63,185,80,.12);   --ok-line: rgba(63,185,80,.4);
+  --fail: #f85149;    --fail-soft: rgba(248,81,73,.12); --fail-line: rgba(248,81,73,.4);
+  --warn: #d29922;    --warn-soft: rgba(210,153,34,.12); --warn-line: rgba(210,153,34,.4);
+  --glow: radial-gradient(900px 500px at 85% -10%, rgba(45,212,191,.12), transparent 60%),
+          radial-gradient(700px 420px at -10% 110%, rgba(15,118,110,.18), transparent 60%);
+  --shadow: none;
+  --shadow-pop: 0 20px 60px rgba(0,0,0,.5);
+  color-scheme: dark;
+}
+
+:root {
+  --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --r-sm: 4px; --r-md: 6px; --r-lg: 10px;
+  --speed: 1; /* replay speed multiplier via inline style on root timer */
+}
