@@ -11,7 +11,7 @@ Mapped line-by-line against the hackathon's official rules. Statuses: ✅ done �
 | Uses **at least one NVIDIA open source model** | ✅ | Nemotron-3 Super (plan, audit) + Nemotron-3 Ultra (fix) — model matrix in [ARCHITECTURE.md](ARCHITECTURE.md#2-model-matrix-all-on-nebius-token-factory) |
 | Fits a **track** — ours: *Coding and Agentic Engineering* ("agents that write, run, and test code in Token Factory") | ✅ | Candidates are applied, served and ear-tested inside **Nebius Sandboxes** branches — [sandbox_contree.py](../src/blindrun/adapters/sandbox_contree.py); the recorded flagship proves it end-to-end (59 events, 10,958 tokens, every model call logged in the stream) |
 | Capable of **running consistently** and functioning as depicted | ✅ | Cold-start verified (`make setup`); dashboard replay is deterministic; live-run variance is disclosed (SYSTEM_CARD) with the recorded run as the always-works demo — refreshed Oct 26 with per-call model logging |
-| Third-party integrations legally used | ✅ | Tavily (free tier), Guidepup / axe-core / Playwright (OSS), GitHub |
+| Third-party integrations legally used | ✅ | Tavily (live: 30 runtime calls recorded across 7 runs, Oct 27 — see RUN-RECORDS R-005), Guidepup / axe-core / Playwright (OSS), GitHub |
 
 ## Submission requirements
 

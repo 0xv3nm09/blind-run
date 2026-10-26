@@ -70,6 +70,25 @@ audit, nothing to fix. Machine-readable summary: [`bench/usecase_results.json`](
 
 ---
 
+## R-005 · Live Tavily sweep — Oct 27, 2026
+
+**7 detection runs with `SEARCH_BACKEND=tavily`** (live key): every fixer received the
+Tavily-retrieved W3C pattern before writing code, and every finding was grounded via a live
+`docs()` call — **30 live Tavily calls recorded in-run** (7× `pattern`, 23× `docs`), all
+`source: "tavily"`, interleaved with the Nemotron `llm.call` events in the same streams.
+
+Fix verdicts across the 7 takes: candidates applied and ear-verified but none completed the
+task (escalated ×6, one no-fixable run) — the documented fix-sampling variance. The
+verified-PR proof of the fix loop is R-001 (cache backend, identical pipeline); this record
+proves the **live Tavily integration**: functional runtime calls feeding the fixer prompt
+and grounding findings.
+
+**Artifact (fullest take):** [`evidence/real-sites/tavily-run-R005.jsonl`](../evidence/real-sites/tavily-run-R005.jsonl)
+— 24 events: 4 `llm.call` (planner/auditor/fixer×2), **5 `search.call` (4 docs + 1 pattern,
+all source=tavily)**, 4 findings, 6 fix.branch verdicts across 2 rounds, escalated at
+14,172 tokens. The remaining 6 recordings are in `evidence/real-sites/` alongside the
+use-case runs. Full architecture and call shapes: [`TAVILY.md`](TAVILY.md).
+
 ## R-003 · Detection benchmark — Oct 7, 2026
 
 21 planted bugs + 5 clean controls, Wilson 95% CIs. axe-only recall **52.4%** (11/21,

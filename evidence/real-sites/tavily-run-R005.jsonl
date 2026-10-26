@@ -1,0 +1,68 @@
+{"seq":0,"run_id":"run_7e43d1ffe4c4","type":"run.started","at":"2026-10-26T20:49:29.938844Z","data":{"task":"buy the cheapest item","url":"http://127.0.0.1:8933/product.html","driver":"virtual"}}
+{"seq":1,"run_id":"run_7e43d1ffe4c4","type":"run.status","at":"2026-10-26T20:49:29.939186Z","data":{"from":"queued","to":"planning"}}
+{"seq":2,"run_id":"run_7e43d1ffe4c4","type":"llm.call","at":"2026-10-26T20:49:35.051726Z","data":{"role":"planner","model":"nvidia/nemotron-3-super-120b-a12b","tokens":837}}
+{"seq":3,"run_id":"run_7e43d1ffe4c4","type":"plan.ready","at":"2026-10-26T20:49:35.051813Z","data":{"steps":["heading","next","next","next","act"],"success_phrase":"Added to cart"}}
+{"seq":4,"run_id":"run_7e43d1ffe4c4","type":"run.status","at":"2026-10-26T20:49:35.051890Z","data":{"from":"planning","to":"listening"}}
+{"seq":5,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.873822Z","data":{"i":0,"text":"document","step":0}}
+{"seq":6,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.873946Z","data":{"i":1,"text":"heading, Trail Runner X, level 1","step":0}}
+{"seq":7,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.874555Z","data":{"i":2,"text":"paragraph","step":1}}
+{"seq":8,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.875701Z","data":{"i":3,"text":"$49.00","step":2}}
+{"seq":9,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.876758Z","data":{"i":4,"text":"end of paragraph","step":3}}
+{"seq":10,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.884711Z","data":{"i":5,"text":"Size","step":5}}
+{"seq":11,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.885507Z","data":{"i":6,"text":"S","step":6}}
+{"seq":12,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.886304Z","data":{"i":7,"text":"M","step":7}}
+{"seq":13,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.887038Z","data":{"i":8,"text":"L","step":8}}
+{"seq":14,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.887746Z","data":{"i":9,"text":"end, Size","step":9}}
+{"seq":15,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.888507Z","data":{"i":10,"text":"button","step":10}}
+{"seq":16,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.922935Z","data":{"i":11,"text":"button","step":11}}
+{"seq":17,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.930129Z","data":{"i":12,"text":"button, Add to cart","step":12}}
+{"seq":18,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.933664Z","data":{"i":13,"text":"button, submit-btn-2","step":13}}
+{"seq":19,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.937521Z","data":{"i":14,"text":"Buy now","step":14}}
+{"seq":20,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.938249Z","data":{"i":15,"text":"end of button, submit-btn-2","step":15}}
+{"seq":21,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.939363Z","data":{"i":16,"text":"paragraph","step":16}}
+{"seq":22,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.940222Z","data":{"i":17,"text":"Choose a size first","step":17}}
+{"seq":23,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.942566Z","data":{"i":18,"text":"end of paragraph","step":18}}
+{"seq":24,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.943247Z","data":{"i":19,"text":"end of main","step":19}}
+{"seq":25,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.943915Z","data":{"i":20,"text":"contentinfo","step":20}}
+{"seq":26,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.944550Z","data":{"i":21,"text":"link, About","step":21}}
+{"seq":27,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.945828Z","data":{"i":22,"text":"·","step":22}}
+{"seq":28,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.946572Z","data":{"i":23,"text":"link, Support","step":23}}
+{"seq":29,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.947264Z","data":{"i":24,"text":"end of contentinfo","step":24}}
+{"seq":30,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.947884Z","data":{"i":25,"text":"end of document","step":25}}
+{"seq":31,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.948542Z","data":{"i":26,"text":"document","step":26}}
+{"seq":32,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.949204Z","data":{"i":27,"text":"navigation","step":27}}
+{"seq":33,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.952110Z","data":{"i":28,"text":"link, Nimbus Goods","step":28}}
+{"seq":34,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.953524Z","data":{"i":29,"text":"link, Catalog","step":29}}
+{"seq":35,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.954287Z","data":{"i":30,"text":"link, Cart","step":30}}
+{"seq":36,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.954985Z","data":{"i":31,"text":"end of navigation","step":31}}
+{"seq":37,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.956063Z","data":{"i":32,"text":"main","step":32}}
+{"seq":38,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.956929Z","data":{"i":33,"text":"heading, Trail Runner X, level 1","step":33}}
+{"seq":39,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.957654Z","data":{"i":34,"text":"paragraph","step":34}}
+{"seq":40,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.960318Z","data":{"i":35,"text":"$49.00","step":35}}
+{"seq":41,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.961054Z","data":{"i":36,"text":"end of paragraph","step":36}}
+{"seq":42,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.961856Z","data":{"i":37,"text":"Size","step":37}}
+{"seq":43,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.962616Z","data":{"i":38,"text":"S","step":38}}
+{"seq":44,"run_id":"run_7e43d1ffe4c4","type":"ear.phrase","at":"2026-10-26T20:49:36.963372Z","data":{"i":39,"text":"M","step":39}}
+{"seq":45,"run_id":"run_7e43d1ffe4c4","type":"ear.done","at":"2026-10-26T20:49:37.034508Z","data":{"reached_success":false,"phrases":40,"degraded":false}}
+{"seq":46,"run_id":"run_7e43d1ffe4c4","type":"run.status","at":"2026-10-26T20:49:37.034573Z","data":{"from":"listening","to":"auditing"}}
+{"seq":47,"run_id":"run_7e43d1ffe4c4","type":"llm.call","at":"2026-10-26T20:49:39.591076Z","data":{"role":"auditor","model":"nvidia/nemotron-3-super-120b-a12b","tokens":586}}
+{"seq":48,"run_id":"run_7e43d1ffe4c4","type":"search.call","at":"2026-10-26T20:49:40.484596Z","data":{"kind":"docs","query":"WCAG 4.1.2","source":"tavily","url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":49,"run_id":"run_7e43d1ffe4c4","type":"finding.new","at":"2026-10-26T20:49:40.484654Z","data":{"id":"fnd_8d8979e1f186","wcag_sc":"4.1.2","category":"label","severity":"minor","confidence":0.68,"heard":"button, submit-btn-2","seen":"<button id=\"submit-btn-2\">","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":50,"run_id":"run_7e43d1ffe4c4","type":"search.call","at":"2026-10-26T20:49:41.175900Z","data":{"kind":"docs","query":"WCAG 4.1.2","source":"tavily","url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":51,"run_id":"run_7e43d1ffe4c4","type":"finding.new","at":"2026-10-26T20:49:41.175989Z","data":{"id":"fnd_a9ac9ccda721","wcag_sc":"4.1.2","category":"label","severity":"major","confidence":0.68,"heard":"button","seen":"<button>","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":52,"run_id":"run_7e43d1ffe4c4","type":"search.call","at":"2026-10-26T20:49:41.876114Z","data":{"kind":"docs","query":"WCAG 4.1.2","source":"tavily","url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":53,"run_id":"run_7e43d1ffe4c4","type":"finding.new","at":"2026-10-26T20:49:41.876196Z","data":{"id":"fnd_fb9f337d3fc8","wcag_sc":"4.1.2","category":"label","severity":"blocker","confidence":0.68,"heard":"button","seen":"<button>","element_hint":"","route":"fix_and_flag","wcag_url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":54,"run_id":"run_7e43d1ffe4c4","type":"search.call","at":"2026-10-26T20:49:42.661315Z","data":{"kind":"docs","query":"WCAG 4.1.2","source":"tavily","url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":55,"run_id":"run_7e43d1ffe4c4","type":"finding.new","at":"2026-10-26T20:49:42.661381Z","data":{"id":"fnd_ac86d018a2f6","wcag_sc":"4.1.2","category":"role","severity":"blocker","confidence":0.17,"heard":"(silence)","seen":"<group> containing three <button> elements","element_hint":"","route":"human","wcag_url":"https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"}}
+{"seq":56,"run_id":"run_7e43d1ffe4c4","type":"run.status","at":"2026-10-26T20:49:42.661415Z","data":{"from":"auditing","to":"fixing"}}
+{"seq":57,"run_id":"run_7e43d1ffe4c4","type":"search.call","at":"2026-10-26T20:49:43.332234Z","data":{"kind":"pattern","query":"radio","source":"tavily","url":"https://www.w3.org/TR/2021/NOTE-wai-aria-practices-1.2-20211129"}}
+{"seq":58,"run_id":"run_7e43d1ffe4c4","type":"llm.call","at":"2026-10-26T20:50:57.836907Z","data":{"role":"fixer","model":"nvidia/Nemotron-3-Ultra-550b-a55b","tokens":3550}}
+{"seq":59,"run_id":"run_7e43d1ffe4c4","type":"fix.branch","at":"2026-10-26T20:51:04.336721Z","data":{"patch_id":"fix_r1_01","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear: walk ended without success; last heard: paragraph | $49.00 | end of paragraph | Size | S | M | L | end, Size"}}
+{"seq":60,"run_id":"run_7e43d1ffe4c4","type":"fix.branch","at":"2026-10-26T20:51:04.337009Z","data":{"patch_id":"fix_r1_02","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear: walk ended without success; last heard: paragraph | $49.00 | end of paragraph | Size | S | M | L | end, Size"}}
+{"seq":61,"run_id":"run_7e43d1ffe4c4","type":"fix.branch","at":"2026-10-26T20:51:04.337021Z","data":{"patch_id":"fix_r1_03","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear: walk ended without success; last heard: paragraph | $49.00 | end of paragraph | Size | S | M | L | end, Size"}}
+{"seq":62,"run_id":"run_7e43d1ffe4c4","type":"llm.call","at":"2026-10-26T20:51:24.590695Z","data":{"role":"fixer","model":"nvidia/Nemotron-3-Ultra-550b-a55b","tokens":9199}}
+{"seq":63,"run_id":"run_7e43d1ffe4c4","type":"fix.branch","at":"2026-10-26T20:51:34.769520Z","data":{"patch_id":"fix_r2_01","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear: walk ended without success; last heard: link, Nimbus Goods | link, Catalog | link, Cart | end of navigation | main | hea"}}
+{"seq":64,"run_id":"run_7e43d1ffe4c4","type":"fix.branch","at":"2026-10-26T20:51:34.771013Z","data":{"patch_id":"fix_r2_02","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear: walk ended without success; last heard: paragraph | $49.00 | end of paragraph | Size | S | M | L | end, Size"}}
+{"seq":65,"run_id":"run_7e43d1ffe4c4","type":"fix.branch","at":"2026-10-26T20:51:34.771032Z","data":{"patch_id":"fix_r2_03","verdict":"failed_ear","axe_after":0,"tail":"nebius sandbox ear: walk ended without success; last heard: main | heading, Trail Runner X, level 1 | paragraph | $49.00 | end of paragraph "}}
+{"seq":66,"run_id":"run_7e43d1ffe4c4","type":"run.status","at":"2026-10-26T20:51:34.771164Z","data":{"from":"fixing","to":"escalated","reason":"no branch passed"}}
+{"seq":67,"run_id":"run_7e43d1ffe4c4","type":"run.finished","at":"2026-10-26T20:51:34.771213Z","data":{"status":"escalated","tokens":14172,"cost_usd":0.0}}
