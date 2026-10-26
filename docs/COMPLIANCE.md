@@ -9,8 +9,8 @@ Mapped line-by-line against the hackathon's official rules. Statuses: ✅ done �
 |---|---|---|
 | Working software app that **runs on Nebius Token Factory or AI Cloud** | ✅ | Every model call hits `api.tokenfactory.nebius.com` — [llm_tokenfactory.py](../src/blindrun/adapters/llm_tokenfactory.py); per-call logs print role + model + tokens live |
 | Uses **at least one NVIDIA open source model** | ✅ | Nemotron-3 Super (plan, audit) + Nemotron-3 Ultra (fix) — model matrix in [ARCHITECTURE.md](ARCHITECTURE.md#2-model-matrix-all-on-nebius-token-factory) |
-| Fits a **track** — ours: *Coding and Agentic Engineering* ("agents that write, run, and test code in Token Factory") | ✅ | Candidates are applied, served and ear-tested inside **Nebius Sandboxes** branches — [sandbox_contree.py](../src/blindrun/adapters/sandbox_contree.py); the recorded flagship proves it end-to-end |
-| Capable of **running consistently** and functioning as depicted | ✅ | Cold-start verified (`make setup`); dashboard replay is deterministic; live-run variance is disclosed (SYSTEM_CARD) with the recorded run as the always-works demo |
+| Fits a **track** — ours: *Coding and Agentic Engineering* ("agents that write, run, and test code in Token Factory") | ✅ | Candidates are applied, served and ear-tested inside **Nebius Sandboxes** branches — [sandbox_contree.py](../src/blindrun/adapters/sandbox_contree.py); the recorded flagship proves it end-to-end (59 events, 10,958 tokens, every model call logged in the stream) |
+| Capable of **running consistently** and functioning as depicted | ✅ | Cold-start verified (`make setup`); dashboard replay is deterministic; live-run variance is disclosed (SYSTEM_CARD) with the recorded run as the always-works demo — refreshed Oct 26 with per-call model logging |
 | Third-party integrations legally used | ✅ | Tavily (free tier), Guidepup / axe-core / Playwright (OSS), GitHub |
 
 ## Submission requirements
@@ -24,7 +24,7 @@ Mapped line-by-line against the hackathon's official rules. Statuses: ✅ done �
 | **Open-source license**, detectable in About | ✅ | MIT — [LICENSE](../LICENSE), auto-detected by GitHub |
 | **README** with setup instructions | ✅ | Quick start, prerequisites, judge 2-minute test |
 | README **highlights NVIDIA Nemotron use, where Token Factory accelerated, other Nebius tools** | ✅ | *Powered by Nebius Token Factory + NVIDIA Nemotron* section + Tavily section + model matrix |
-| **Demo video** < 3 min, public on YouTube, shows the project functioning, no third-party music/trademarks | ✅ | 2:45, real UI/terminal/diff footage, no music; uploaded at submission |
+| **Demo video** < 3 min, public on YouTube, shows the project functioning, no third-party music/trademarks | ✅ | v2: 2:01, real console + use-case proof footage, neural narration, burned captions; uploaded at submission |
 | **Track identified** | ✅ | Coding and Agentic Engineering |
 | **Feedback** on Token Factory / AI Cloud / NVIDIA tools | ✅ | [FEEDBACK.md](../FEEDBACK.md) — two live-found, bisected platform bugs + SDK DX items (also entered in the Most Valuable Feedback lane) |
 | English | ✅ | All materials |
