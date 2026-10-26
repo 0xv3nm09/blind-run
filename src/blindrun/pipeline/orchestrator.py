@@ -16,6 +16,7 @@ from typing import Literal
 from urllib.parse import urlparse
 
 import structlog
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from blindrun.errors import IllegalTransition
 from blindrun.pipeline import checks as checks_mod
@@ -411,7 +412,6 @@ async def _finish(deps: Deps, run_id: RunId, budget: Budget) -> RunStatus:
 
 
 # ---- helper schemas local to the orchestrator (auditor/fixer reply shapes) ----
-from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 def _coerce_wcag(v: str) -> str:
