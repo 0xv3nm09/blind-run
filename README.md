@@ -187,7 +187,9 @@ keep warm — the demo can never go down during judging.
 
 The stage-by-stage deep dive — every model call, the Tavily queries, the search/replace
 protocol, the sandbox branch lifecycle, and the full failure-handling catalogue with file
-references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+references — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). A line-by-line map of every
+official submission requirement and where this repo satisfies it is in
+[docs/COMPLIANCE.md](docs/COMPLIANCE.md).
 
 
 Everything below is checkable in minutes, no trust required:
@@ -283,24 +285,10 @@ Every model call in the pipeline runs on **Nebius Token Factory** against **NVID
 - **Tavily** — live retrieval grounds the fix loop: the W3C ARIA pattern for the fixer and the WCAG Understanding doc for every finding (degrades to the local cache offline)
 - **FastAPI + SSE** API · pure-CSS light dashboard · **pytest** offline-first test suite
 
-## Where this goes (future use cases & work)
+## Where this goes
 
-**Near term**
-
-- [ ] Real-reader confirmation runners (VoiceOver/NVDA) behind the existing `Ear` port — PR label `verified: virtual + NVDA`
-- [ ] Auditor recall tuning on axe-invisible barriers (focus order, silent updates) — see `bench/results.json`
-- [ ] Multi-page flows: one task across catalog → product → cart → checkout, with the transcript as the through-line
-
-**Product surface**
-
-- [ ] GitHub App install flow (org-wide PR gating) and an MCP server so coding agents can call Blind-Run — the agent that wrote the UI can be the agent held to the ear
-- [ ] Nightly production monitoring with transcript-diff regression alerts: "last night's deploy made the checkout silent again"
-
-**Market**
-
-- Compliance reporting for ADA Title II (Apr 2027 / 2028) and EN 301 549 procurement: cents-per-page continuous evidence vs. point-in-time manual audits
-- Agency / audit tooling: the transcript diff is auditable output a human reviewer can sign, and the accessibility tooling market is already $0.85B → $1.15B (6.2% CAGR)
-- The loop itself — task → experience → fix → prove — generalizes to any oracle you can render as text; accessibility is the first, hardest-honest one
+- **Near:** real-reader confirmation (VoiceOver/NVDA) behind the same Ear port, multi-page checkout flows, auditor recall tuning on the axe-invisible barriers.
+- **Beyond:** org-wide GitHub App gating and an MCP server so coding agents hold their own UI to the ear — the task → experience → fix → prove loop generalizes to any oracle you can render as text.
 
 ## License
 
