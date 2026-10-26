@@ -3,7 +3,7 @@
 [![CI](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml/badge.svg)](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml)
 
 <p align="center">
-  <img src="docs/screenshots/cover.png" alt="Blind-Run cover: an agent that proves a web task can be completed by ear — and fixes the code until it can" width="820">
+  <img src="docs/screenshots/console-dark.png" alt="Blind-Run console (dark): the recorded run with fix candidates verified by ear" width="820">
 </p>
 
 **An agent that proves a web flow can be completed by ear — and fixes the code until it can.**
@@ -69,14 +69,14 @@ The full requirement-by-requirement map (each rule → status → the file that 
 | Who | What they run | What they get |
 |---|---|---|
 | Engineering teams | Blind-Run on a product page + task ("buy the cheapest item") in CI or on a PR | Only ear-verified fixes land: each PR carries the before/after screen-reader transcript as reviewable evidence |
-| E-commerce / checkout owners | Task audits on staging checkout and sign-up flows | Blockers that rule engines miss (the 0/10 lane), found before customers and plaintiffs do |
+| E-commerce / checkout owners | Task audits on staging checkout and sign-up flows | Blockers that rule engines are blind to (all 10 axe-invisible ones in our benchmark), found before customers and plaintiffs do |
 | Teams shipping AI-written UI | A `blindrun run` gate on vibe-coded pages before deploy | Catches what code review and linters structurally can't: a control that renders but cannot be operated by ear |
 | Accessibility leads | Detection findings with WCAG criteria, quoted transcript lines, confidence | Honest triage — `auto_fix` vs `human` routing with evidence, not model opinions |
 
 ## What it achieves (measured, not claimed)
 
 - **The whole loop runs on Nebius.** The shipped demo (`bench/recorded_run.jsonl`) is a real
-  run recorded Oct 8: 58 events, 7,414 tokens, ≈$0.01. The round-1 winner was applied, served
+  run recorded Oct 26: 59 events, 10,958 tokens, ≈$0.01, with every model call logged in the stream. The round-1 winner was applied, served
   and **ear-verified inside a Token Factory Sandboxes branch** — the transcript inside the
   branch ends `"radio, S, not checked, position 1, set size 3 … Added to cart"`.
 - **The winning fix is the W3C pattern.** No human picked it: three candidates ran in parallel
@@ -230,7 +230,7 @@ Everything below is checkable in minutes, no trust required:
    and every call logs its role, model ID, token count and the base URL as it happens:
    `llm.call role=fixer model=nvidia/Nemotron-3-Ultra-550b-a55b tokens=1234 …`.
 2. **The recorded demo is a real run.** `bench/recorded_run.jsonl` carries the event stream
-   with token accounting (7,414 tokens for the flagship), the in-branch ear transcript, and
+   with token accounting (10,958 tokens for the flagship), the in-branch ear transcript, and
    the PR artifact it produced is committed under `evidence/`.
 3. **Sandboxes usage is canonical.** `sandbox_contree.py` builds one parent checkpoint
    (Node 22 + Playwright + Chromium + Guidepup) and runs each fix candidate as a parallel
@@ -296,7 +296,7 @@ the branch*, replay the ear there, return the verdict. The recorded flagship's b
 inside Token Factory.
 
 **Cost ledger (measured):** the full flagship loop — plan, walk, audit, 3 parallel sandbox
-verifications, PR — is **7,414 tokens ≈ $0.01**. The whole 21-bug benchmark costs cents.
+verifications, PR — is **10,958 tokens ≈ $0.01** (measured Oct 26). The whole 21-bug benchmark costs cents.
 Rate limits (60 RPM / 400K TPM with adaptive windows) were never a factor at agent-loop scale.
 
 Tavily retrieval is the fourth pillar — see [How it works → Tavily](#how-it-works).
