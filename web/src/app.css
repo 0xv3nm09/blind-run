@@ -207,3 +207,21 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/19px var
 .c-model { color: var(--text); word-break: break-all; }
 .c-tokens { color: var(--text-2); text-align: right; font-variant-numeric: tabular-nums; }
 .c-url { color: var(--text-3); }
+
+/* ---------- use-case proof rows ---------- */
+.uc-row { cursor: pointer; }
+.uc-row.open td { background: var(--accent-soft); }
+.uc-row .chev { color: var(--text-3); }
+.uc-detail td { padding: 0 12px 14px; background: var(--surface-2); }
+.uc-proof { display: grid; grid-template-columns: 1.2fr 1fr 240px; gap: 16px; padding: 10px 4px 2px; }
+@media (max-width: 900px) { .uc-proof { grid-template-columns: 1fr; } }
+.uc-block h5 { font: 600 12px/17px var(--sans); color: var(--text-2); margin: 0 0 7px; }
+.uc-block h5 span { font-weight: 400; color: var(--text-3); }
+.uc-phases { font: 400 11.5px/16px var(--mono); color: var(--text-3); margin-top: 7px; }
+.uc-none { font: 400 12.5px/18px var(--sans); color: var(--ok); }
+.uc-find { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
+.uc-find .quote { font: 400 11.5px/16px var(--mono); color: var(--text-2); }
+.uc-rec { font: 400 11px/16px var(--mono); color: var(--text-2); word-break: break-all; }
+.call-foot { padding: 6px 12px; font: 400 10.5px/15px var(--mono); color: var(--text-3);
+  border-top: 1px solid var(--line); }
+.findings tr.uc-detail:hover td { background: var(--surface-2); }

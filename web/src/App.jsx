@@ -300,7 +300,7 @@ function BenchmarkTable({ bench, compact }) {
 /* ---------- views ---------- */
 
 function CallsPanel({ state }) {
-  const calls = state.calls;
+  const calls = state.calls ?? [];
   const boxRef = useRef(null);
   useEffect(() => {
     const el = boxRef.current;
@@ -322,6 +322,9 @@ function CallsPanel({ state }) {
             <span className="c-url">api.tokenfactory.nebius.com</span>
           </motion.div>
         ))}
+        {calls.length > 0 && (
+          <div className="call-foot">recorded traffic · POST /v1/chat/completions · OpenAI-compatible SDK</div>
+        )}
       </div>
     </Panel>
   );
@@ -471,6 +474,62 @@ function StackView() {
   );
 }
 
+function UseCaseRow({ task, ex, r }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <tr className={`uc-row ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
+        <td className="mono-h">{task.page}</td>
+        <td className="strong">"{task.task}"</td>
+        <td className="extra">{ex}</td>
+        <td className="num">{r ? r.findings_count : "—"}</td>
+        <td className="num">{r && r.tokens != null ? r.tokens.toLocaleString() : "—"}</td>
+        <td className="num">{r ? `${r.seconds}s` : "—"}</td>
+        <td className="num chev">{open ? "▾" : "▸"}</td>
+      </tr>
+      {open && r && (
+        <tr className="uc-detail">
+          <td colSpan={7}>
+            <div className="uc-proof">
+              <div className="uc-block">
+                <h5>Real API calls <span>— latency from the event stream timestamps</span></h5>
+                {r.calls.map((c, i) => (
+                  <div key={i} className="call-line">
+                    <span className="c-role">{c.role}</span>
+                    <span className="c-model">{c.model}</span>
+                    <span className="c-tokens">{c.tokens.toLocaleString()} tok</span>
+                    <span className="c-url">t+{c.at_s}s · {c.latency_s}s call</span>
+                  </div>
+                ))}
+                <div className="uc-phases">
+                  plan done t+{r.phases.plan_done_s}s
+                  {r.phases.listen_done_s != null && <> · ear finished t+{r.phases.listen_done_s}s ({r.phases.phrases} phrases)</>}
+                  · total {r.seconds}s
+                </div>
+              </div>
+              <div className="uc-block">
+                <h5>What the auditor reported <span>— quoted from the transcript</span></h5>
+                {r.findings.length === 0 && <div className="uc-none">0 findings — the task completed by ear on the first call; there was nothing to audit.</div>}
+                {r.findings.map((f, i) => (
+                  <div key={i} className="uc-find">
+                    <Chip tone={f.sev}>{f.sev}</Chip>
+                    <span className="mono-h">{f.wcag}</span>
+                    <span className="quote">heard {f.heard}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="uc-block">
+                <h5>Full recording</h5>
+                <code className="uc-rec">{r.record}</code>
+              </div>
+            </div>
+          </td>
+        </tr>
+      )}
+    </>
+  );
+}
+
 function UseCasesView({ results }) {
   const cases = [
     {
@@ -527,26 +586,17 @@ function UseCasesView({ results }) {
         sub="Each task below was actually run against the live pipeline (real Nemotron planner + auditor, real virtual screen reader). Status, findings, tokens and duration are the measured values; recordings live in evidence/real-sites/."
         count={tasks.length}
       >
-        <table className="findings">
-          <thead><tr><th>Page</th><th>Task (plain English)</th><th>What it exercises</th><th className="num">Findings</th><th className="num">Tokens</th><th className="num">Time</th></tr></thead>
+        <table className="findings uc-table">
+          <thead><tr><th>Page</th><th>Task (plain English)</th><th>What it exercises</th><th className="num">Findings</th><th className="num">Tokens</th><th className="num">Total</th><th></th></tr></thead>
           <tbody>
             {tasks.map(([page, task, ex]) => {
               const r = (results ?? []).find((x) => x.page === page);
-              return (
-                <tr key={page}>
-                  <td className="mono-h">{page}</td>
-                  <td className="strong">"{task}"</td>
-                  <td className="extra">{ex}</td>
-                  <td className="num">{r ? r.findings : "—"}</td>
-                  <td className="num">{r && r.tokens != null ? r.tokens.toLocaleString() : "—"}</td>
-                  <td className="num">{r ? `${r.seconds}s` : "—"}</td>
-                </tr>
-              );
+              return <UseCaseRow key={page} task={{ page, task }} ex={ex} r={r} />;
             })}
           </tbody>
         </table>
         <p className="helper">
-          {results?.length ? `All ${results.length} tasks completed. ${results.filter((r) => r.findings === 0).length} finished by ear with nothing to audit (0 findings — the clean-control lane).` : ""}
+          {results?.length ? `All ${results.length} tasks completed on live backends (Nemotron planner + auditor, virtual screen reader). Click any row for its real API calls, latencies and findings. ${results.filter((r) => r.findings_count === 0).length} finished by ear with nothing to audit.` : "Loading measured results…"}
           {" "}Command shape: <code>uv run python -m blindrun run --url http://127.0.0.1:8932/product.html --task "buy the cheapest item" --no-fix</code>
         </p>
       </Panel>

@@ -1,82 +1,340 @@
 [
  {
-  "page": "product.html",
-  "task": "buy the cheapest item",
-  "status": "done",
-  "findings": 2,
-  "tokens": 1946,
-  "calls": 2,
-  "seconds": 21.3,
-  "record": "evidence/real-sites/uc-product.html.jsonl"
- },
- {
   "page": "catalog.html",
   "task": "find the cheapest trail shoe and open it",
   "status": "done",
-  "findings": 2,
   "tokens": 1645,
-  "calls": 2,
-  "seconds": 12.9,
+  "findings_count": 2,
+  "seconds": 12.0,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 1237,
+    "at_s": 9.2,
+    "latency_s": 9.2
+   },
+   {
+    "role": "auditor",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 408,
+    "at_s": 12.0,
+    "latency_s": 1.6
+   }
+  ],
+  "phases": {
+   "plan_done_s": 9.2,
+   "listen_done_s": 10.4,
+   "phrases": 4
+  },
+  "findings": [
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(silence)"
+   },
+   {
+    "wcag": "2.4.7",
+    "sev": "blocker",
+    "heard": "(silence)"
+   }
+  ],
   "record": "evidence/real-sites/uc-catalog.html.jsonl"
  },
  {
   "page": "checkout.html",
   "task": "complete the checkout",
   "status": "done",
-  "findings": 4,
   "tokens": 2633,
-  "calls": 2,
-  "seconds": 22.6,
+  "findings_count": 4,
+  "seconds": 21.6,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 2043,
+    "at_s": 17.9,
+    "latency_s": 17.9
+   },
+   {
+    "role": "auditor",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 590,
+    "at_s": 21.6,
+    "latency_s": 2.5
+   }
+  ],
+  "phases": {
+   "plan_done_s": 17.9,
+   "listen_done_s": 19.1,
+   "phrases": 38
+  },
+  "findings": [
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "button, button"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "button, button"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "button, button"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(silence)"
+   }
+  ],
   "record": "evidence/real-sites/uc-checkout.html.jsonl"
+ },
+ {
+  "page": "controls-combobox.html",
+  "task": "select a country from the dropdown",
+  "status": "done",
+  "tokens": 1721,
+  "findings_count": 2,
+  "seconds": 11.2,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 1113,
+    "at_s": 8.4,
+    "latency_s": 8.4
+   },
+   {
+    "role": "auditor",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 608,
+    "at_s": 11.2,
+    "latency_s": 1.5
+   }
+  ],
+  "phases": {
+   "plan_done_s": 8.4,
+   "listen_done_s": 9.7,
+   "phrases": 40
+  },
+  "findings": [
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "combobox, Color, has popup listbox, not expanded, 1 control"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(no announcement after attempting to open/select)"
+   }
+  ],
+  "record": "evidence/real-sites/uc-controls-combobox.html.jsonl"
+ },
+ {
+  "page": "controls-dialog.html",
+  "task": "open the dialog and submit it",
+  "status": "done",
+  "tokens": 2786,
+  "findings_count": 4,
+  "seconds": 20.4,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 2134,
+    "at_s": 17.5,
+    "latency_s": 17.5
+   },
+   {
+    "role": "auditor",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 652,
+    "at_s": 20.4,
+    "latency_s": 1.6
+   }
+  ],
+  "phases": {
+   "plan_done_s": 17.5,
+   "listen_done_s": 18.8,
+   "phrases": 51
+  },
+  "findings": [
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "button"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "button"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "button"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(silence)"
+   }
+  ],
+  "record": "evidence/real-sites/uc-controls-dialog.html.jsonl"
+ },
+ {
+  "page": "controls-live-cart.html",
+  "task": "add an item and hear the cart update",
+  "status": "done",
+  "tokens": 962,
+  "findings_count": 0,
+  "seconds": 8.0,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 962,
+    "at_s": 6.8,
+    "latency_s": 6.8
+   }
+  ],
+  "phases": {
+   "plan_done_s": 6.8,
+   "listen_done_s": 8.0,
+   "phrases": 9
+  },
+  "findings": [],
+  "record": "evidence/real-sites/uc-controls-live-cart.html.jsonl"
+ },
+ {
+  "page": "controls-tabs.html",
+  "task": "read what is on the shipping tab",
+  "status": "done",
+  "tokens": 2424,
+  "findings_count": 1,
+  "seconds": 14.3,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 1713,
+    "at_s": 11.5,
+    "latency_s": 11.5
+   },
+   {
+    "role": "auditor",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 711,
+    "at_s": 14.3,
+    "latency_s": 1.6
+   }
+  ],
+  "phases": {
+   "plan_done_s": 11.5,
+   "listen_done_s": 12.7,
+   "phrases": 41
+  },
+  "findings": [
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(no announcement after selecting Shipping tab)"
+   }
+  ],
+  "record": "evidence/real-sites/uc-controls-tabs.html.jsonl"
+ },
+ {
+  "page": "product.html",
+  "task": "buy the cheapest item",
+  "status": "done",
+  "tokens": 1946,
+  "findings_count": 2,
+  "seconds": 20.2,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 1441,
+    "at_s": 16.7,
+    "latency_s": 16.7
+   },
+   {
+    "role": "auditor",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 505,
+    "at_s": 20.2,
+    "latency_s": 1.4
+   }
+  ],
+  "phases": {
+   "plan_done_s": 16.7,
+   "listen_done_s": 18.8,
+   "phrases": 40
+  },
+  "findings": [
+   {
+    "wcag": "4.1.2",
+    "sev": "minor",
+    "heard": "button"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(silence)"
+   }
+  ],
+  "record": "evidence/real-sites/uc-product.html.jsonl"
  },
  {
   "page": "search.html",
   "task": "search for running shoes",
   "status": "done",
-  "findings": 3,
   "tokens": 3082,
-  "calls": 2,
-  "seconds": 23.1,
+  "findings_count": 3,
+  "seconds": 22.1,
+  "calls": [
+   {
+    "role": "planner",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 2625,
+    "at_s": 18.9,
+    "latency_s": 18.9
+   },
+   {
+    "role": "auditor",
+    "model": "nemotron-3-super-120b-a12b",
+    "tokens": 457,
+    "at_s": 22.1,
+    "latency_s": 2.0
+   }
+  ],
+  "phases": {
+   "plan_done_s": 18.9,
+   "listen_done_s": 20.1,
+   "phrases": 5
+  },
+  "findings": [
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(no announcement after combobox)"
+   },
+   {
+    "wcag": "4.1.2",
+    "sev": "blocker",
+    "heard": "(no announcement after combobox)"
+   },
+   {
+    "wcag": "2.1.1",
+    "sev": "blocker",
+    "heard": "(no indication focus moved into group)"
+   }
+  ],
   "record": "evidence/real-sites/uc-search.html.jsonl"
- },
- {
-  "page": "controls/dialog.html",
-  "task": "open the dialog and submit it",
-  "status": "done",
-  "findings": 4,
-  "tokens": 2786,
-  "calls": 2,
-  "seconds": 21.3,
-  "record": "evidence/real-sites/uc-controls-dialog.html.jsonl"
- },
- {
-  "page": "controls/tabs.html",
-  "task": "read what is on the shipping tab",
-  "status": "done",
-  "findings": 1,
-  "tokens": 2424,
-  "calls": 2,
-  "seconds": 15.4,
-  "record": "evidence/real-sites/uc-controls-tabs.html.jsonl"
- },
- {
-  "page": "controls/combobox.html",
-  "task": "select a country from the dropdown",
-  "status": "done",
-  "findings": 2,
-  "tokens": 1721,
-  "calls": 2,
-  "seconds": 12.2,
-  "record": "evidence/real-sites/uc-controls-combobox.html.jsonl"
- },
- {
-  "page": "controls/live-cart.html",
-  "task": "add an item and hear the cart update",
-  "status": "done",
-  "findings": 0,
-  "tokens": 962,
-  "calls": 1,
-  "seconds": 9.0,
-  "record": "evidence/real-sites/uc-controls-live-cart.html.jsonl"
  }
 ]
