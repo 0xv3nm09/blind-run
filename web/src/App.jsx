@@ -270,20 +270,33 @@ function BenchmarkTable({ bench, compact }) {
   if (!bench) return <div className="empty">Loading benchmark…</div>;
   const ofTen = (v) => `${Math.round((v ?? 0) * 10)} of 10`;
   const rows = [
-    bench.axe_only && { name: "axe only", c: bench.axe_only, muted: true },
+    bench.axe_only && {
+      name: "axe only", c: bench.axe_only, muted: true,
+      why: compact
+        ? "industry baseline — catches the loud half"
+        : "The industry baseline. Catches surface issues fast — and is structurally silent on everything that needs operating the page to find.",
+    },
     bench.ear_auditor && {
       name: "ear + auditor", c: bench.ear_auditor,
+      why: compact
+        ? "precision-first: every catch is real, 0 false alarms"
+        : "Deliberately precision-first: fewer findings, but every one is a real blocker quoted from the transcript — 0 false alarms on the 5 clean controls. Low recall here is the trade, not a flaw.",
       extra: `precision ${bench.ear_auditor.precision ?? "—"} · ${bench.ear_auditor.control_false_positives ?? "—"} FP on controls`,
     },
-    bench.combined_axe_plus_ear && { name: "combined (shipped)", c: bench.combined_axe_plus_ear },
+    bench.combined_axe_plus_ear && {
+      name: "combined (shipped)", c: bench.combined_axe_plus_ear,
+      why: compact
+        ? "what production runs: both lanes unioned"
+        : "What production runs: both lanes unioned. And on the blockers both lanes miss, the fix loop is the third lane — it runs the task instead of inspecting the page (R-001 above).",
+    },
   ].filter(Boolean);
   return (
     <table className="findings bench">
       <thead>
-        <tr><th>Condition</th><th className="num">Recall</th><th>95% CI</th></tr>
+        <tr><th>Condition</th><th className="num">Recall</th><th>95% CI</th><th>What it means</th></tr>
       </thead>
       <tbody>
-        {rows.map(({ name, c, extra, muted }) => (
+        {rows.map(({ name, c, why, extra, muted }) => (
           <tr key={name} className={muted ? "muted" : ""}>
             <td>{name}</td>
             <td className="num strong">{(c.recall * 100).toFixed(1)}%</td>
@@ -293,7 +306,7 @@ function BenchmarkTable({ bench, compact }) {
                 <span className="dotci" style={{ left: `${c.recall * 100}%` }} />
               </span>
             </td>
-            {extra && <td className="extra">{extra}</td>}
+            <td className="why">{why}{extra && <span className="extra"> · {extra}</span>}</td>
           </tr>
         ))}
       </tbody>

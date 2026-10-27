@@ -257,3 +257,6 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/19px var
 .panel .uc-find .quote { font: 400 11.5px/16px var(--mono); color: var(--text-2); }
 .panel .uc-proof .call-line { grid-template-columns: 92px 1fr 84px 140px; }
 .panel .uc-proof .call-line .c-model { font-size: 10.5px; word-break: normal; }
+.findings td.why { font: 400 12.5px/18px var(--sans); color: var(--text-2); min-width: 220px; }
+.findings tr.muted td.why { color: var(--text-3); }
+.findings .extra { font: 400 12px/17px var(--sans); color: var(--text-3); }
