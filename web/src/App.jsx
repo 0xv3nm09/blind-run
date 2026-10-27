@@ -535,8 +535,8 @@ function StackView() {
   );
 }
 
-function UseCaseRow({ task, ex, r }) {
-  const [open, setOpen] = useState(false);
+function UseCaseRow({ task, ex, r, defaultOpen }) {
+  const [open, setOpen] = useState(!!defaultOpen);
   return (
     <>
       <tr className={`uc-row ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
@@ -652,7 +652,7 @@ function UseCasesView({ results }) {
           <tbody>
             {tasks.map(([page, task, ex]) => {
               const r = (results ?? []).find((x) => x.page === page || x.page === page.replace("/", "-"));
-              return <UseCaseRow key={page} task={{ page, task }} ex={ex} r={r} />;
+              return <UseCaseRow key={page} task={{ page, task }} ex={ex} r={r} defaultOpen={page === "product.html"} />;
             })}
           </tbody>
         </table>
