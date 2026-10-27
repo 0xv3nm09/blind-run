@@ -669,7 +669,7 @@ function AboutView() {
 
 export default function App() {
   const { state, bench, ucResults, paused, setPaused, speed, setSpeed } = useRun();
-  const [theme, setTheme] = useState(() => localStorage.getItem("br-theme") ?? "light");
+  const [theme, setTheme] = useState(() => localStorage.getItem("br-theme") ?? "dark");
   const [mode, setModeState] = useState("");
   const [route, setRoute] = useState(() => window.location.hash || "#/console");
   useEffect(() => {
