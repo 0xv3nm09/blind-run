@@ -59,10 +59,11 @@ never a dependency. The source of every result (`tavily` or `cache`) is recorded
   `llm.call`. A cache-backend verification run recorded **2 `search.call` events**
   (`docs("WCAG 4.1.2")`, `source: "cache"`, name-role-value URL) — the emission path is
   proven end-to-end.
-- **Live-call records: DONE (Oct 27).** 7 detection runs with `SEARCH_BACKEND=tavily`
-  recorded **30 live Tavily calls** (7× `pattern` into the fixer prompt, 23× `docs`
-  grounding findings), all `source: "tavily"`, interleaved with the Nemotron `llm.call`
-  events in the committed streams. Fullest take:
+- **Live-call records: DONE (Oct 27).** 8 runs with `SEARCH_BACKEND=tavily` recorded
+  **34 live Tavily calls** (8× `pattern` into the fixer prompt, 26× `docs` grounding
+  findings), all `source: "tavily"`, interleaved with the Nemotron `llm.call` events in
+  the committed streams — including the checkout fix run (R-006: 4 calls across 2 fix
+  rounds). Fullest take:
   [`evidence/real-sites/tavily-run-R005.jsonl`](../evidence/real-sites/tavily-run-R005.jsonl)
   — full record: [RUN-RECORDS.md → R-005](RUN-RECORDS.md). The fix-sampling verdicts in
   these takes are the documented variance; the verified-PR proof is R-001.

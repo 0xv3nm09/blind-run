@@ -244,3 +244,6 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/19px var
 .demo-chip { cursor: pointer; color: var(--text-2); transition: all .15s ease; }
 .demo-chip:hover { border-color: var(--accent-line); color: var(--accent); }
 .demo-chip.on { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.demo-chip .v-ok { color: var(--ok); font-weight: 600; margin-left: 4px; }
+.demo-chip .v-honest { color: var(--warn); font-weight: 600; margin-left: 4px; }
+.demo-chip .v-clean { color: var(--accent); font-weight: 600; margin-left: 4px; }

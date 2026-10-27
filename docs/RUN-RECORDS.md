@@ -74,7 +74,7 @@ audit, nothing to fix. Machine-readable summary: [`bench/usecase_results.json`](
 
 **7 detection runs with `SEARCH_BACKEND=tavily`** (live key): every fixer received the
 Tavily-retrieved W3C pattern before writing code, and every finding was grounded via a live
-`docs()` call — **30 live Tavily calls recorded in-run** (7× `pattern`, 23× `docs`), all
+`docs()` call — **34 live Tavily calls recorded in-run across 8 runs** (8× `pattern`, 26× `docs`), all
 `source: "tavily"`, interleaved with the Nemotron `llm.call` events in the same streams.
 
 Fix verdicts across the 7 takes: candidates applied and ear-verified but none completed the
@@ -88,6 +88,25 @@ and grounding findings.
 all source=tavily)**, 4 findings, 6 fix.branch verdicts across 2 rounds, escalated at
 14,172 tokens. The remaining 6 recordings are in `evidence/real-sites/` alongside the
 use-case runs. Full architecture and call shapes: [`TAVILY.md`](TAVILY.md).
+
+## R-006 · Checkout fix run — Oct 27, 2026
+
+**Task:** "complete the checkout" · **URL:** demo-shop `checkout.html` (the page with the
+most planted blockers). **Backends:** all live, `SEARCH_BACKEND=tavily`.
+**Artifact:** [`bench/recorded_run_checkout.jsonl`](../bench/recorded_run_checkout.jsonl)
+
+**Verdict: `escalated`** — the honest outcome, and the richest record in this ledger:
+- **3 findings**, including the run's highest-confidence blocker (0.68) and two more at 0.17
+- **6 fix-branch verdicts across 2 rounds** (fix_r1_01–03, fix_r2_01–03 — all failed_ear):
+  the fixer received Tavily's W3C pattern and still couldn't produce a candidate the ear
+  accepted; the run refused to ship anything
+- **4 inference calls** (planner 1,577 · auditor 562 · fixer 4,489 + 8,251) and
+  **4 live Tavily calls** interleaved (3× docs, 1× pattern)
+- **14,879 tokens ≈ $0.01**
+
+Why we publish a record where nothing shipped: it demonstrates the system's core promise
+under adverse conditions — verification holds the line, evidence is preserved, and the
+failure is stated, not hidden.
 
 ## R-003 · Detection benchmark — Oct 7, 2026
 

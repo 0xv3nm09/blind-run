@@ -358,14 +358,14 @@ function ConsoleView({ state, bench, selectDemo, demo, setDemo }) {
         </div>
       </div>
       <div className="chips-row demo-picker" role="group" aria-label="Choose a use case to watch">
-        <button className={`meta mono demo-chip ${demo === "flagship" ? "on" : ""}`} onClick={() => { if (demo !== "flagship") { setDemo("flagship"); selectDemo("flagship"); } }} title="product.html — fix verified by ear">
-          Use case 1 · Buy the cheapest item
+        <button className={`meta mono demo-chip ${demo === "flagship" ? "on" : ""}`} onClick={() => { if (demo !== "flagship") { setDemo("flagship"); selectDemo("flagship"); } }} title="product.html — 2 findings, fix verified by ear inside a Sandboxes branch, PR opened">
+          Use case 1 · Buy the cheapest item <b className="v-ok">✓ fix verified</b>
         </button>
-        <button className={`meta mono demo-chip ${demo === "checkout" ? "on" : ""}`} onClick={() => { if (demo !== "checkout") { setDemo("checkout"); selectDemo("checkout"); } }} title="checkout.html — most findings, highest-confidence blocker, 2 fix rounds">
-          Use case 2 · Complete the checkout
+        <button className={`meta mono demo-chip ${demo === "checkout" ? "on" : ""}`} onClick={() => { if (demo !== "checkout") { setDemo("checkout"); selectDemo("checkout"); } }} title="checkout.html — 3 findings incl. the highest-confidence blocker (0.68), 6 branch verdicts over 2 fix rounds, escalated honestly">
+          Use case 2 · Complete the checkout <b className="v-honest">escalated — nothing shipped unverified</b>
         </button>
         <button className={`meta mono demo-chip ${demo === "search" ? "on" : ""}`} onClick={() => { if (demo !== "search") { setDemo("search"); selectDemo("search"); } }} title="search.html — an everyday task: typing and results">
-          Use case 3 · Search for running shoes
+          Use case 3 · Search for running shoes <b className="v-clean">✓ completed by ear · 0 findings</b>
         </button>
       </div>
       <StageRail stage={state.stage} status={state.status} />
@@ -434,7 +434,7 @@ function ResultsView({ bench }) {
           <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">run.finished</span><span className="rec-d">done · 10,958 tokens ≈ $0.01</span></div>
         </div>
       </Panel>
-      <Panel title="Detection benchmark" sub="Recall over 21 planted bugs + 5 clean controls, Wilson 95% CIs. One number is deliberately absent: on the 10 hardest bugs — invisible to rule engines — every detection lane scores 0. That is the finding, not a fault: a detector that only inspects the page cannot grade operability. The lane that can is the fix loop — run the task, and the blocker appears (R-001 above caught it, fixed it, and proved the fix by ear).">
+      <Panel title="Detection benchmark" sub="Recall over 21 planted bugs + 5 clean controls, Wilson 95% CIs. One number is deliberately absent: on the 10 hardest bugs — invisible to rule engines — every detection lane scores 0. That is the finding, not a fault: a detector that only inspects the page cannot grade operability. That zero is detection's honest ceiling — and it is exactly why the fix loop exists: run the task, and the blocker appears. R-001 above is the proof — caught, fixed, and verified by ear.">
         <BenchmarkTable bench={bench} />
       </Panel>
       <div className="grid2">

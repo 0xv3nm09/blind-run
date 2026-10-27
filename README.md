@@ -100,7 +100,8 @@ will need it:
   carries the before/after transcript diff — `"Choose a size first"` → `"Order confirmed"`.
 - **Detection benchmark over 21 planted bugs + 5 clean controls** (`make bench`, Wilson 95% CIs
   in `bench/results.json`): axe-core alone recalls **52.4%** and catches **0 of the 10
-  axe-invisible** blockers; the ear+auditor lane runs **100% precision with 0 false positives
+  axe-invisible** blockers — and so does every detection lane (detection's honest 0 is the
+  motivation for the fix loop); the ear+auditor lane runs **100% precision with 0 false positives
   on clean controls** (deliberately conservative — the task-driven fix loop is what catches
   the invisible blockers, and the recorded demo proves it on the flagship one).
 - **Two live-found Token Factory platform bugs**, bisected and repro'd (a `pattern` keyword in
