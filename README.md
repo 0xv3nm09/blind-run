@@ -159,21 +159,26 @@ watch the same arc in real time.
 | **③ Stack — what runs where.** The model matrix (role, model, sampling, observed-live), the Sandboxes verification lifecycle (parent checkpoint → disposable branches), the two load-bearing Tavily calls, and the measured cost/operations ledger with an example log line | **④ Results — measured, not claimed.** Detection benchmark over 21 planted bugs + 5 clean controls: axe vs ear lanes with Wilson 95% CIs as range bars, the ear lane's 100% precision and 0 clean-control false positives, plus method and real-site evidence |
 
 
-## Status (Oct 8, 2026)
+## Status (Oct 27, 2026)
 
-- ✅ **Real, end to end**: real Nemotron Super planner → real Guidepup Virtual Screen Reader
-  walk (transcript streams over SSE) → real text-only audit with WCAG-labeled, evidence-weighted
-  findings → fixer proposes 3 verbatim search/replace edits → **fix branches run in parallel in
-  Nebius Sandboxes** (apply → serve → ear replay inside the sandbox) → only a fix whose task
-  *completes by ear* wins → PR with the before/after transcript diff.
-- ✅ **DR-0/1/3/4/5/7 verified live**: model IDs probed; planner call; ear hears planted bugs
-  (a div size picker announces as bare text 'S','M','L' — invisible as controls; nameless icon
-  buttons announce 'button'); axe-vs-ear agreement (axe flags the cosmetic issues, silent on the
-  blocker); parallel sandbox branches verified on Nebius with the ear replay inside the branch.
+- ✅ **Real, end to end — and re-validated across 17 live runs this week.** Real Nemotron
+  Super planner → real Guidepup Virtual Screen Reader walk (transcript streams over SSE) →
+  real evidence-weighted audit with WCAG-labeled findings → fixer proposes 3 verbatim
+  search/replace edits → **fix branches run in parallel in Nebius Sandboxes** (apply → serve →
+  ear replay inside the sandbox) → only a fix whose task *completes by ear* wins → PR with the
+  before/after transcript diff. The flagship re-ran Oct 26 with per-call model logging: 59
+  events, 10,958 tokens, fix verified inside the branch.
+- ✅ **Live Tavily retrieval (Oct 27)**: 7 runs with `SEARCH_BACKEND=tavily` — 30 runtime calls
+  recorded (pattern → fixer prompt, WCAG docs → findings), all in committed run streams
+  ([RUN-RECORDS.md](docs/RUN-RECORDS.md) R-005).
+- ✅ **Real-world detection**: 8 use-case tasks run against live backends (findings 0–4 per
+  page; one clean page completed by ear with nothing to audit) plus pages we didn't author —
+  blockers found on books.toscrape, precision held on Wikipedia. Evidence in
+  `evidence/real-sites/`, numbers on the console's Use cases page.
 - ✅ **Benchmark harness**: axe-only vs ear+auditor recall/precision over 21 planted bugs +
   5 clean controls, Wilson 95% CIs (`make bench`).
-- 📋 `FEEDBACK.md` (required tool feedback, incl. two live-found Token Factory bugs) and
-  `SYSTEM_CARD.md` (limits, human-review rule).
+- 📋 `FEEDBACK.md` (required tool feedback: two bisected Token Factory bugs, all workarounds
+  re-validated across 9 consecutive live runs) and `SYSTEM_CARD.md` (limits, human-review rule).
 
 ## Quick start
 
