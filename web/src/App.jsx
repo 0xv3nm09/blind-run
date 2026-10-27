@@ -349,7 +349,7 @@ function ConsoleView({ state, bench, selectDemo, demo, setDemo }) {
       <div className="page-head">
         <div>
           <Eyebrow>Console</Eyebrow>
-          <h1>Recorded run — <span className="mono-h">{state.demo === "search" ? "search for running shoes" : "buy the cheapest item"}</span></h1>
+          <h1>Recorded run — <span className="mono-h">{demo === "search" ? "search for running shoes" : "buy the cheapest item"}</span></h1>
           <p className="pagesub">A real run against the planted-bug shop, streaming exactly as it happened. Pause it, slow it down, read what the screen reader heard.</p>
         </div>
         <div className="meta-row">
