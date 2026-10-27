@@ -402,16 +402,6 @@ function ConsoleView({ state, bench, runRecord, selectDemo, demo, setDemo }) {
           <Panel title="Findings" sub="Each finding quotes the transcript and links the official WCAG doc." count={state.findings.length}>
             <Findings findings={state.findings} />
           </Panel>
-          <Panel
-            title="Fix candidates"
-            sub={candidatesSub(state)}
-            count={Object.keys(state.branches).length}
-          >
-            <Branches branches={state.branches} verified={state.verified} />
-          </Panel>
-        </div>
-      </div>
-      <CallsPanel state={state} />
       <Panel
         title={`Run record — ${demo === "checkout" ? "complete the checkout" : demo === "search" ? "search for running shoes" : "buy the cheapest item"}`}
         sub="The committed record behind this stream: every inference and retrieval call with when it fired and how long it took, the phase timeline, and what the auditor reported. Raw JSONL path below."
@@ -453,6 +443,9 @@ function ConsoleView({ state, bench, runRecord, selectDemo, demo, setDemo }) {
           </div>
         )}
       </Panel>
+        </div>
+      </div>
+      <CallsPanel state={state} />
       <Panel title="Transcript diff" sub="The winner's evidence: what changed for a screen-reader user, line by line.">
         <DiffPanel verified={state.verified} />
       </Panel>
