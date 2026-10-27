@@ -354,6 +354,7 @@ function ConsoleView({ state, bench }) {
         <div className="meta-row">
           <span className="meta"><b>{state.status}</b></span>
           {state.tokens != null && <span className="meta mono accent">{tokens.toLocaleString()} tokens ≈ $0.01 · Token Factory</span>}
+          <span className="meta">watching a recorded run — <b>to go live</b>: clone the repo, add your Nebius key (<code>docs/RUN-GUIDE.md</code>), paste your run id above; the pipeline streams identically</span>
         </div>
       </div>
       <StageRail stage={state.stage} status={state.status} />
