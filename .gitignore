@@ -6,6 +6,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 dist/
+!web/dist/
 .blindrun/
 blindrun.db
 node_modules/
