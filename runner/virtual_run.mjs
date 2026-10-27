@@ -98,6 +98,25 @@ for (const [i, step] of steps.slice(0, maxSteps).entries()) {
   const fn = STEP(step);
   if (!fn) throw new Error(`unknown step: ${step}`);
   try {
+    // type: steps — VSR type() can throw when focus sits on a native option/select
+    // after an act; focus a text field ourselves and use Playwright's keyboard so
+    // field typing is always visible in the transcript
+    if (step.startsWith("type:")) {
+      const text = step.slice(5);
+      await page.evaluate((t) => {
+        const el = document.activeElement;
+        const editable = el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable);
+        if (!editable) {
+          const f = document.querySelector('input[type="search"], input:not([type]), input[type="text"], textarea');
+          if (f) f.focus();
+        }
+      }, text);
+      await page.keyboard.insertText(text);
+      emit(`typed "${text}" into the search field`, i);
+      const log = await page.evaluate(() => window.__v.spokenPhraseLog());
+      for (const t2 of log.slice(phrases.length)) emit(t2, i);
+      continue;
+    }
     await page.evaluate(fn);
     const log = await page.evaluate(() => window.__v.spokenPhraseLog());
     for (const text of log.slice(phrases.length)) emit(text, i);

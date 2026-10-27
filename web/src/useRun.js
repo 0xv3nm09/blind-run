@@ -43,6 +43,8 @@ function reducer(state, ev) {
       return { ...state, calls: [...(state.calls ?? []), d] };
     case "search.call":
       return { ...state, calls: [...(state.calls ?? []), { ...d, search: true }] };
+    case "run.reset":
+      return initial();
     case "run.finished":
       return { ...state, tokens: d.tokens ?? state.tokens, status: d.status ?? state.status };
     default:
@@ -74,6 +76,19 @@ export function useRun() {
     return () => runner.close();
   }, []);
 
+  const selectDemo = (kind) => {
+    dispatch({ type: "run.reset" });
+    runnerRef.current?.close();
+    const runner = makeRunner({
+      onEvent: dispatch,
+      onStatus: (s) => dispatch({ type: "run.status", data: { status: s } }),
+      onDone: () => {},
+      mode: new URLSearchParams(location.search).get("mode") ?? undefined,
+    });
+    runnerRef.current = runner;
+    runner.start(kind);
+  };
+
   useEffect(() => {
     if (!runnerRef.current) return;
     const r = runnerRef.current;
@@ -85,5 +100,5 @@ export function useRun() {
     runnerRef.current?.setSpeed(speedRef.current);
   }, [speed]);
 
-  return { state, bench, ucResults, paused, setPaused, speed, setSpeed: setSpeedState, mode };
+  return { state, bench, ucResults, paused, setPaused, speed, setSpeed: setSpeedState, mode, selectDemo };
 }

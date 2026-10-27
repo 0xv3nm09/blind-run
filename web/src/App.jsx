@@ -268,6 +268,7 @@ function DiffPanel({ verified }) {
 
 function BenchmarkTable({ bench, compact }) {
   if (!bench) return <div className="empty">Loading benchmark…</div>;
+  const ofTen = (v) => `${Math.round((v ?? 0) * 10)} of 10`;
   const rows = [
     bench.axe_only && { name: "axe only", c: bench.axe_only, muted: true },
     bench.ear_auditor && {
@@ -292,7 +293,7 @@ function BenchmarkTable({ bench, compact }) {
                 <span className="dotci" style={{ left: `${c.recall * 100}%` }} />
               </span>
             </td>
-            {compact ? null : <td className="num">{c.recall_axe_invisible == null ? "—" : `${(c.recall_axe_invisible * 100).toFixed(1)}%`}</td>}
+            {compact ? null : <td className="num">{c.recall_axe_invisible == null ? "—" : ofTen(c.recall_axe_invisible)}</td>}
             {extra && <td className="extra">{extra}</td>}
           </tr>
         ))}
@@ -341,14 +342,14 @@ function CallsPanel({ state }) {
   );
 }
 
-function ConsoleView({ state, bench }) {
+function ConsoleView({ state, bench, selectDemo, demo, setDemo }) {
   const tokens = useCountUp(state.tokens);
   return (
     <>
       <div className="page-head">
         <div>
           <Eyebrow>Console</Eyebrow>
-          <h1>Recorded run — <span className="mono-h">buy the cheapest item</span></h1>
+          <h1>Recorded run — <span className="mono-h">{state.demo === "search" ? "search for running shoes" : "buy the cheapest item"}</span></h1>
           <p className="pagesub">A real run against the planted-bug shop, streaming exactly as it happened. Pause it, slow it down, read what the screen reader heard.</p>
         </div>
         <div className="meta-row">
@@ -356,6 +357,14 @@ function ConsoleView({ state, bench }) {
           {state.tokens != null && <span className="meta mono accent">{tokens.toLocaleString()} tokens ≈ $0.01 · Token Factory</span>}
           <span className="meta">watching a recorded run — <b>to go live</b>: clone the repo, add your Nebius key (<code>docs/RUN-GUIDE.md</code>), paste your run id above; the pipeline streams identically</span>
         </div>
+      </div>
+      <div className="chips-row demo-picker" role="group" aria-label="Choose recorded run">
+        <button className={`meta mono demo-chip ${demo === "flagship" ? "on" : ""}`} onClick={() => { if (demo !== "flagship") { setDemo("flagship"); selectDemo("flagship"); } }}>
+          ① checkout — fix verified by ear
+        </button>
+        <button className={`meta mono demo-chip ${demo === "search" ? "on" : ""}`} onClick={() => { if (demo !== "search") { setDemo("search"); selectDemo("search"); } }}>
+          ② search — field typing, live
+        </button>
       </div>
       <StageRail stage={state.stage} status={state.status} />
       <div className="grid2">
@@ -405,8 +414,9 @@ function ResultsView({ bench }) {
           <p className="pagesub">Detection was measured, not claimed: 21 planted bugs across 8 pages plus 5 clean control pages, Wilson 95% confidence intervals on every estimate.</p>
         </div>
       </div>
-      <Panel title="Detection benchmark" sub="Recall = share of planted bugs found. The FP note shows false alarms on clean pages.">
+      <Panel title="Detection benchmark" sub="Recall = share of planted bugs found. The last column counts the 10 bugs rule engines structurally cannot see (they render fine — they just can't be operated by ear). 0 of 10 there is the finding, not a fault: it is why the ear exists.">
         <BenchmarkTable bench={bench} />
+        <p className="helper">The <b>fix loop is the third lane</b> the table can't capture: on the flagship page it caught the exact blocker axe scored 0 on, fixed it, and proved the fix by ear inside a Sandboxes branch — <a href="#/console">recorded run R-001</a>.</p>
       </Panel>
       <div className="grid2">
         <Panel title="How to read this" sub="Three lanes, one verdict.">
@@ -707,7 +717,8 @@ function AboutView() {
 /* ---------- app + hash router ---------- */
 
 export default function App() {
-  const { state, bench, ucResults, paused, setPaused, speed, setSpeed } = useRun();
+  const { state, bench, ucResults, paused, setPaused, speed, setSpeed, selectDemo } = useRun();
+  const [demo, setDemo] = useState("flagship");
   const [theme, setTheme] = useState(() => localStorage.getItem("br-theme") ?? "dark");
   const [mode, setModeState] = useState("");
   const [route, setRoute] = useState(() => window.location.hash || "#/console");
@@ -742,7 +753,7 @@ export default function App() {
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.22 }}
         >
-          {view === "console" && <ConsoleView state={state} bench={bench} />}
+          {view === "console" && <ConsoleView state={state} bench={bench} selectDemo={selectDemo} demo={demo} setDemo={setDemo} />}
           {view === "results" && <ResultsView bench={bench} />}
           {view === "use-cases" && <UseCasesView results={ucResults} />}
           {view === "stack" && <StackView />}

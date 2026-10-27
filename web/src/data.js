@@ -19,9 +19,15 @@ const staticRoot = () => {
   return i >= 0 ? p.slice(0, i) : p.endsWith("/") ? p : p + "/";
 };
 
-const loadStaticEvents = async () => {
+const RECORDINGS = {
+  flagship: "recorded_run.jsonl",
+  search: "recorded_run_search.jsonl",
+};
+
+const loadStaticEvents = async (source = "flagship") => {
   const root = staticRoot();
-  const candidates = [`${root}bench/recorded_run.jsonl`, "./bench/recorded_run.jsonl"];
+  const file = RECORDINGS[source] ?? RECORDINGS.flagship;
+  const candidates = [`${root}bench/${file}`, `./bench/${file}`];
   for (const url of candidates) {
     const r = await fetch(url);
     if (r.ok) {
@@ -56,8 +62,9 @@ export function makeRunner({ onEvent, onStatus, onDone, mode }) {
   let es = null;
   let timer = null;
   let paused = false;
+  let source = "flagship";
   let lastSeq = -1;
-  let staticEvents = null;
+  let staticEvents = {};
   let interval = 0.12;
   let closed = false;
 
@@ -69,20 +76,23 @@ export function makeRunner({ onEvent, onStatus, onDone, mode }) {
   const runStatic = async () => {
     stop();
     paused = false;
-    if (!staticEvents) {
+    const cacheKey = source ?? "flagship";
+    if (!staticEvents[cacheKey]) {
       try {
-        staticEvents = await loadStaticEvents();
+        staticEvents[cacheKey] = await loadStaticEvents(cacheKey);
       } catch {
         onStatus?.("recorded run not found on this host");
         return;
       }
     }
-    let i = staticEvents.findIndex((e) => e.seq > lastSeq);
+    const evs = staticEvents[cacheKey];
+    let i = evs.findIndex((e) => e.seq > lastSeq);
+    if (lastSeq >= 0 && i < 0) return; // resuming a finished stream
     if (i < 0) i = 0;
     const step = () => {
       if (closed || paused) return;
-      if (i >= staticEvents.length) { onDone?.(); return; }
-      const ev = staticEvents[i];
+      if (i >= evs.length) { onDone?.(); return; }
+      const ev = evs[i];
       lastSeq = ev.seq;
       onEvent(ev);
       i += 1;
@@ -110,11 +120,13 @@ export function makeRunner({ onEvent, onStatus, onDone, mode }) {
   };
 
   return {
-    async start() {
+    async start(runSource = "flagship") {
       closed = false;
-      const api = mode === "static" ? false : await apiProbe();
-      api ? runLive() : await runStatic();
+      source = runSource;
+      const api = runSource === "search" ? false : mode === "static" ? false : await apiProbe();
+      if (api) runLive(); else await runStatic();
     },
+    get source() { return source; },
     pause() { paused = true; if (es) { es.close(); es = null; } if (timer) clearTimeout(timer); },
     resume() { if (!paused) return; apiProbe().then((api) => (api ? runLive() : runStatic())); },
     setSpeed(v) { interval = v; if (!paused && staticEvents && !es) runStatic(); }, // static: re-time from lastSeq
