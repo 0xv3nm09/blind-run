@@ -232,13 +232,13 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/19px var
 
 /* ---------- run records ---------- */
 .records { display: flex; flex-direction: column; }
-.rec-row { display: grid; grid-template-columns: 76px 120px 1fr; gap: 12px; padding: 6px 4px;
+.rec-row { display: grid; grid-template-columns: 76px 150px 1fr; gap: 12px; padding: 6px 4px;
   border-bottom: 1px solid var(--line); font: 400 12px/17px var(--mono); }
 .rec-row:last-child { border-bottom: none; }
 .rec-t { color: var(--text-3); font-variant-numeric: tabular-nums; }
 .rec-e { color: var(--accent); font-weight: 500; }
 .rec-d { color: var(--text-2); }
-.records .rec-e { white-space: nowrap; }
+.records .rec-e { white-space: normal; }
 
 .demo-picker { margin: 16px 0 2px; }
 .demo-chip { cursor: pointer; color: var(--text-2); transition: all .15s ease; }
