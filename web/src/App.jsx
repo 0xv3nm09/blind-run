@@ -76,6 +76,14 @@ function Navbar({ route, theme, setTheme, mode, paused, setPaused, speed, setSpe
   );
 }
 
+function candidatesSub(state) {
+  const list = Object.values(state.branches);
+  if (list.length === 0) return "Findings reported — on this scenario none routed to the auto-fix lane (reported for a human instead).";
+  const winner = state.verified?.passed;
+  if (winner) return "Each ran in its own Nebius Sandboxes branch — applied, served, re-listened. Only the one whose task completed by ear ships (ringed below).";
+  return "Each ran in its own Nebius Sandboxes branch — applied, served, re-listened. None completed the task by ear, so the run escalated rather than ship unverified code. That refusal is the product working.";
+}
+
 /* ---------- stage rail ---------- */
 
 function StageRail({ stage, status }) {
@@ -396,7 +404,7 @@ function ConsoleView({ state, bench, runRecord, selectDemo, demo, setDemo }) {
           </Panel>
           <Panel
             title="Fix candidates"
-            sub="Each ran in its own Nebius Sandboxes branch — applied, served, re-listened. Only one completed the task by ear."
+            sub={candidatesSub(state)}
             count={Object.keys(state.branches).length}
           >
             <Branches branches={state.branches} verified={state.verified} />
