@@ -430,6 +430,44 @@ function ResultsView({ bench }) {
           <li>Truth table: <code>bench/truth.json</code> · harness: <code>make bench</code>.</li>
         </ul>
       </Panel>
+      <Panel
+        title="Run record R-001 — flagship fix run (Oct 26)"
+        sub="Every event from the recorded stream, in order. Raw artifact: bench/recorded_run.jsonl (59 events, committed)."
+        count="59 events"
+      >
+        <div className="records">
+          <div className="rec-row"><span className="rec-t">t+11.1s</span><span className="rec-e">llm.call</span><span className="rec-d">planner · nemotron-3-super-120b-a12b · 1,100 tok</span></div>
+          <div className="rec-row"><span className="rec-t">t+11.1s</span><span className="rec-e">plan.ready</span><span className="rec-d">walk plan + success phrase set</span></div>
+          <div className="rec-row"><span className="rec-t">t+13.1s</span><span className="rec-e">ear.done</span><span className="rec-d">40 phrases — task did NOT complete by ear (silent size picker, nameless buttons)</span></div>
+          <div className="rec-row"><span className="rec-t">t+14.4s</span><span className="rec-e">llm.call</span><span className="rec-d">auditor · nemotron-3-super-120b-a12b · 505 tok</span></div>
+          <div className="rec-row"><span className="rec-t">t+20.6s</span><span className="rec-e">finding.new ×2</span><span className="rec-d">blocker 4.1.2 (no announcement) · minor 4.1.2 (nameless buttons)</span></div>
+          <div className="rec-row"><span className="rec-t">t+127.9s</span><span className="rec-e">llm.call</span><span className="rec-d">fixer · Nemotron-3-Ultra-550b-a55b · 9,353 tok</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">fix.branch ×2</span><span className="rec-d">fix_r1_01 passed · fix_r1_02 failed_ear — in-branch ear replays</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">fix.verified</span><span className="rec-d">passed — transcript diff produced</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">pr.opened</span><span className="rec-d">artifact preserved in evidence/</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">run.finished</span><span className="rec-d">done · 10,958 tokens ≈ $0.01</span></div>
+        </div>
+      </Panel>
+      <div className="grid2">
+        <Panel title="Run record R-005 — live Tavily sweep (Oct 27)" sub="7 runs with SEARCH_BACKEND=tavily: 30 runtime calls recorded, all source=tavily. Fullest take: 24 events.">
+          <div className="records">
+            <div className="rec-row"><span className="rec-e">search.call ×5</span><span className="rec-d">4× docs("WCAG 4.1.2") + 1× pattern("radio") — every fixer prompt fed by live retrieval, every finding grounded</span></div>
+            <div className="rec-row"><span className="rec-e">llm.call ×4</span><span className="rec-d">planner / auditor / fixer×2 — interleaved with the Tavily calls in the same stream</span></div>
+            <div className="rec-row"><span className="rec-e">fix.branch ×6</span><span className="rec-d">2 fix rounds — escalated (the documented sampling variance; verified-PR proof is R-001)</span></div>
+            <div className="rec-row"><span className="rec-e">artifact</span><span className="rec-d">evidence/real-sites/tavily-run-R005.jsonl</span></div>
+          </div>
+        </Panel>
+        <Panel title="Raw artifacts" sub="Everything on this page links to committed files.">
+          <ul className="prose">
+            <li><code>bench/recorded_run.jsonl</code> — flagship event stream (R-001)</li>
+            <li><code>bench/usecase_results.json</code> — the 8-task measured table (Use cases page)</li>
+            <li><code>bench/results.json</code> + <code>bench/truth.json</code> — benchmark + truth table</li>
+            <li><code>evidence/real-sites/*.jsonl</code> — 15 recordings: 8 use-case runs, real-site detection, 7 Tavily runs</li>
+            <li><code>evidence/*.md, *.patch</code> — the PR body and fix the flagship opened</li>
+            <li>Full ledger with per-call tables: <code>docs/RUN-RECORDS.md</code></li>
+          </ul>
+        </Panel>
+      </div>
     </>
   );
 }
