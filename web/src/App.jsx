@@ -3,6 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRun } from "./useRun.js";
 import { detectMode } from "./data.js";
 
+const ROOT = window.location.pathname.includes("web/dist/")
+  ? window.location.pathname.replace(/web\/dist\/.*$/, "")
+  : "/";
+
 const STAGE_ORDER = ["Plan", "Listen", "Audit", "Fix", "Verify", "Report"];
 
 /* ---------- primitives ---------- */
