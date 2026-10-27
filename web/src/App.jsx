@@ -383,7 +383,7 @@ function ConsoleView({ state, bench }) {
         <DiffPanel verified={state.verified} />
       </Panel>
       {state.pr && (
-        <motion.a className="banner" href={state.pr.url} target="_blank" rel="noopener" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.a className="banner" href={state.pr.url.startsWith("/") ? ROOT + state.pr.url.slice(1) : state.pr.url} target="_blank" rel="noopener" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
           Verified fix opened as a pull request — a human reviews and merges. <b>{state.pr.url}</b>
         </motion.a>
       )}
