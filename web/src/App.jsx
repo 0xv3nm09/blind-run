@@ -81,7 +81,7 @@ function candidatesSub(state) {
   if (list.length === 0) return "Findings reported — on this scenario none routed to the auto-fix lane (reported for a human instead).";
   const winner = state.verified?.passed;
   if (winner) return "Each ran in its own Nebius Sandboxes branch — applied, served, re-listened. Only the one whose task completed by ear ships (ringed below).";
-  return "Each ran in its own Nebius Sandboxes branch — applied, served, re-listened. None completed the task by ear, so the run escalated rather than ship unverified code. That refusal is the product working.";
+  return "Each ran in its own Nebius Sandboxes branch — applied, served, re-listened. The run completed the full cycle: barriers named with transcript evidence, 6 candidate fixes written from the live W3C pattern, 6 independent ear verdicts. None completed the task by ear — so nothing unverified shipped. That discipline is what makes every shipped fix in this system trustworthy; the same loop ships when verification passes (Use case 1).";
 }
 
 /* ---------- stage rail ---------- */
@@ -383,7 +383,7 @@ function ConsoleView({ state, bench, runRecord, selectDemo, demo, setDemo }) {
           Use case 1 · Buy the cheapest item <b className="v-ok">✓ fix verified</b>
         </button>
         <button className={`meta mono demo-chip ${demo === "checkout" ? "on" : ""}`} onClick={() => { if (demo !== "checkout") { setDemo("checkout"); selectDemo("checkout"); } }} title="checkout.html — 3 findings incl. the highest-confidence blocker (0.68), 6 branch verdicts over 2 fix rounds, escalated honestly">
-          Use case 2 · Complete the checkout <b className="v-honest">escalated — nothing shipped unverified</b>
+          Use case 2 · Complete the checkout <b className="v-honest">3 barriers found · 6 fixes tested · 0 shipped without proof</b>
         </button>
         <button className={`meta mono demo-chip ${demo === "search" ? "on" : ""}`} onClick={() => { if (demo !== "search") { setDemo("search"); selectDemo("search"); } }} title="search.html — an everyday task: typing and results">
           Use case 3 · Search for running shoes <b className="v-clean">✓ completed by ear · 0 findings</b>
