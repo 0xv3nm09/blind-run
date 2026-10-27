@@ -1,7 +1,7 @@
 # Submission compliance — every requirement, where it's satisfied
 
 Mapped line-by-line against the hackathon's official rules. Statuses: ✅ done ·
-⏳ activates at submission (repo flip). Every "where" is checkable in this repo.
+Everything below is live right now. Every "where" is checkable in this repo.
 
 ## Project requirements
 
@@ -17,9 +17,9 @@ Mapped line-by-line against the hackathon's official rules. Statuses: ✅ done �
 
 | Official rule | Status | Where |
 |---|---|---|
-| **URL to a working demo** / hosted application | ⏳ | Static demo mode ships in-repo; goes live as <https://0xv3nm09.github.io/blind-run/> the moment the repo flips public (README → *Hosted demo*) — free of charge, no login, nothing to keep warm through the judging period |
+| **URL to a working demo** / hosted application | ✅ | <https://0xv3nm09.github.io/blind-run/> — the console itself, hosted on GitHub Pages; it replays the recorded run entirely client-side. Free of charge, no login, nothing to keep warm through the judging period |
 | **Text description** of features and functionality | ✅ | Devpost form (drafted); README covers features + quick start |
-| **Public code repository** (GitHub/GitLab/Bitbucket) | ⏳ | github.com/0xv3nm09/blind-run — flips public at submission |
+| **Public code repository** (GitHub/GitLab/Bitbucket) | ✅ | <https://github.com/0xv3nm09/blind-run> — public, MIT-licensed |
 | Repo contains **all source, assets, instructions** | ✅ | `make setup` installs everything incl. the ear's Node deps + Chromium (clean-room validated) |
 | **Open-source license**, detectable in About | ✅ | MIT — [LICENSE](../LICENSE), auto-detected by GitHub |
 | **README** with setup instructions | ✅ | Quick start, prerequisites, judge 2-minute test |

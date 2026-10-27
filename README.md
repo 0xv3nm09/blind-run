@@ -29,7 +29,22 @@ The full requirement-by-requirement map (each rule → status → the file that 
 - ✅ **Track 1 fit** — fixes are written, run and ear-tested inside Nebius Sandboxes branches
 - ✅ MIT license · README highlights Nemotron + Token Factory + Tavily · platform feedback documented (2 live-found bugs)
 - ✅ Demo video 2:45 (under the 3:00 limit) — public on YouTube at submission
-- ⏳ Public repo + hosted demo URL — both activate at the submission flip (GitHub Pages mode ships in this repo)
+- ✅ **Live demo** — <https://0xv3nm09.github.io/blind-run/> (GitHub Pages, replays the recorded run client-side) · public repo · MIT
+
+## Documentation
+
+Everything is in `docs/`, and every file exists because a judge, reviewer or contributor
+will need it:
+
+| File | What it is | Why it matters |
+|---|---|---|
+| [COMPLIANCE.md](docs/COMPLIANCE.md) | Every hackathon rule → status → the exact file that satisfies it | Verify the submission line-by-line, no trust required |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Stage-by-stage deep dive: every model call, the Tavily queries, the fix protocol, failure catalogue | Understand how it actually works, with file references |
+| [RUN-RECORDS.md](docs/RUN-RECORDS.md) | Operations ledger of every recorded run: API calls, latencies, verdicts, artifacts | Every number we claim, traceable to committed JSONL |
+| [TAVILY.md](docs/TAVILY.md) | Tavily architecture: the two runtime calls, degradation contract, records, bonus mapping | The retrieval layer's design and evidence |
+| [RUN-GUIDE.md](docs/RUN-GUIDE.md) | Zero-to-running: prerequisites, commands, timings, costs, troubleshooting | Run it yourself in minutes |
+| [SYSTEM_CARD.md](SYSTEM_CARD.md) | Honest limits, decision rules, human-review boundary | What it does NOT do |
+| [FEEDBACK.md](FEEDBACK.md) | Token Factory + Sandboxes + Nemotron feedback incl. two bisected platform bugs | What we found building on Nebius |
 
 ## Why it matters
 
