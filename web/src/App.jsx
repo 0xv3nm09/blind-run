@@ -608,7 +608,7 @@ function UseCasesView({ results }) {
         </table>
         <p className="helper">
           {results?.length ? `All ${results.length} tasks completed on live backends (Nemotron planner + auditor, virtual screen reader). Click any row for its real API calls, latencies and findings. ${results.filter((r) => r.findings_count === 0).length} finished by ear with nothing to audit.` : "Loading measured results…"}
-          {" "}Command shape: <code>uv run python -m blindrun run --url http://127.0.0.1:8932/product.html --task "buy the cheapest item" --no-fix</code>
+          {" "}Reproduce: <code>git clone github.com/0xv3nm09/blind-run && make setup && make serve-shop</code> then <code>uv run python -m blindrun run --url http://127.0.0.1:8932/product.html --task "&lt;task&gt;" --no-fix</code> — the 127.0.0.1:8932 above is the local demo shop the tasks ran against; the pipeline itself ran on Nebius.
         </p>
       </Panel>
       <Panel title="On the roadmap" sub="Where the same loop goes next.">
