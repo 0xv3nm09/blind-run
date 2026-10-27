@@ -348,8 +348,8 @@ function ConsoleView({ state, bench }) {
       <div className="page-head">
         <div>
           <Eyebrow>Console</Eyebrow>
-          <h1>Demo run — <span className="mono-h">buy the cheapest item</span></h1>
-          <p className="pagesub">A recorded real run against the planted-bug shop, streaming exactly as it happened. Pause it, slow it down, read what the screen reader heard.</p>
+          <h1>Recorded run — <span className="mono-h">buy the cheapest item</span></h1>
+          <p className="pagesub">A real run against the planted-bug shop, streaming exactly as it happened. Pause it, slow it down, read what the screen reader heard.</p>
         </div>
         <div className="meta-row">
           <span className="meta"><b>{state.status}</b></span>
@@ -601,7 +601,7 @@ function UseCasesView({ results }) {
           <thead><tr><th>Page</th><th>Task (plain English)</th><th>What it exercises</th><th className="num">Findings</th><th className="num">Tokens</th><th className="num">Total</th><th></th></tr></thead>
           <tbody>
             {tasks.map(([page, task, ex]) => {
-              const r = (results ?? []).find((x) => x.page === page);
+              const r = (results ?? []).find((x) => x.page === page || x.page === page.replace("/", "-"));
               return <UseCaseRow key={page} task={{ page, task }} ex={ex} r={r} />;
             })}
           </tbody>

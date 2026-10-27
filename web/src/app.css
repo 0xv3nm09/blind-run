@@ -9,7 +9,7 @@ body::before { content: ""; position: fixed; inset: 0; background: var(--glow); 
 .topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 14px;
   height: 54px; padding: 0 22px; background: color-mix(in srgb, var(--surface) 88%, transparent);
   backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.brand { display: flex; align-items: center; font: 700 15px/22px var(--sans); letter-spacing: -.01em; }
+.brand { display: flex; align-items: center; font: 700 15px/22px var(--sans); letter-spacing: -.01em; text-decoration: none; color: var(--text); }
 .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); margin-right: 9px; }
 .brand .tag { margin-left: 10px; font: 600 12px/18px var(--sans); color: var(--accent); }
 .tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
