@@ -3,7 +3,7 @@
 [![CI](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml/badge.svg)](https://github.com/0xv3nm09/blind-run/actions/workflows/ci.yml)
 
 <p align="center">
-  <img src="docs/screenshots/console-dark.png" alt="Blind-Run console (dark): the recorded run with fix candidates verified by ear" width="820">
+  <img src="docs/screenshots/demo.gif" alt="Blind-Run guided tour: the recorded run streaming, fix candidates verified by ear, the transcript diff, and the benchmark" width="820">
 </p>
 
 **An agent that proves a web flow can be completed by ear — and fixes the code until it can.**
@@ -158,10 +158,6 @@ watch the same arc in real time.
 | <img src="docs/screenshots/ui-stack.png" width="410" alt="Stack page: model matrix, Sandboxes, Tavily, cost"> | <img src="docs/screenshots/ui-benchmark.png" width="410" alt="Results page: benchmark with confidence intervals"> |
 | **③ Stack — what runs where.** The model matrix (role, model, sampling, observed-live), the Sandboxes verification lifecycle (parent checkpoint → disposable branches), the two load-bearing Tavily calls, and the measured cost/operations ledger with an example log line | **④ Results — measured, not claimed.** Detection benchmark over 21 planted bugs + 5 clean controls: axe vs ear lanes with Wilson 95% CIs as range bars, the ear lane's 100% precision and 0 clean-control false positives, plus method and real-site evidence |
 
-<p align="center">
-  <img src="docs/screenshots/demo.gif" alt="Guided tour of the Blind-Run console: the recorded run streaming, fix candidates with verdicts, the before/after transcript diff, and the benchmark" width="720">
-</p>
-<p align="center"><sub><b>17-second guided tour</b> — stream → candidates → diff → benchmark</sub></p>
 
 ## Status (Oct 8, 2026)
 
