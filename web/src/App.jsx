@@ -348,7 +348,7 @@ function ConsoleView({ state, bench, selectDemo, demo, setDemo }) {
       <div className="page-head">
         <div>
           <Eyebrow>Console</Eyebrow>
-          <h1>Recorded run — <span className="mono-h">{demo === "search" ? "search for running shoes" : "buy the cheapest item"}</span></h1>
+          <h1>Recorded run — <span className="mono-h">{demo === "checkout" ? "complete the checkout" : demo === "search" ? "search for running shoes" : "buy the cheapest item"}</span></h1>
           <p className="pagesub">A real run against the planted-bug shop, streaming exactly as it happened. Pause it, slow it down, read what the screen reader heard.</p>
         </div>
         <div className="meta-row">
@@ -357,12 +357,15 @@ function ConsoleView({ state, bench, selectDemo, demo, setDemo }) {
           <span className="meta">watching a recorded run — <b>to go live</b>: clone the repo, add your Nebius key (<code>docs/RUN-GUIDE.md</code>), paste your run id above; the pipeline streams identically</span>
         </div>
       </div>
-      <div className="chips-row demo-picker" role="group" aria-label="Choose recorded run">
-        <button className={`meta mono demo-chip ${demo === "flagship" ? "on" : ""}`} onClick={() => { if (demo !== "flagship") { setDemo("flagship"); selectDemo("flagship"); } }}>
-          ① checkout — fix verified by ear
+      <div className="chips-row demo-picker" role="group" aria-label="Choose a use case to watch">
+        <button className={`meta mono demo-chip ${demo === "flagship" ? "on" : ""}`} onClick={() => { if (demo !== "flagship") { setDemo("flagship"); selectDemo("flagship"); } }} title="product.html — fix verified by ear">
+          Use case 1 · Buy the cheapest item
         </button>
-        <button className={`meta mono demo-chip ${demo === "search" ? "on" : ""}`} onClick={() => { if (demo !== "search") { setDemo("search"); selectDemo("search"); } }}>
-          ② search — field typing, live
+        <button className={`meta mono demo-chip ${demo === "checkout" ? "on" : ""}`} onClick={() => { if (demo !== "checkout") { setDemo("checkout"); selectDemo("checkout"); } }} title="checkout.html — most findings, highest-confidence blocker, 2 fix rounds">
+          Use case 2 · Complete the checkout
+        </button>
+        <button className={`meta mono demo-chip ${demo === "search" ? "on" : ""}`} onClick={() => { if (demo !== "search") { setDemo("search"); selectDemo("search"); } }} title="search.html — an everyday task: typing and results">
+          Use case 3 · Search for running shoes
         </button>
       </div>
       <StageRail stage={state.stage} status={state.status} />

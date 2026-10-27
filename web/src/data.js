@@ -21,6 +21,7 @@ const staticRoot = () => {
 
 const RECORDINGS = {
   flagship: "recorded_run.jsonl",
+  checkout: "recorded_run_checkout.jsonl",
   search: "recorded_run_search.jsonl",
 };
 
