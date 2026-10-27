@@ -697,6 +697,13 @@ function UseCasesView({ results }) {
             })}
           </tbody>
         </table>
+        <p className="helper" style={{ marginBottom: 10 }}>
+          <b>How to read this table:</b> this is the <b>detection sweep</b> — findings only, no fixing
+          (<code>--no-fix</code>). Blockers are the goal here: the pages deliberately carry planted bugs, so
+          every blocker is a true positive, cited from the transcript. What happens <i>next</i> is the fix
+          loop — watch it end to end on the <a href="#/console">Console</a> (Use case 1: found → fixed →
+          verified by ear → pull request).
+        </p>
         <p className="helper">
           {results?.length ? `All ${results.length} tasks completed on live backends (Nemotron planner + auditor, virtual screen reader). Click any row for its real API calls, latencies and findings. ${results.filter((r) => r.findings_count === 0).length} finished by ear with nothing to audit.` : "Loading measured results…"}
           {" "}Reproduce: <code>git clone github.com/0xv3nm09/blind-run && make setup && make serve-shop</code> then <code>uv run python -m blindrun run --url http://127.0.0.1:8932/product.html --task "&lt;task&gt;" --no-fix</code> — the 127.0.0.1:8932 above is the local demo shop the tasks ran against; the pipeline itself ran on Nebius.
