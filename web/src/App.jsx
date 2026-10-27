@@ -685,7 +685,7 @@ function UseCasesView({ results }) {
       </div>
       <Panel
         title="Try it now — with real measured results"
-        sub="Each task below was actually run against the live pipeline (real Nemotron planner + auditor, real virtual screen reader). Status, findings, tokens and duration are the measured values; recordings live in evidence/real-sites/."
+        sub="Each task runs against our planted-bug demo shop: 21 accessibility bugs we hid in 8 pages on purpose (bench/truth.json), plus clean control pages. Blockers found here are true positives — the system finding what was hidden. On clean pages the same pipeline reports 0 findings (precision, not silence-by-luck). All values below are measured; recordings live in evidence/real-sites/."
         count={tasks.length}
       >
         <table className="findings uc-table">
