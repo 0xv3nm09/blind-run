@@ -280,7 +280,7 @@ function BenchmarkTable({ bench, compact }) {
   return (
     <table className="findings bench">
       <thead>
-        <tr><th>Condition</th><th className="num">Recall</th><th>95% CI</th>{compact ? null : <th className="num">Axe-invisible recall</th>}</tr>
+        <tr><th>Condition</th><th className="num">Recall</th><th>95% CI</th></tr>
       </thead>
       <tbody>
         {rows.map(({ name, c, extra, muted }) => (
@@ -293,7 +293,6 @@ function BenchmarkTable({ bench, compact }) {
                 <span className="dotci" style={{ left: `${c.recall * 100}%` }} />
               </span>
             </td>
-            {compact ? null : <td className="num">{c.recall_axe_invisible == null ? "—" : ofTen(c.recall_axe_invisible)}</td>}
             {extra && <td className="extra">{extra}</td>}
           </tr>
         ))}
@@ -414,9 +413,26 @@ function ResultsView({ bench }) {
           <p className="pagesub">Detection was measured, not claimed: 21 planted bugs across 8 pages plus 5 clean control pages, Wilson 95% confidence intervals on every estimate.</p>
         </div>
       </div>
-      <Panel title="Detection benchmark" sub="Recall = share of planted bugs found. The last column counts the 10 bugs rule engines structurally cannot see (they render fine — they just can't be operated by ear). 0 of 10 there is the finding, not a fault: it is why the ear exists.">
+      <Panel
+        title="Run record R-001 — flagship fix run (Oct 26)"
+        sub="Every event from the recorded stream, in order. Raw artifact: bench/recorded_run.jsonl (59 events, committed)."
+        count="59 events"
+      >
+        <div className="records">
+          <div className="rec-row"><span className="rec-t">t+11.1s</span><span className="rec-e">llm.call</span><span className="rec-d">planner · nemotron-3-super-120b-a12b · 1,100 tok</span></div>
+          <div className="rec-row"><span className="rec-t">t+11.1s</span><span className="rec-e">plan.ready</span><span className="rec-d">walk plan + success phrase set</span></div>
+          <div className="rec-row"><span className="rec-t">t+13.1s</span><span className="rec-e">ear.done</span><span className="rec-d">40 phrases — task did NOT complete by ear (silent size picker, nameless buttons)</span></div>
+          <div className="rec-row"><span className="rec-t">t+14.4s</span><span className="rec-e">llm.call</span><span className="rec-d">auditor · nemotron-3-super-120b-a12b · 505 tok</span></div>
+          <div className="rec-row"><span className="rec-t">t+20.6s</span><span className="rec-e">finding.new ×2</span><span className="rec-d">blocker 4.1.2 (no announcement) · minor 4.1.2 (nameless buttons)</span></div>
+          <div className="rec-row"><span className="rec-t">t+127.9s</span><span className="rec-e">llm.call</span><span className="rec-d">fixer · Nemotron-3-Ultra-550b-a55b · 9,353 tok</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">fix.branch ×2</span><span className="rec-d">fix_r1_01 passed · fix_r1_02 failed_ear — in-branch ear replays</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">fix.verified</span><span className="rec-d">passed — transcript diff produced</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">pr.opened</span><span className="rec-d">artifact preserved in evidence/</span></div>
+          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">run.finished</span><span className="rec-d">done · 10,958 tokens ≈ $0.01</span></div>
+        </div>
+      </Panel>
+      <Panel title="Detection benchmark" sub="Recall over 21 planted bugs + 5 clean controls, Wilson 95% CIs. One number is deliberately absent: on the 10 hardest bugs — invisible to rule engines — every detection lane scores 0. That is the finding, not a fault: a detector that only inspects the page cannot grade operability. The lane that can is the fix loop — run the task, and the blocker appears (R-001 above caught it, fixed it, and proved the fix by ear).">
         <BenchmarkTable bench={bench} />
-        <p className="helper">The <b>fix loop is the third lane</b> the table can't capture: on the flagship page it caught the exact blocker axe scored 0 on, fixed it, and proved the fix by ear inside a Sandboxes branch — <a href="#/console">recorded run R-001</a>.</p>
       </Panel>
       <div className="grid2">
         <Panel title="How to read this" sub="Three lanes, one verdict.">
@@ -440,24 +456,6 @@ function ResultsView({ bench }) {
           <li>Wilson intervals handle the small-n honesty problem — wide CIs are shown, not hidden.</li>
           <li>Truth table: <code>bench/truth.json</code> · harness: <code>make bench</code>.</li>
         </ul>
-      </Panel>
-      <Panel
-        title="Run record R-001 — flagship fix run (Oct 26)"
-        sub="Every event from the recorded stream, in order. Raw artifact: bench/recorded_run.jsonl (59 events, committed)."
-        count="59 events"
-      >
-        <div className="records">
-          <div className="rec-row"><span className="rec-t">t+11.1s</span><span className="rec-e">llm.call</span><span className="rec-d">planner · nemotron-3-super-120b-a12b · 1,100 tok</span></div>
-          <div className="rec-row"><span className="rec-t">t+11.1s</span><span className="rec-e">plan.ready</span><span className="rec-d">walk plan + success phrase set</span></div>
-          <div className="rec-row"><span className="rec-t">t+13.1s</span><span className="rec-e">ear.done</span><span className="rec-d">40 phrases — task did NOT complete by ear (silent size picker, nameless buttons)</span></div>
-          <div className="rec-row"><span className="rec-t">t+14.4s</span><span className="rec-e">llm.call</span><span className="rec-d">auditor · nemotron-3-super-120b-a12b · 505 tok</span></div>
-          <div className="rec-row"><span className="rec-t">t+20.6s</span><span className="rec-e">finding.new ×2</span><span className="rec-d">blocker 4.1.2 (no announcement) · minor 4.1.2 (nameless buttons)</span></div>
-          <div className="rec-row"><span className="rec-t">t+127.9s</span><span className="rec-e">llm.call</span><span className="rec-d">fixer · Nemotron-3-Ultra-550b-a55b · 9,353 tok</span></div>
-          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">fix.branch ×2</span><span className="rec-d">fix_r1_01 passed · fix_r1_02 failed_ear — in-branch ear replays</span></div>
-          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">fix.verified</span><span className="rec-d">passed — transcript diff produced</span></div>
-          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">pr.opened</span><span className="rec-d">artifact preserved in evidence/</span></div>
-          <div className="rec-row"><span className="rec-t">t+137.8s</span><span className="rec-e">run.finished</span><span className="rec-d">done · 10,958 tokens ≈ $0.01</span></div>
-        </div>
       </Panel>
       <div className="grid2">
         <Panel title="Run record R-005 — live Tavily sweep (Oct 27)" sub="7 runs with SEARCH_BACKEND=tavily: 30 runtime calls recorded, all source=tavily. Fullest take: 24 events.">
