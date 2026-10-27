@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=web/dist/index.html">
 <title>Blind-Run — demo</title>
+<script>
+  // carry the hash (e.g. #/use-cases) through the redirect into the app
+  location.replace("web/dist/index.html" + (location.hash || ""));
+</script>
 </head>
 <body>
 <p><a href="web/dist/index.html">Blind-Run demo — enter</a></p>
