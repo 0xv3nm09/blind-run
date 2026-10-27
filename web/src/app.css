@@ -247,3 +247,13 @@ table.findings { width: 100%; border-collapse: collapse; font: 400 13px/19px var
 .demo-chip .v-ok { color: var(--ok); font-weight: 600; margin-left: 4px; }
 .demo-chip .v-honest { color: var(--warn); font-weight: 600; margin-left: 4px; }
 .demo-chip .v-clean { color: var(--accent); font-weight: 600; margin-left: 4px; }
+.panel .uc-proof { display: grid; grid-template-columns: 1.2fr 1fr 240px; gap: 16px; padding: 2px 0 6px; }
+.panel .uc-block h5 { font: 600 12px/17px var(--sans); color: var(--text-2); margin: 0 0 7px; }
+.panel .uc-block h5 span { font-weight: 400; color: var(--text-3); }
+.panel .uc-rec { font: 400 11px/16px var(--mono); color: var(--text-2); word-break: break-all; }
+.panel .uc-phases { font: 400 11.5px/16px var(--mono); color: var(--text-3); margin-top: 7px; }
+.panel .uc-none { font: 400 12.5px/18px var(--sans); color: var(--ok); }
+.panel .uc-find { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
+.panel .uc-find .quote { font: 400 11.5px/16px var(--mono); color: var(--text-2); }
+.panel .uc-proof .call-line { grid-template-columns: 92px 1fr 84px 140px; }
+.panel .uc-proof .call-line .c-model { font-size: 10.5px; word-break: normal; }

@@ -28,7 +28,7 @@ const RECORDINGS = {
 const loadStaticEvents = async (source = "flagship") => {
   const root = staticRoot();
   const file = RECORDINGS[source] ?? RECORDINGS.flagship;
-  const candidates = [`${root}bench/${file}`, `./bench/${file}`];
+  const candidates = [`${root}bench/${file}`, `./bench/${file}`, `/bench/${file}`];
   for (const url of candidates) {
     const r = await fetch(url);
     if (r.ok) {
@@ -145,6 +145,40 @@ export const loadUseCaseResults = async () => {
     if (r.ok) return r.json();
   }
   return [];
+};
+
+// per-run record: calls (role/model/tokens/t+/duration), phases, findings —
+// computed from the committed recording, exactly what RUN-RECORDS.md documents
+export const loadRunRecord = async (source = "flagship") => {
+  const root = staticRoot();
+  const file = RECORDINGS[source] ?? RECORDINGS.flagship;
+  const candidates = [`${root}bench/${file}`, `./bench/${file}`, `/bench/${file}`];
+  let text = null;
+  for (const url of candidates) {
+    const r = await fetch(url);
+    if (r.ok) { text = await r.text(); break; }
+  }
+  if (!text) return null;
+  const events = text.split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  const t0 = new Date(events[0].at).getTime();
+  const at = (e) => Math.round((new Date(e.at).getTime() - t0) / 100) / 10;
+  const rec = { events: events.length, artifact: `bench/${file}`, calls: [], phases: {}, findings: [], tokens: null, status: "", seconds: null };
+  let prev = 0;
+  for (const e of events) {
+    const t = at(e);
+    if (e.type === "llm.call") {
+      rec.calls.push({ role: e.data.role, model: String(e.data.model).split("/").pop(), tokens: e.data.tokens, at_s: t, latency: Math.round((t - prev) * 10) / 10 });
+    }
+    if (e.type === "search.call") {
+      rec.calls.push({ role: "tavily · " + e.data.kind, model: e.data.source, tokens: null, at_s: t, latency: Math.round((t - prev) * 10) / 10 });
+    }
+    if (e.type === "plan.ready") rec.phases.plan_done_s = t;
+    if (e.type === "ear.done") { rec.phases.listen_done_s = t; rec.phrases = e.data.phrases; }
+    if (e.type === "finding.new") rec.findings.push({ sev: e.data.severity, wcag: e.data.wcag_sc, heard: e.data.heard });
+    if (e.type === "run.finished") { rec.tokens = e.data.tokens; rec.status = e.data.status; rec.seconds = t; }
+    prev = t;
+  }
+  return rec;
 };
 
 export const loadBench = async (mode) =>

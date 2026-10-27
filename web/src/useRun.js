@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from "react";
-import { makeRunner, loadBench, loadUseCaseResults } from "./data.js";
+import { makeRunner, loadBench, loadUseCaseResults, loadRunRecord } from "./data.js";
 
 const initial = () => ({
   status: "connecting", task: null, tokens: null, stage: "",
@@ -56,6 +56,7 @@ export function useRun() {
   const [state, dispatch] = useReducer(reducer, initial());
   const [bench, setBench] = useState(null);
   const [ucResults, setUcResults] = useState([]);
+  const [runRecord, setRunRecord] = useState(null);
   const [mode, setMode] = useState(null); // "live" | "static"
   const [paused, setPaused] = useState(false);
   const [speed, setSpeedState] = useState(1);
@@ -73,11 +74,14 @@ export function useRun() {
     runner.start();
     loadBench().then(setBench);
     loadUseCaseResults().then(setUcResults);
+    loadRunRecord("flagship").then(setRunRecord);
     return () => runner.close();
   }, []);
 
   const selectDemo = (kind) => {
     dispatch({ type: "run.reset" });
+    setRunRecord(null);
+    loadRunRecord(kind).then(setRunRecord);
     runnerRef.current?.close();
     const runner = makeRunner({
       onEvent: dispatch,
@@ -100,5 +104,5 @@ export function useRun() {
     runnerRef.current?.setSpeed(speedRef.current);
   }, [speed]);
 
-  return { state, bench, ucResults, paused, setPaused, speed, setSpeed: setSpeedState, mode, selectDemo };
+  return { state, bench, ucResults, runRecord, paused, setPaused, speed, setSpeed: setSpeedState, mode, selectDemo };
 }

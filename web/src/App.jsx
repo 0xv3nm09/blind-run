@@ -341,7 +341,7 @@ function CallsPanel({ state }) {
   );
 }
 
-function ConsoleView({ state, bench, selectDemo, demo, setDemo }) {
+function ConsoleView({ state, bench, runRecord, selectDemo, demo, setDemo }) {
   const tokens = useCountUp(state.tokens);
   return (
     <>
@@ -391,6 +391,47 @@ function ConsoleView({ state, bench, selectDemo, demo, setDemo }) {
         </div>
       </div>
       <CallsPanel state={state} />
+      <Panel
+        title={`Run record — ${demo === "checkout" ? "complete the checkout" : demo === "search" ? "search for running shoes" : "buy the cheapest item"}`}
+        sub="The committed record behind this stream: every inference and retrieval call with when it fired and how long it took, the phase timeline, and what the auditor reported. Raw JSONL path below."
+        count={runRecord ? `${runRecord.events} events` : "…"}
+      >
+        {!runRecord ? <div className="empty">Loading the committed record…</div> : (
+          <div className="uc-proof">
+            <div className="uc-block">
+              <h5>Real API calls <span>— t+ when it fired · call duration, from event timestamps</span></h5>
+              {runRecord.calls.map((c, i) => (
+                <div key={i} className={`call-line ${c.role.startsWith("tavily") ? "search" : ""}`}>
+                  <span className="c-role">{c.role}</span>
+                  <span className="c-model">{c.model}</span>
+                  <span className="c-tokens">{c.tokens != null ? `${c.tokens.toLocaleString()} tok` : ""}</span>
+                  <span className="c-url">t+{c.at_s}s · {c.latency}s call</span>
+                </div>
+              ))}
+              <div className="uc-phases">
+                plan done t+{runRecord.phases.plan_done_s}s
+                {runRecord.phases.listen_done_s != null && <> · ear finished t+{runRecord.phases.listen_done_s}s ({runRecord.phrases} phrases)</>}
+                · total {runRecord.seconds}s · {runRecord.status}
+              </div>
+            </div>
+            <div className="uc-block">
+              <h5>What the auditor reported <span>— quoted from the transcript</span></h5>
+              {runRecord.findings.length === 0 && <div className="uc-none">0 findings — the task completed by ear; there was nothing to audit.</div>}
+              {runRecord.findings.map((f, i) => (
+                <div key={i} className="uc-find">
+                  <Chip tone={f.sev}>{f.sev}</Chip>
+                  <span className="mono-h">{f.wcag}</span>
+                  <span className="quote">heard {f.heard}</span>
+                </div>
+              ))}
+            </div>
+            <div className="uc-block">
+              <h5>Full recording</h5>
+              <code className="uc-rec">{runRecord.artifact}</code>
+            </div>
+          </div>
+        )}
+      </Panel>
       <Panel title="Transcript diff" sub="The winner's evidence: what changed for a screen-reader user, line by line.">
         <DiffPanel verified={state.verified} />
       </Panel>
@@ -718,7 +759,7 @@ function AboutView() {
 /* ---------- app + hash router ---------- */
 
 export default function App() {
-  const { state, bench, ucResults, paused, setPaused, speed, setSpeed, selectDemo } = useRun();
+  const { state, bench, ucResults, runRecord, paused, setPaused, speed, setSpeed, selectDemo } = useRun();
   const [demo, setDemo] = useState("flagship");
   const [theme, setTheme] = useState(() => localStorage.getItem("br-theme") ?? "dark");
   const [mode, setModeState] = useState("");
@@ -754,7 +795,7 @@ export default function App() {
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.22 }}
         >
-          {view === "console" && <ConsoleView state={state} bench={bench} selectDemo={selectDemo} demo={demo} setDemo={setDemo} />}
+          {view === "console" && <ConsoleView state={state} bench={bench} runRecord={runRecord} selectDemo={selectDemo} demo={demo} setDemo={setDemo} />}
           {view === "results" && <ResultsView bench={bench} />}
           {view === "use-cases" && <UseCasesView results={ucResults} />}
           {view === "stack" && <StackView />}
