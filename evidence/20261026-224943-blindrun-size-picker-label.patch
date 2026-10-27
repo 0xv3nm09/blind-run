@@ -1,0 +1,13 @@
+<<<SEARCH
+    <div id="size-picker" aria-label="Size">
+      <div class="size" onclick="pick(this)">S</div>
+      <div class="size" onclick="pick(this)">M</div>
+      <div class="size" onclick="pick(this)">L</div>
+    </div>
+===
+    <div id="size-picker" role="radiogroup" aria-label="Size">
+      <button class="size" role="radio" aria-checked="false" onclick="pick(this)">S</button>
+      <button class="size" role="radio" aria-checked="false" onclick="pick(this)">M</button>
+      <button class="size" role="radio" aria-checked="false" onclick="pick(this)">L</button>
+    </div>
+>>>
